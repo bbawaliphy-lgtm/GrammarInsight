@@ -194,7 +194,7 @@
             </button>
         </div>
 
-        <!-- Community Promotions (Openly Displayed) -->
+        <!-- Community Promotions -->
         <div class="grid grid-cols-3 gap-3 mb-10 animate-slide-up delay-400">
             <a href="https://www.youtube.com/@SSCINSIGHTBENGALI?sub_confirmation=1" target="_blank" class="glass-card p-4 rounded-2xl flex flex-col items-center justify-center text-center gap-2 hover:bg-red-600 hover:border-red-500 transition-all duration-300 group">
                 <i class="fa-brands fa-youtube text-2xl text-red-500 group-hover:text-white transition-colors"></i>
@@ -210,7 +210,7 @@
             </a>
         </div>
 
-        <!-- Instructor Profile (Uncovered & Redesigned) -->
+        <!-- Instructor Profile (Uncovered) -->
         <div class="relative w-full mt-8 mb-8 animate-slide-up delay-500">
             
             <div class="flex items-center gap-3 mb-4 opacity-80">
@@ -417,59 +417,103 @@
         </div>
     </section>
 
+    <!-- Mentor Modal (Updated) -->
+    <div id="mentorModal" class="hidden fixed inset-0 z-[60] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 animate-fade-in" onclick="this.classList.add('hidden')">
+        <div class="glass-card w-full max-w-sm rounded-3xl overflow-hidden shadow-2xl transform transition-transform scale-100" onclick="event.stopPropagation()">
+            <div class="relative">
+                <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');">
+                    <div class="absolute inset-0 bg-gradient-to-t from-royal-900 to-transparent"></div>
+                </div>
+                <button onclick="document.getElementById('mentorModal').classList.add('hidden')" class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-black/40 text-white hover:bg-black/60 transition-colors backdrop-blur-sm">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+                <div class="absolute -bottom-10 left-6 flex items-end">
+                    <div class="w-20 h-20 rounded-2xl border-4 border-royal-900 bg-gray-200 overflow-hidden shadow-xl">
+                         <div class="w-full h-full bg-cover bg-center" style="background-image: url('Dyuti.png');"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-12 px-6 pb-8">
+                <h2 class="text-2xl font-bold text-white aristocratic-title">Dyutimala Datta</h2>
+                <div class="flex items-center gap-2 mt-1">
+                    <span class="text-xs font-bold text-royal-gold uppercase tracking-wider">Scientific Officer</span>
+                    <span class="w-1 h-1 rounded-full bg-gray-500"></span>
+                    <span class="text-xs text-gray-400">CWC</span>
+                </div>
+                <div class="mt-6 space-y-4">
+                    <div class="bg-white/5 rounded-xl p-4 border border-white/5">
+                        <h4 class="text-[10px] text-gray-500 uppercase font-bold mb-2 tracking-widest">Achievements</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-center gap-3 text-sm text-gray-300"><i class="fa-solid fa-medal text-royal-gold"></i> Cracked SSC CGL 2018 & 2019</li>
+                            <li class="flex items-center gap-3 text-sm text-gray-300"><i class="fa-solid fa-atom text-blue-400"></i> M.Sc. Physics (1st Class)</li>
+                            <li class="flex items-center gap-3 text-sm text-gray-300"><i class="fa-solid fa-users text-green-400"></i> Mentored 1000+ Aspirants</li>
+                        </ul>
+                    </div>
+                    <a href="https://www.youtube.com/@SSCINSIGHTBENGALI?sub_confirmation=1" target="_blank" class="flex items-center justify-center gap-2 w-full py-3 bg-red-600 hover:bg-red-700 text-white rounded-xl font-bold text-sm transition-all shadow-lg shadow-red-900/50">
+                        <i class="fa-brands fa-youtube"></i> Subscribe for Free Classes
+                    </a>
+                    <div class="grid grid-cols-2 gap-3">
+                        <a href="https://chat.whatsapp.com/HX6nMksgdE57GSRkrNmE5l" target="_blank" class="py-3 bg-green-600/20 border border-green-500/30 text-green-400 hover:bg-green-600/30 rounded-xl font-bold text-xs text-center transition-all"><i class="fa-brands fa-whatsapp mb-1 block text-lg"></i> Join Group</a>
+                        <a href="https://sscinsightbengali.akamai.net.in/zero-price-courses" target="_blank" class="py-3 bg-blue-600/20 border border-blue-500/30 text-blue-400 hover:bg-blue-600/30 rounded-xl font-bold text-xs text-center transition-all"><i class="fa-solid fa-globe mb-1 block text-lg"></i> Website</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // --- QUIZ DATA ---
         const quizData = [
-            { id: 1, q: "The jury ______ divided in their opinions.", options: ["was", "were", "has", "is"], correct: 1, ruleId: 42, explanation: "Jury when divided acts as individuals (plural)." },
-            { id: 2, q: "One of the boys ______ missing.", options: ["are", "were", "is", "have"], correct: 2, ruleId: 14, explanation: "'One of' always takes a singular verb." },
-            { id: 3, q: "Bread and butter ______ my favorite breakfast.", options: ["are", "is", "were", "have"], correct: 1, ruleId: 1, explanation: "Bread and butter represents a single idea, hence singular." },
-            { id: 4, q: "Neither he nor his friends ______ responsible.", options: ["is", "was", "are", "has"], correct: 2, ruleId: 15, explanation: "Verb agrees with the nearest subject (friends)." },
-            { id: 5, q: "He is senior ______ me.", options: ["than", "to", "from", "of"], correct: 1, ruleId: 22, explanation: "Senior, Junior, Superior take 'to', not 'than'." },
-            { id: 6, q: "I look forward to ______ you.", options: ["meet", "met", "meeting", "will meet"], correct: 2, ruleId: 20, explanation: "'Look forward to' is followed by a Gerund (V+ing)." },
-            { id: 7, q: "He died ______ cancer.", options: ["from", "by", "of", "with"], correct: 2, ruleId: 22, explanation: "Died 'of' a disease." },
-            { id: 8, q: "The news ______ true.", options: ["are", "were", "is", "have"], correct: 2, ruleId: 83, explanation: "News is singular." },
-            { id: 9, q: "He works ______.", options: ["hardly", "hard", "harderly", "hards"], correct: 1, ruleId: 63, explanation: "Hard means 'with effort'. Hardly means 'barely'." },
-            { id: 10, q: "Hardly had I reached the station ______ the train left.", options: ["than", "then", "when", "after"], correct: 2, ruleId: 31, explanation: "Hardly/Scarcely... when." },
-            { id: 11, q: "It is time we ______ home.", options: ["go", "went", "gone", "will go"], correct: 1, ruleId: 6, explanation: "'It is time' + subject takes past tense." },
-            { id: 12, q: "Unless you work hard, you ______ fail.", options: ["will", "won't", "do", "did"], correct: 0, ruleId: 11, explanation: "Unless introduces a condition; main clause takes 'will'." },
-            { id: 13, q: "She is ______ best student in the class.", options: ["a", "an", "the", "no article"], correct: 2, ruleId: 5, explanation: "Superlative degrees take 'the'." },
-            { id: 14, q: "Physics ______ an interesting subject.", options: ["are", "is", "were", "have"], correct: 1, ruleId: 83, explanation: "Subject names are singular." },
-            { id: 15, q: "Many a man ______ come.", options: ["have", "has", "are", "were"], correct: 1, ruleId: 3, explanation: "'Many a' is followed by singular noun and verb." },
-            { id: 16, q: "He is used to ______ early.", options: ["wake", "waking", "woke", "waken"], correct: 1, ruleId: 48, explanation: "'Be used to' takes V+ing." },
-            { id: 17, q: "If I ______ a bird, I would fly.", options: ["was", "am", "were", "are"], correct: 2, ruleId: 11, explanation: "Hypothetical condition takes 'were'." },
-            { id: 18, q: "Lest you ______ fail.", options: ["may", "will", "should", "would"], correct: 2, ruleId: 45, explanation: "Lest is followed by 'should'." },
-            { id: 19, q: "The police ______ coming.", options: ["is", "are", "has", "was"], correct: 1, ruleId: 42, explanation: "Police is a plural noun." },
-            { id: 20, q: "Either you or he ______ to blame.", options: ["are", "is", "were", "have"], correct: 1, ruleId: 15, explanation: "Verb agrees with nearest subject (he)." },
-            { id: 21, q: "He is good ______ English.", options: ["in", "at", "on", "for"], correct: 1, ruleId: 21, explanation: "Good 'at' a subject/skill." },
-            { id: 22, q: "I prefer tea ______ coffee.", options: ["than", "over", "to", "from"], correct: 2, ruleId: 12, explanation: "Prefer takes 'to'." },
-            { id: 23, q: "Fifty kilometers ______ a long distance.", options: ["are", "were", "is", "have"], correct: 2, ruleId: 1, explanation: "Distances as a unit take singular verb." },
-            { id: 24, q: "He availed himself ______ the opportunity.", options: ["of", "with", "for", "in"], correct: 0, ruleId: 22, explanation: "Avail oneself 'of'." },
-            { id: 25, q: "Scarcely had he gone ______ she came.", options: ["than", "then", "when", "before"], correct: 2, ruleId: 31, explanation: "Scarcely... when." },
-            { id: 26, q: "No sooner did I see him ______ he ran away.", options: ["when", "then", "than", "that"], correct: 2, ruleId: 31, explanation: "No sooner... than." },
-            { id: 27, q: "He is ______ M.A.", options: ["a", "an", "the", "no article"], correct: 1, ruleId: 4, explanation: "M.A. starts with a vowel sound (Em)." },
-            { id: 28, q: "The number of boys ______ increasing.", options: ["are", "is", "were", "have"], correct: 1, ruleId: 14, explanation: "'The number of' takes singular verb." },
-            { id: 29, q: "A number of students ______ present.", options: ["is", "are", "was", "has"], correct: 1, ruleId: 14, explanation: "'A number of' takes plural verb." },
-            { id: 30, q: "Let ______ go.", options: ["he", "him", "his", "they"], correct: 1, ruleId: 57, explanation: "Let is followed by objective case (him)." },
-            { id: 31, q: "She made me ______.", options: ["to cry", "crying", "cry", "cried"], correct: 2, ruleId: 57, explanation: "Make takes bare infinitive (cry)." },
-            { id: 32, q: "He entered ______ the room.", options: ["in", "into", "to", "no preposition"], correct: 3, ruleId: 22, explanation: "Enter (meaning come in) takes no preposition." },
-            { id: 33, q: "The committee ______ divided in their opinion.", options: ["was", "were", "has", "is"], correct: 1, ruleId: 42, explanation: "Committee divided = plural." },
-            { id: 34, q: "Each of the girls ______ done her work.", options: ["have", "has", "are", "were"], correct: 1, ruleId: 14, explanation: "'Each of' takes singular verb." },
-            { id: 35, q: "My scissors ______ missing.", options: ["is", "are", "was", "has"], correct: 1, ruleId: 2, explanation: "Scissors is plural." },
-            { id: 36, q: "Mathematics ______ difficult.", options: ["are", "were", "is", "have"], correct: 2, ruleId: 83, explanation: "Subject names are singular." },
-            { id: 37, q: "I have ______ friends.", options: ["few", "a few", "the few", "little"], correct: 1, ruleId: 18, explanation: "'A few' means some (positive)." },
-            { id: 38, q: "There is ______ water in the jug.", options: ["few", "many", "little", "a few"], correct: 2, ruleId: 19, explanation: "'Little' means hardly any (uncountable)." },
-            { id: 39, q: "This is the ______ book I have ever read.", options: ["good", "better", "best", "most best"], correct: 2, ruleId: 5, explanation: "Superlative with 'the'." },
-            { id: 40, q: "He is more wiser ______ than me.", options: ["then", "than", "to", "remove more"], correct: 3, ruleId: 13, explanation: "Double comparative 'more wiser' is wrong." },
-            { id: 41, q: "Although he is rich, ______ he is miser.", options: ["but", "yet", "still", "and"], correct: 1, ruleId: 47, explanation: "Although pairs with 'yet' or comma." },
-            { id: 42, q: "He walks as if he ______ lame.", options: ["is", "was", "were", "are"], correct: 2, ruleId: 46, explanation: "As if + hypothetical = were." },
-            { id: 43, q: "Not only Ram but also his friends ______ present.", options: ["is", "was", "are", "has"], correct: 2, ruleId: 68, explanation: "Verb agrees with nearest subject (friends)." },
-            { id: 44, q: "Two miles ______ not a long distance.", options: ["is", "are", "were", "have"], correct: 0, ruleId: 1, explanation: "Distance as a unit is singular." },
-            { id: 45, q: "He is ______ honest man.", options: ["a", "an", "the", "no article"], correct: 1, ruleId: 4, explanation: "Honest starts with vowel sound." },
-            { id: 46, q: "The cattle ______ grazing.", options: ["is", "are", "was", "has"], correct: 1, ruleId: 42, explanation: "Cattle is plural." },
-            { id: 47, q: "Gulliver's Travels ______ written by Swift.", options: ["are", "were", "is", "have"], correct: 2, ruleId: 83, explanation: "Book title is singular." },
-            { id: 48, q: "Slow and steady ______ the race.", options: ["win", "wins", "won", "winning"], correct: 1, ruleId: 1, explanation: "Singular idea = singular verb." },
-            { id: 49, q: "He is junior ______ me.", options: ["than", "from", "to", "of"], correct: 2, ruleId: 12, explanation: "Junior takes 'to'." },
-            { id: 50, q: "Return the book ______ the library.", options: ["to", "at", "on", "for"], correct: 0, ruleId: 21, explanation: "Return 'to' a place." }
+            { id: 1, q: "The jury ______ divided in their opinions.", options: ["was", "were", "has", "is"], correct: 1, ruleId: 42, explanation: "Jury যখন বিভক্ত (divided) হয়, তখন এটি Plural হিসেবে গণ্য হয়, তাই 'were' বসবে।" },
+            { id: 2, q: "One of the boys ______ missing.", options: ["are", "were", "is", "have"], correct: 2, ruleId: 14, explanation: "'One of the' থাকলে Noun plural হলেও Verb সর্বদা Singular (is) হয়।" },
+            { id: 3, q: "Bread and butter ______ my favorite breakfast.", options: ["are", "is", "were", "have"], correct: 1, ruleId: 1, explanation: "Bread and butter একটি একক ধারণা (single idea) প্রকাশ করে, তাই Verb singular (is) হবে।" },
+            { id: 4, q: "Neither he nor his friends ______ responsible.", options: ["is", "was", "are", "has"], correct: 2, ruleId: 15, explanation: "Neither...nor এর ক্ষেত্রে Verb তার কাছের Subject (friends) অনুযায়ী Plural (are) হবে।" },
+            { id: 5, q: "He is senior ______ me.", options: ["than", "to", "from", "of"], correct: 1, ruleId: 22, explanation: "Senior, Junior, Superior ইত্যাদির পর 'than' না বসে 'to' বসে।" },
+            { id: 6, q: "I look forward to ______ you.", options: ["meet", "met", "meeting", "will meet"], correct: 2, ruleId: 20, explanation: "'Look forward to'-এর পর সর্বদা Verb+ing (Gerund) বসে।" },
+            { id: 7, q: "He died ______ cancer.", options: ["from", "by", "of", "with"], correct: 2, ruleId: 22, explanation: "রোগে মারা গেলে 'died of' বসে।" },
+            { id: 8, q: "The news ______ true.", options: ["are", "were", "is", "have"], correct: 2, ruleId: 83, explanation: "'News' দেখতে Plural মনে হলেও এটি Singular, তাই 'is' বসবে।" },
+            { id: 9, q: "He works ______.", options: ["hardly", "hard", "harderly", "hards"], correct: 1, ruleId: 63, explanation: "কঠোর পরিশ্রম বোঝাতে 'hard' ব্যবহৃত হয়। 'Hardly' মানে কদাচিৎ।" },
+            { id: 10, q: "Hardly had I reached the station ______ the train left.", options: ["than", "then", "when", "after"], correct: 2, ruleId: 31, explanation: "Hardly had... থাকলে বাক্যের পরের অংশে 'when' বসে।" },
+            { id: 11, q: "It is time we ______ home.", options: ["go", "went", "gone", "will go"], correct: 1, ruleId: 6, explanation: "'It is time' এরপর Subject থাকলে Verb-এর Past form (went) হয়।" },
+            { id: 12, q: "Unless you work hard, you ______ fail.", options: ["will", "won't", "do", "did"], correct: 0, ruleId: 11, explanation: "Unless শর্ত বোঝায়। 'যদি না কাজ করো, তবে ফেল করবে' (will fail)।" },
+            { id: 13, q: "She is ______ best student in the class.", options: ["a", "an", "the", "no article"], correct: 2, ruleId: 5, explanation: "Superlative degree (best)-এর আগে সর্বদা 'the' বসে।" },
+            { id: 14, q: "Physics ______ an interesting subject.", options: ["are", "is", "were", "have"], correct: 1, ruleId: 83, explanation: "বিষয়ের নাম (Physics) সর্বদা Singular, তাই 'is' বসবে।" },
+            { id: 15, q: "Many a man ______ come.", options: ["have", "has", "are", "were"], correct: 1, ruleId: 3, explanation: "'Many a' এরপর Singular Noun এবং Singular Verb (has) বসে।" },
+            { id: 16, q: "He is used to ______ early.", options: ["wake", "waking", "woke", "waken"], correct: 1, ruleId: 48, explanation: "'Is used to' (অভ্যাস) বোঝালে এরপর Verb+ing বসে।" },
+            { id: 17, q: "If I ______ a bird, I would fly.", options: ["was", "am", "were", "are"], correct: 2, ruleId: 11, explanation: "অবাস্তব কল্পনা (Imaginary condition) বোঝালে সব Subject-এর সাথেই 'were' বসে।" },
+            { id: 18, q: "Lest you ______ fail.", options: ["may", "will", "should", "would"], correct: 2, ruleId: 45, explanation: "'Lest'-এর পরে সর্বদা 'should' বসে।" },
+            { id: 19, q: "The police ______ coming.", options: ["is", "are", "has", "was"], correct: 1, ruleId: 42, explanation: "'Police' শব্দটি Plural হিসেবে গণ্য হয়, তাই 'are' বসবে।" },
+            { id: 20, q: "Either you or he ______ to blame.", options: ["are", "is", "were", "have"], correct: 1, ruleId: 15, explanation: "'Or'-এর পরের Subject (he) অনুযায়ী Verb (is) বসবে।" },
+            { id: 21, q: "He is good ______ English.", options: ["in", "at", "on", "for"], correct: 1, ruleId: 21, explanation: "কোনো বিষয়ে দক্ষ বোঝাতে 'good at' বসে।" },
+            { id: 22, q: "I prefer tea ______ coffee.", options: ["than", "over", "to", "from"], correct: 2, ruleId: 12, explanation: "'Prefer'-এর পরে তুলনা বোঝাতে 'to' বসে।" },
+            { id: 23, q: "Fifty kilometers ______ a long distance.", options: ["are", "were", "is", "have"], correct: 2, ruleId: 1, explanation: "নির্দিষ্ট দূরত্ব বা পরিমাণ বোঝালে Verb Singular (is) হয়।" },
+            { id: 24, q: "He availed himself ______ the opportunity.", options: ["of", "with", "for", "in"], correct: 0, ruleId: 22, explanation: "'Avail'-এর পর reflexive pronoun এবং 'of' বসে।" },
+            { id: 25, q: "Scarcely had he gone ______ she came.", options: ["than", "then", "when", "before"], correct: 2, ruleId: 31, explanation: "Scarcely had... থাকলে লিঙ্কার হিসেবে 'when' বসে।" },
+            { id: 26, q: "No sooner did I see him ______ he ran away.", options: ["when", "then", "than", "that"], correct: 2, ruleId: 31, explanation: "No sooner... থাকলে লিঙ্কার হিসেবে 'than' বসে।" },
+            { id: 27, q: "He is ______ M.A.", options: ["a", "an", "the", "no article"], correct: 1, ruleId: 4, explanation: "M.A.-এর উচ্চারণ ভাওয়েল সাউন্ড (Em-A) দিয়ে শুরু, তাই 'an' বসে।" },
+            { id: 28, q: "The number of boys ______ increasing.", options: ["are", "is", "were", "have"], correct: 1, ruleId: 14, explanation: "'The number of' থাকলে Verb Singular (is) হয়।" },
+            { id: 29, q: "A number of students ______ present.", options: ["is", "are", "was", "has"], correct: 1, ruleId: 14, explanation: "'A number of' থাকলে Verb Plural (are) হয়।" },
+            { id: 30, q: "Let ______ go.", options: ["he", "him", "his", "they"], correct: 1, ruleId: 57, explanation: "'Let'-এর পরে Pronoun-এর Objective form (him) বসে।" },
+            { id: 31, q: "She made me ______.", options: ["to cry", "crying", "cry", "cried"], correct: 2, ruleId: 57, explanation: "'Make' (Causative verb)-এর পর to ছাড়া Verb (cry) বসে।" },
+            { id: 32, q: "He entered ______ the room.", options: ["in", "into", "to", "no preposition"], correct: 3, ruleId: 22, explanation: "প্রবেশ করা অর্থে 'enter'-এর পর কোনো preposition বসে না।" },
+            { id: 33, q: "The committee ______ divided in their opinion.", options: ["was", "were", "has", "is"], correct: 1, ruleId: 42, explanation: "মতামত ভিন্ন হলে Committee Plural হিসেবে গণ্য হয়, তাই 'were'।" },
+            { id: 34, q: "Each of the girls ______ done her work.", options: ["have", "has", "are", "were"], correct: 1, ruleId: 14, explanation: "'Each of' থাকলে Verb Singular (has) হয়।" },
+            { id: 35, q: "My scissors ______ missing.", options: ["is", "are", "was", "has"], correct: 1, ruleId: 2, explanation: "Scissors জোড়া জিনিস, তাই এটি Plural Verb (are) নেয়।" },
+            { id: 36, q: "Mathematics ______ difficult.", options: ["are", "were", "is", "have"], correct: 2, ruleId: 83, explanation: "বিষয়ের নাম Singular, তাই 'is'।" },
+            { id: 37, q: "I have ______ friends.", options: ["few", "a few", "the few", "little"], correct: 1, ruleId: 18, explanation: "বন্ধু আছে (positive sense) বোঝাতে 'a few' বসে।" },
+            { id: 38, q: "There is ______ water in the jug.", options: ["few", "many", "little", "a few"], correct: 2, ruleId: 19, explanation: "পানি নেই বললেই চলে (negative sense) বোঝাতে 'little' বসে।" },
+            { id: 39, q: "This is the ______ book I have ever read.", options: ["good", "better", "best", "most best"], correct: 2, ruleId: 5, explanation: "'The' এর পর Superlative degree (best) বসে।" },
+            { id: 40, q: "He is more wiser ______ than me.", options: ["then", "than", "to", "remove more"], correct: 3, ruleId: 13, explanation: "'Wiser' নিজেই Comparative, তাই 'more' ব্যবহার করা ভুল।" },
+            { id: 41, q: "Although he is rich, ______ he is miser.", options: ["but", "yet", "still", "and"], correct: 1, ruleId: 47, explanation: "Although-এর সাথে 'yet' বা কমা বসে, but বসে না।" },
+            { id: 42, q: "He walks as if he ______ lame.", options: ["is", "was", "were", "are"], correct: 2, ruleId: 46, explanation: "As if দ্বারা অবাস্তব তুলনা বোঝালে 'were' বসে।" },
+            { id: 43, q: "Not only Ram but also his friends ______ present.", options: ["is", "was", "are", "has"], correct: 2, ruleId: 68, explanation: "'But also'-র পরের Subject (friends) অনুযায়ী Verb (are) হবে।" },
+            { id: 44, q: "Two miles ______ not a long distance.", options: ["is", "are", "were", "have"], correct: 0, ruleId: 1, explanation: "নির্দিষ্ট দূরত্ব বোঝালে Verb Singular (is) হয়।" },
+            { id: 45, q: "He is ______ honest man.", options: ["a", "an", "the", "no article"], correct: 1, ruleId: 4, explanation: "Honest-এর উচ্চারণ ভাওয়েল (O-nest) এর মতো, তাই 'an' বসে।" },
+            { id: 46, q: "The cattle ______ grazing.", options: ["is", "are", "was", "has"], correct: 1, ruleId: 42, explanation: "'Cattle' সর্বদা Plural, তাই 'are' বসবে।" },
+            { id: 47, q: "Gulliver's Travels ______ written by Swift.", options: ["are", "were", "is", "have"], correct: 2, ruleId: 83, explanation: "বইয়ের নাম সর্বদা Singular, তাই 'is'।" },
+            { id: 48, q: "Slow and steady ______ the race.", options: ["win", "wins", "won", "winning"], correct: 1, ruleId: 1, explanation: "দুটি শব্দ মিলে একটি ভাব (singular idea) প্রকাশ করলে Verb Singular (wins) হয়।" },
+            { id: 49, q: "He is junior ______ me.", options: ["than", "from", "to", "of"], correct: 2, ruleId: 12, explanation: "Junior-এর পর 'to' বসে।" },
+            { id: 50, q: "Return the book ______ the library.", options: ["to", "at", "on", "for"], correct: 0, ruleId: 21, explanation: "কোনো দিকে বা স্থানে ফেরত দেওয়া বোঝাতে 'to' ব্যবহৃত হয়।" }
         ];
 
         // --- GLOBAL VARIABLES FOR QUIZ ---
@@ -540,8 +584,6 @@
             { id: 58, title: "Except / Despite", subtitle: "Exclusion & Contrast", icon: "fa-circle-minus", concept: "Except মানে 'ব্যতীত' বা 'ছাড়া'। Despite বা In spite of মানে 'সত্ত্বেও' (বিপরীত পরিস্থিতি)।", examples: [{ en: "Everyone came except him.", bn: "সে ছাড়া সবাই (Exclusion)", rule: "Exclusion" }, { en: "Despite the rain, we played.", bn: "বৃষ্টি সত্ত্বেও (Contrast)", rule: "Preposition" }, { en: "In spite of effort, he failed.", bn: "চেষ্টা সত্ত্বেও ব্যর্থতা", rule: "Contrast" }] },
             { id: 59, title: "Which vs That", subtitle: "Clause Types", icon: "fa-paperclip", concept: "অপরিহার্য তথ্য দিতে 'That' (Restrictive) বসে। অতিরিক্ত তথ্য দিতে 'Which' (Non-restrictive) বসে এবং কমা (,) ব্যবহার করতে হয়।", examples: [{ en: "The book that you gave is good.", bn: "কোন বইটি? নির্দিষ্ট করা হচ্ছে → That", rule: "Essential Info" }, { en: "The book, which you gave, is good.", bn: "বইটি পরিচিত, বাড়তি তথ্য → Which", rule: "Extra Info" }, { en: "The man that I saw was tall.", bn: "নির্দিষ্ট ব্যক্তি → That", rule: "Defining" }] },
             { id: 60, title: "Whether vs If", subtitle: "Choice vs Condition", icon: "fa-question", concept: "দুটি বিকল্প বা অনিশ্চয়তা (Choice/Doubt) থাকলে 'Whether' বসে। আর শর্ত (Condition) বোঝালে 'If' বসে।", examples: [{ en: "I don't know whether he will come.", bn: "আসবে কি না (অনিশ্চয়তা) → Whether", rule: "Uncertainty" }, { en: "Tell me whether this is correct.", bn: "সঠিক কি না (Option) → Whether", rule: "Choice" }, { en: "If it rains, we will stay home.", bn: "শর্ত: যদি বৃষ্টি হয় → If", rule: "Condition" }] },
-
-            // --- NEW RULES (61-90) ---
             { id: 61, title: "Phrasal Verbs", subtitle: "Separable vs Inseparable", icon: "fa-puzzle-piece", concept: "Separable phrasal verb-এ object মাঝে বা শেষে বসতে পারে। কিন্তু Inseparable-এ object সবসময় শেষে বসে এবং particle আলাদা করা যায় না।", examples: [{ en: "He looked up the word. / looked the word up.", bn: "Separable: Object মাঝে বা শেষে বসতে পারে", rule: "Separable" }, { en: "He ran into an old friend.", bn: "Inseparable: Object শুধুই শেষে বসবে", rule: "Inseparable" }, { en: "She called the meeting off.", bn: "Separable: Object মাঝে বসেছে", rule: "Separable" }] },
             { id: 62, title: "Verb Patterns", subtitle: "Gerund vs Infinitive", icon: "fa-shapes", concept: "কিছু Verb-এর পর Gerund (-ing) বসে (যেমন: enjoy), আর কিছুর পর Infinitive (to+V1) বসে (যেমন: decide)। আবার কিছু শব্দে অর্থ বদলে যায়।", examples: [{ en: "I enjoy reading books.", bn: "Enjoy + Gerund (reading)", rule: "Verb + Gerund" }, { en: "He decided to go home.", bn: "Decide + Infinitive (to go)", rule: "Verb + Inf" }, { en: "Remember meeting vs Remember to meet", bn: "Meeting (Past Memory) vs To meet (Future Duty)", rule: "Meaning Change" }] },
             { id: 63, title: "Adjective vs Adverb", subtitle: "Confusion Words", icon: "fa-circle-exclamation", concept: "Adjective Noun-কে মডিফাই করে (Good singer), Adverb Verb-কে মডিফাই করে (Sings well)। Hard = কঠোর পরিশ্রম, Hardly = প্রায় না।", examples: [{ en: "He works hard.", bn: "Hard = কঠোর পরিশ্রম (Adverb)", rule: "Effort" }, { en: "He hardly works.", bn: "Hardly = প্রায় কাজ করে না (Negative)", rule: "Frequency" }, { en: "Good singer vs Sings well.", bn: "Good (Adj) vs Well (Adv)", rule: "Adj vs Adv" }] },
@@ -652,6 +694,8 @@
             btnElement.classList.remove('opacity-50');
 
             const feedbackEl = document.getElementById('quizFeedback');
+            
+            // --- Updated Feedback Content ---
             let feedbackHTML = '';
 
             if (selectedIdx === q.correct) {
@@ -991,6 +1035,24 @@
                     </div>
                 </div>
             `;
+        }
+
+        // --- ACTIONS ---
+        function nextRule() {
+            if (currentIndex < currentSessionRules.length - 1) {
+                currentIndex++;
+                renderCurrentRule();
+            } else {
+                alert(`Session Complete! You studied for ${document.getElementById('timerDisplay').innerText}`);
+                goHome();
+            }
+        }
+
+        function prevRule() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderCurrentRule();
+            }
         }
 
         function setDifficulty(level) {
