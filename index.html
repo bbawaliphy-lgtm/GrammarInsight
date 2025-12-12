@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RULES OF GRAMMAR - SSC INSIGHT</title>
+    <title>English RuleMaster - SSC INSIGHT</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -20,29 +20,38 @@
                     },
                     colors: {
                         royal: {
-                            900: '#0f172a',
-                            800: '#1e293b',
-                            gold: '#fbbf24',
+                            900: '#050b14',
+                            800: '#0f172a',
+                            gold: '#ffd700',
                             accent: '#f59e0b',
                         },
                         glass: {
-                            light: 'rgba(255, 255, 255, 0.1)',
-                            dark: 'rgba(15, 23, 42, 0.6)',
+                            light: 'rgba(255, 255, 255, 0.05)',
                             border: 'rgba(255, 255, 255, 0.1)',
                         }
                     },
                     animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'float': 'float 8s ease-in-out infinite',
+                        'float-reverse': 'floatReverse 10s ease-in-out infinite',
+                        'glow': 'glow 3s ease-in-out infinite alternate',
+                        'slide-up': 'slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
                     },
                     keyframes: {
                         float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
+                            '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-10px) rotate(2deg)' },
+                        },
+                        floatReverse: {
+                            '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+                            '50%': { transform: 'translateY(10px) rotate(-2deg)' },
                         },
                         glow: {
-                            'from': { boxShadow: '0 0 10px #fbbf24' },
-                            'to': { boxShadow: '0 0 20px #f59e0b' }
+                            'from': { boxShadow: '0 0 5px rgba(255, 215, 0, 0.2)' },
+                            'to': { boxShadow: '0 0 20px rgba(255, 215, 0, 0.6)' }
+                        },
+                        slideUp: {
+                            '0%': { opacity: 0, transform: 'translateY(20px)' },
+                            '100%': { opacity: 1, transform: 'translateY(0)' }
                         }
                     }
                 }
@@ -52,146 +61,219 @@
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
         .bengali-text { font-family: 'Noto Sans Bengali', sans-serif; }
-        .aristocratic-title { font-family: 'Cinzel', serif; letter-spacing: 0.05em; }
-        .glass-card {
-            background: rgba(17, 25, 40, 0.75);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.125);
-        }
-        .bg-mesh {
-            background-color: #0f172a;
+        .aristocratic-title { font-family: 'Cinzel', serif; letter-spacing: 0.02em; }
+        
+        /* Premium Background */
+        .bg-royal-mesh {
+            background-color: #020617;
             background-image: 
-                radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
-                radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
-                radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+                radial-gradient(circle at 15% 50%, rgba(251, 191, 36, 0.08) 0%, transparent 25%), 
+                radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.08) 0%, transparent 25%);
         }
-        ::-webkit-scrollbar { width: 6px; }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        /* Particles */
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, rgba(255,215,0,0.4) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 10s infinite;
+        }
+
+        /* Staggered Animations */
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
+
+        ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.4); }
+        ::-webkit-scrollbar-thumb { background: rgba(255,215,0,0.3); border-radius: 10px; }
     </style>
 </head>
-<body class="bg-mesh text-gray-100 h-screen flex flex-col overflow-hidden selection:bg-royal-gold selection:text-black">
+<body class="bg-royal-mesh text-gray-100 h-screen flex flex-col overflow-hidden selection:bg-royal-gold selection:text-black relative">
+
+    <!-- Animated Background Elements -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div class="particle w-96 h-96 top-[-10%] left-[-10%] blur-3xl opacity-20"></div>
+        <div class="particle w-80 h-80 bottom-[-10%] right-[-10%] blur-3xl opacity-20 delay-500"></div>
+        
+        <!-- Floating Symbols -->
+        <div class="absolute top-[15%] right-[10%] text-6xl font-serif text-white/5 animate-float">Aa</div>
+        <div class="absolute bottom-[20%] left-[5%] text-8xl font-serif text-royal-gold/5 animate-float-reverse">?</div>
+        <div class="absolute top-[40%] left-[15%] text-4xl font-serif text-blue-500/10 animate-float delay-200">Grammar</div>
+    </div>
 
     <!-- Navbar -->
-    <nav class="absolute top-0 w-full z-40 px-6 py-5 flex justify-between items-center bg-gradient-to-b from-black/50 to-transparent">
+    <nav class="absolute top-0 w-full z-40 px-6 py-6 flex justify-between items-center bg-gradient-to-b from-black/80 to-transparent">
         <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full border border-royal-gold/50 bg-white/10 flex items-center justify-center overflow-hidden shadow-[0_0_15px_rgba(251,191,36,0.3)]">
+            <div class="w-11 h-11 rounded-full border border-royal-gold/30 bg-white/5 flex items-center justify-center overflow-hidden shadow-[0_0_15px_rgba(251,191,36,0.15)] backdrop-blur-sm">
                 <img src="logo.png" alt="SSC Insight" class="w-full h-full object-cover">
             </div>
             <div>
-                <h1 class="font-bold text-white tracking-wide text-sm aristocratic-title">SSC INSIGHT</h1>
-                <p class="text-[10px] text-gray-400 tracking-widest uppercase">Bengali Edition</p>
+                <h1 class="font-bold text-white tracking-wider text-sm aristocratic-title text-royal-gold drop-shadow-md">English RuleMaster</h1>
+                <p class="text-[9px] text-gray-400 tracking-[0.2em] uppercase font-medium">SSC INSIGHT BENGALI</p>
             </div>
-        </div>
-        <div class="px-3 py-1 rounded-full border border-white/10 bg-white/5 text-[10px] font-bold tracking-wider text-royal-gold">
-            PREMIUM
         </div>
     </nav>
 
     <!-- VIEW: HOME SCREEN -->
-    <section id="homeView" class="flex-grow flex flex-col pt-24 pb-8 px-4 sm:px-6 max-w-lg mx-auto w-full h-full overflow-y-auto">
+    <section id="homeView" class="flex-grow flex flex-col pt-28 pb-8 px-4 sm:px-6 max-w-xl mx-auto w-full h-full overflow-y-auto relative z-10 no-scrollbar">
         
-        <!-- Heroic Mentor Section -->
-        <div class="relative w-full mb-8 group perspective-1000">
-            <div class="absolute inset-0 bg-gradient-to-r from-royal-gold to-orange-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition-opacity duration-700"></div>
-            <div class="relative glass-card rounded-3xl p-6 overflow-hidden transform transition-transform duration-500 hover:scale-[1.01]">
-                <div class="absolute top-0 right-0 p-4 opacity-20 text-9xl text-white pointer-events-none">
-                    <i class="fa-solid fa-quote-right"></i>
+        <!-- Hero Headlines -->
+        <div class="text-center mb-10 animate-slide-up">
+            <h1 class="text-3xl sm:text-4xl font-bold text-white mb-4 aristocratic-title leading-tight drop-shadow-xl">
+                Conquer SSC CGL English <br/>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-royal-gold to-orange-400 text-2xl sm:text-3xl font-sans mt-2 block bengali-text">বাংলায় সহজ সমাধান</span>
+            </h1>
+            <p class="text-gray-400 text-sm leading-relaxed max-w-md mx-auto font-light">
+                Master 90 concise grammar rules with practice quizzes, revision packs, and bite-size lessons — built specifically for SSC CGL aspirants.
+            </p>
+        </div>
+
+        <!-- Main Action Cards -->
+        <div class="grid gap-4 mb-10">
+            <!-- Learn Card -->
+            <button onclick="startSession('learn')" class="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1A1F2C] to-[#121620] border border-white/10 p-6 text-left shadow-2xl transition-all hover:scale-[1.02] hover:border-royal-gold/40 animate-slide-up delay-100">
+                <div class="absolute inset-0 bg-gradient-to-r from-royal-gold/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="relative z-10 flex justify-between items-center">
+                    <div>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                            <span class="text-[10px] font-bold text-royal-gold uppercase tracking-widest">Core Module</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white aristocratic-title">Start Learning</h3>
+                        <p class="text-gray-400 text-xs mt-1">90 Golden Rules with Examples</p>
+                    </div>
+                    <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-royal-gold group-hover:text-black transition-all duration-300 shadow-lg">
+                        <i class="fa-solid fa-book-open text-lg"></i>
+                    </div>
                 </div>
-                <div class="flex flex-col items-center text-center relative z-10">
-                    <div class="relative w-28 h-28 mb-4">
-                        <div class="absolute inset-0 rounded-full border-2 border-royal-gold border-dashed animate-[spin_10s_linear_infinite]"></div>
-                        <div class="absolute inset-1 rounded-full bg-gradient-to-b from-gray-200 to-gray-400 overflow-hidden border-4 border-royal-800 shadow-2xl">
-                            <div class="w-full h-full bg-cover bg-center" style="background-image: url('Dyuti.png');"></div> 
+            </button>
+
+            <!-- Quiz Card -->
+            <button onclick="startQuiz()" class="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1A1F2C] to-[#121620] border border-white/10 p-6 text-left shadow-2xl transition-all hover:scale-[1.02] hover:border-emerald-500/40 animate-slide-up delay-200">
+                <div class="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="relative z-10 flex justify-between items-center">
+                    <div>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                            <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">Test Mode</span>
                         </div>
-                        <div class="absolute -bottom-2 -right-2 w-8 h-8 bg-royal-gold rounded-full flex items-center justify-center text-royal-900 border-2 border-royal-800 shadow-lg z-20">
-                            <i class="fa-solid fa-star text-xs"></i>
+                        <h3 class="text-xl font-bold text-white aristocratic-title">Practice Quiz</h3>
+                        <p class="text-gray-400 text-xs mt-1">Challenge yourself with 50 Qs</p>
+                    </div>
+                    <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-300 shadow-lg">
+                        <i class="fa-solid fa-clipboard-question text-lg"></i>
+                    </div>
+                </div>
+            </button>
+
+            <!-- Revision Card -->
+            <button onclick="showPracticeMenu()" class="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1A1F2C] to-[#121620] border border-white/10 p-6 text-left shadow-2xl transition-all hover:scale-[1.02] hover:border-blue-500/40 animate-slide-up delay-300">
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="relative z-10 flex justify-between items-center">
+                    <div>
+                        <h3 class="text-xl font-bold text-white aristocratic-title">Quick Revision</h3>
+                        <p class="text-gray-400 text-xs mt-1">Review your weak areas</p>
+                    </div>
+                    <div class="flex -space-x-3 group-hover:space-x-1 transition-all duration-300">
+                        <div class="w-8 h-8 rounded-full border-2 border-[#1A1F2C] bg-green-500 flex items-center justify-center text-[8px] font-bold text-white">E</div>
+                        <div class="w-8 h-8 rounded-full border-2 border-[#1A1F2C] bg-yellow-500 flex items-center justify-center text-[8px] font-bold text-black">M</div>
+                        <div class="w-8 h-8 rounded-full border-2 border-[#1A1F2C] bg-red-500 flex items-center justify-center text-[8px] font-bold text-white">H</div>
+                    </div>
+                </div>
+            </button>
+        </div>
+
+        <!-- Community Promotions (Openly Displayed) -->
+        <div class="grid grid-cols-3 gap-3 mb-10 animate-slide-up delay-400">
+            <a href="https://www.youtube.com/@SSCINSIGHTBENGALI?sub_confirmation=1" target="_blank" class="glass-card p-4 rounded-2xl flex flex-col items-center justify-center text-center gap-2 hover:bg-red-600 hover:border-red-500 transition-all duration-300 group">
+                <i class="fa-brands fa-youtube text-2xl text-red-500 group-hover:text-white transition-colors"></i>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-gray-300 group-hover:text-white">YouTube</span>
+            </a>
+            <a href="https://chat.whatsapp.com/HX6nMksgdE57GSRkrNmE5l" target="_blank" class="glass-card p-4 rounded-2xl flex flex-col items-center justify-center text-center gap-2 hover:bg-green-600 hover:border-green-500 transition-all duration-300 group">
+                <i class="fa-brands fa-whatsapp text-2xl text-green-500 group-hover:text-white transition-colors"></i>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-gray-300 group-hover:text-white">Community</span>
+            </a>
+            <a href="https://sscinsightbengali.akamai.net.in/zero-price-courses" target="_blank" class="glass-card p-4 rounded-2xl flex flex-col items-center justify-center text-center gap-2 hover:bg-blue-600 hover:border-blue-500 transition-all duration-300 group">
+                <i class="fa-solid fa-mobile-screen-button text-2xl text-blue-500 group-hover:text-white transition-colors"></i>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-gray-300 group-hover:text-white">Get App</span>
+            </a>
+        </div>
+
+        <!-- Instructor Profile (Uncovered & Redesigned) -->
+        <div class="relative w-full mt-8 mb-8 animate-slide-up delay-500">
+            
+            <div class="flex items-center gap-3 mb-4 opacity-80">
+                <div class="h-px bg-gradient-to-r from-transparent to-royal-gold w-full"></div>
+                <span class="text-[10px] font-bold text-royal-gold uppercase tracking-[0.2em] whitespace-nowrap">Meet Your Mentor</span>
+                <div class="h-px bg-gradient-to-r from-royal-gold to-transparent w-full"></div>
+            </div>
+
+            <div class="relative glass-card rounded-2xl p-6 border border-white/5 bg-gradient-to-br from-[#1e293b]/90 to-[#0f172a]/95 shadow-xl overflow-hidden group hover:border-royal-gold/20 transition-all duration-500">
+                
+                <!-- Background decoration -->
+                <div class="absolute top-0 right-0 w-32 h-32 bg-royal-gold/5 rounded-full blur-3xl -mr-10 -mt-10 group-hover:bg-royal-gold/10 transition-colors"></div>
+
+                <div class="flex flex-col sm:flex-row items-center gap-6 relative z-10">
+                    <!-- Avatar with Ring -->
+                    <div class="relative">
+                        <div class="w-24 h-24 rounded-full p-[2px] bg-gradient-to-b from-royal-gold to-transparent shadow-lg">
+                            <div class="w-full h-full rounded-full p-[2px] bg-royal-900">
+                                <img src="Dyuti.png" alt="Dyutimala Datta" class="w-full h-full object-cover rounded-full filter brightness-110">
+                            </div>
+                        </div>
+                        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-royal-gold to-yellow-600 text-royal-900 text-[9px] font-extrabold px-3 py-0.5 rounded-full uppercase tracking-widest shadow-lg border border-yellow-300/30">
+                            Instructor
                         </div>
                     </div>
-                    <h2 class="text-2xl font-bold text-white aristocratic-title mb-1">Dyutimala Datta</h2>
-                    <p class="text-royal-gold text-xs font-bold tracking-widest uppercase mb-4">The Architect of Success</p>
-                    <div class="space-y-2 mb-6">
-                        <p class="text-gray-300 text-sm italic bengali-text leading-relaxed">
-                            "ইংরেজি গ্রামারের ভয়কে জয় করো, স্বপ্নের পথে নির্ভয়ে এগিয়ে চলো।"
+
+                    <!-- Info -->
+                    <div class="text-center sm:text-left flex-1 space-y-3">
+                        <div>
+                            <h3 class="text-xl font-bold text-white aristocratic-title tracking-wide">Dyutimala Datta</h3>
+                            <p class="text-[11px] text-blue-200/80 font-medium uppercase tracking-wider mt-0.5">Scientific Officer (CWC)</p>
+                        </div>
+                        
+                        <div class="flex flex-col gap-1.5">
+                            <div class="flex items-center justify-center sm:justify-start gap-2 text-xs text-gray-300 bg-white/5 py-1 px-3 rounded-lg border border-white/5 w-full sm:w-auto mx-auto sm:mx-0">
+                                <i class="fa-solid fa-trophy text-royal-gold text-[10px]"></i> 
+                                <span>Cracked SSC CGL 2 Times</span>
+                            </div>
+                            <div class="flex items-center justify-center sm:justify-start gap-2 text-xs text-gray-300 bg-white/5 py-1 px-3 rounded-lg border border-white/5 w-full sm:w-auto mx-auto sm:mx-0">
+                                <i class="fa-solid fa-graduation-cap text-blue-400 text-[10px]"></i> 
+                                <span>M.Sc. Physics (1st Class)</span>
+                            </div>
+                            <div class="flex items-center justify-center sm:justify-start gap-2 text-xs text-gray-300 bg-white/5 py-1 px-3 rounded-lg border border-white/5 w-full sm:w-auto mx-auto sm:mx-0">
+                                <i class="fa-solid fa-users text-emerald-400 text-[10px]"></i> 
+                                <span>Mentored 1000+ Aspirants</span>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-gray-400 italic bengali-text border-t border-white/5 pt-3 mt-2">
+                            "Real strategies, exam-focused explanations in Bengali."
                         </p>
-                        <p class="text-gray-400 text-xs">Scientific Officer (CWC) • CGL 2018 & 2019 Cracker</p>
                     </div>
-                    <button onclick="document.getElementById('mentorModal').classList.remove('hidden')" class="px-6 py-2 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 text-xs font-bold text-white transition-all flex items-center gap-2 group-hover:border-royal-gold/50">
-                        <span>View Profile</span> <i class="fa-solid fa-arrow-right text-royal-gold"></i>
-                    </button>
                 </div>
             </div>
         </div>
 
-        <!-- Bengali Purpose Text -->
-        <div class="text-center mb-8">
-            <h3 class="text-xl font-bold text-white mb-2 bengali-text">তোমার প্রস্তুতির বিশ্বস্ত সঙ্গী</h3>
-            <p class="text-gray-400 text-xs max-w-xs mx-auto bengali-text">
-                এসএসসি সিজিএল (SSC CGL) পরীক্ষার জন্য গ্রামারের প্রতিটি নিয়ম এখন তোমার হাতের মুঠোয়। সহজ বাংলায় বোঝো, শেখো এবং জয় করো।
-            </p>
-        </div>
-
-        <!-- Action Cards -->
-        <div class="grid gap-4">
-            <button onclick="startSession('learn')" class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-600 to-violet-700 p-6 text-left shadow-lg transition-all hover:shadow-indigo-500/25 active:scale-[0.98]">
-                <div class="absolute right-0 top-0 -mt-4 -mr-4 h-24 w-24 rounded-full bg-white/10 blur-xl group-hover:scale-150 transition-transform duration-700"></div>
-                <div class="relative z-10 flex justify-between items-center">
-                    <div>
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="px-2 py-0.5 rounded-md bg-white/20 text-[10px] font-bold text-white border border-white/10">MODULE 1</span>
-                            <span class="text-indigo-200 text-xs"><i class="fa-regular fa-clock"></i> Interactive</span>
-                        </div>
-                        <h3 class="text-2xl font-bold text-white aristocratic-title">Start Learning</h3>
-                        <p class="text-indigo-100 text-xs mt-1 opacity-80">Master 90 Golden Rules of Grammar</p>
-                    </div>
-                    <div class="h-12 w-12 rounded-full bg-white/20 flex items-center justify-center text-white text-xl backdrop-blur-sm border border-white/10 group-hover:rotate-12 transition-transform">
-                        <i class="fa-solid fa-book-open-reader"></i>
-                    </div>
-                </div>
-            </button>
-
-            <!-- Quiz Card (NEW) -->
-            <button onclick="startQuiz()" class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-700 p-6 text-left shadow-lg transition-all hover:shadow-emerald-500/25 active:scale-[0.98]">
-                <div class="absolute right-0 top-0 -mt-4 -mr-4 h-24 w-24 rounded-full bg-white/10 blur-xl group-hover:scale-150 transition-transform duration-700"></div>
-                <div class="relative z-10 flex justify-between items-center">
-                    <div>
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="px-2 py-0.5 rounded-md bg-white/20 text-[10px] font-bold text-white border border-white/10">TEST YOURSELF</span>
-                        </div>
-                        <h3 class="text-2xl font-bold text-white aristocratic-title">Quiz Mode</h3>
-                        <p class="text-emerald-100 text-xs mt-1 opacity-80">Challenge with 50 Questions</p>
-                    </div>
-                    <div class="h-12 w-12 rounded-full bg-white/20 flex items-center justify-center text-white text-xl backdrop-blur-sm border border-white/10 group-hover:rotate-12 transition-transform">
-                        <i class="fa-solid fa-clipboard-question"></i>
-                    </div>
-                </div>
-            </button>
-
-            <!-- Practice Card -->
-            <button onclick="showPracticeMenu()" class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 text-left hover:bg-white/10 transition-all active:scale-[0.98]">
-                <div class="relative z-10 flex justify-between items-center">
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-200 aristocratic-title">Revision</h3>
-                        <p class="text-gray-400 text-xs mt-1">Review saved & difficult rules</p>
-                    </div>
-                    <div class="flex -space-x-2">
-                        <div class="h-8 w-8 rounded-full border-2 border-royal-900 bg-green-500 flex items-center justify-center text-[10px] text-white">E</div>
-                        <div class="h-8 w-8 rounded-full border-2 border-royal-900 bg-yellow-500 flex items-center justify-center text-[10px] text-white">M</div>
-                        <div class="h-8 w-8 rounded-full border-2 border-royal-900 bg-red-500 flex items-center justify-center text-[10px] text-white">H</div>
-                    </div>
-                </div>
-            </button>
-        </div>
-
-        <div class="mt-8 text-center">
-            <p class="text-[10px] text-gray-600 uppercase tracking-widest font-bold">Powered by SSC Insight</p>
+        <div class="mt-8 text-center pb-4 opacity-40 hover:opacity-100 transition-opacity">
+            <p class="text-[9px] text-gray-500 uppercase tracking-[0.3em] font-bold">Crafted with <i class="fa-solid fa-heart text-red-500 mx-1"></i> by SSC Insight</p>
         </div>
     </section>
 
     <!-- VIEW: SESSION -->
-    <section id="sessionView" class="hidden fixed inset-0 z-50 bg-royal-900 flex flex-col bg-mesh">
+    <section id="sessionView" class="hidden fixed inset-0 z-50 bg-royal-900 flex flex-col bg-royal-mesh">
         <div class="px-6 py-4 flex items-center justify-between z-20 border-b border-white/5 bg-black/20 backdrop-blur-md">
             <button onclick="endSession()" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 text-gray-400 transition-colors">
                 <i class="fa-solid fa-chevron-left"></i>
@@ -237,7 +319,7 @@
     </section>
 
     <!-- VIEW: QUIZ MODE -->
-    <section id="quizView" class="hidden fixed inset-0 z-50 bg-royal-900 flex flex-col bg-mesh">
+    <section id="quizView" class="hidden fixed inset-0 z-50 bg-royal-900 flex flex-col bg-royal-mesh">
         <div class="px-6 py-4 flex items-center justify-between z-20 border-b border-white/5 bg-black/20 backdrop-blur-md">
             <button onclick="quitQuiz()" class="px-4 py-2 rounded-lg border border-red-500/30 bg-red-500/10 text-red-400 text-xs font-bold hover:bg-red-500/20 transition-colors">
                 Quit
@@ -267,7 +349,7 @@
     </section>
 
     <!-- VIEW: QUIZ REPORT -->
-    <section id="quizReport" class="hidden fixed inset-0 z-50 bg-royal-900 flex flex-col bg-mesh items-center justify-center p-4">
+    <section id="quizReport" class="hidden fixed inset-0 z-50 bg-royal-900 flex flex-col bg-royal-mesh items-center justify-center p-4">
         <div class="glass-card w-full max-w-md rounded-3xl p-8 text-center relative overflow-hidden">
             <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-royal-gold to-orange-500"></div>
             <div class="mb-6">
@@ -324,7 +406,7 @@
     </section>
 
     <!-- VIEW: PRACTICE MENU -->
-    <section id="practiceMenu" class="hidden fixed inset-0 z-50 bg-mesh flex flex-col animate-fade-in">
+    <section id="practiceMenu" class="hidden fixed inset-0 z-50 bg-royal-mesh flex flex-col animate-fade-in">
         <div class="p-6 pt-12">
             <button onclick="goHome()" class="mb-6 flex items-center gap-2 text-gray-400 hover:text-white transition-colors">
                 <i class="fa-solid fa-arrow-left"></i> Back to Home
@@ -335,103 +417,59 @@
         </div>
     </section>
 
-    <!-- Mentor Modal -->
-    <div id="mentorModal" class="hidden fixed inset-0 z-[60] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 animate-fade-in" onclick="this.classList.add('hidden')">
-        <div class="glass-card w-full max-w-sm rounded-3xl overflow-hidden shadow-2xl transform transition-transform scale-100" onclick="event.stopPropagation()">
-            <div class="relative">
-                <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');">
-                    <div class="absolute inset-0 bg-gradient-to-t from-royal-900 to-transparent"></div>
-                </div>
-                <button onclick="document.getElementById('mentorModal').classList.add('hidden')" class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-black/40 text-white hover:bg-black/60 transition-colors backdrop-blur-sm">
-                    <i class="fa-solid fa-times"></i>
-                </button>
-                <div class="absolute -bottom-10 left-6 flex items-end">
-                    <div class="w-20 h-20 rounded-2xl border-4 border-royal-900 bg-gray-200 overflow-hidden shadow-xl">
-                         <div class="w-full h-full bg-cover bg-center" style="background-image: url('Dyuti.png');"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="pt-12 px-6 pb-8">
-                <h2 class="text-2xl font-bold text-white aristocratic-title">Dyutimala Datta</h2>
-                <div class="flex items-center gap-2 mt-1">
-                    <span class="text-xs font-bold text-royal-gold uppercase tracking-wider">Scientific Officer</span>
-                    <span class="w-1 h-1 rounded-full bg-gray-500"></span>
-                    <span class="text-xs text-gray-400">CWC</span>
-                </div>
-                <div class="mt-6 space-y-4">
-                    <div class="bg-white/5 rounded-xl p-4 border border-white/5">
-                        <h4 class="text-[10px] text-gray-500 uppercase font-bold mb-2 tracking-widest">Achievements</h4>
-                        <ul class="space-y-2">
-                            <li class="flex items-center gap-3 text-sm text-gray-300"><i class="fa-solid fa-medal text-royal-gold"></i> Cracked SSC CGL 2018 & 2019</li>
-                            <li class="flex items-center gap-3 text-sm text-gray-300"><i class="fa-solid fa-atom text-blue-400"></i> M.Sc. Physics (1st Class)</li>
-                            <li class="flex items-center gap-3 text-sm text-gray-300"><i class="fa-solid fa-users text-green-400"></i> Mentored 500+ Aspirants</li>
-                        </ul>
-                    </div>
-                    <a href="https://www.youtube.com/@SSCINSIGHTBENGALI?sub_confirmation=1" target="_blank" class="flex items-center justify-center gap-2 w-full py-3 bg-red-600 hover:bg-red-700 text-white rounded-xl font-bold text-sm transition-all shadow-lg shadow-red-900/50">
-                        <i class="fa-brands fa-youtube"></i> Subscribe for Free Classes
-                    </a>
-                    <div class="grid grid-cols-2 gap-3">
-                        <a href="https://chat.whatsapp.com/HX6nMksgdE57GSRkrNmE5l" target="_blank" class="py-3 bg-green-600/20 border border-green-500/30 text-green-400 hover:bg-green-600/30 rounded-xl font-bold text-xs text-center transition-all"><i class="fa-brands fa-whatsapp mb-1 block text-lg"></i> Join Group</a>
-                        <a href="https://sscinsightbengali.akamai.net.in/zero-price-courses" target="_blank" class="py-3 bg-blue-600/20 border border-blue-500/30 text-blue-400 hover:bg-blue-600/30 rounded-xl font-bold text-xs text-center transition-all"><i class="fa-solid fa-globe mb-1 block text-lg"></i> Website</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
         // --- QUIZ DATA ---
         const quizData = [
-            { id: 1, q: "The jury ______ divided in their opinions.", options: ["was", "were", "has", "is"], correct: 1, ruleId: 42, explanation: "Jury যখন বিভক্ত (divided) হয়, তখন এটি Plural হিসেবে গণ্য হয়, তাই 'were' বসবে।" },
-            { id: 2, q: "One of the boys ______ missing.", options: ["are", "were", "is", "have"], correct: 2, ruleId: 14, explanation: "'One of the' থাকলে Noun plural হলেও Verb সর্বদা Singular (is) হয়।" },
-            { id: 3, q: "Bread and butter ______ my favorite breakfast.", options: ["are", "is", "were", "have"], correct: 1, ruleId: 1, explanation: "Bread and butter একটি একক ধারণা (single idea) প্রকাশ করে, তাই Verb singular (is) হবে।" },
-            { id: 4, q: "Neither he nor his friends ______ responsible.", options: ["is", "was", "are", "has"], correct: 2, ruleId: 15, explanation: "Neither...nor এর ক্ষেত্রে Verb তার কাছের Subject (friends) অনুযায়ী Plural (are) হবে।" },
-            { id: 5, q: "He is senior ______ me.", options: ["than", "to", "from", "of"], correct: 1, ruleId: 22, explanation: "Senior, Junior, Superior ইত্যাদির পর 'than' না বসে 'to' বসে।" },
-            { id: 6, q: "I look forward to ______ you.", options: ["meet", "met", "meeting", "will meet"], correct: 2, ruleId: 20, explanation: "'Look forward to'-এর পর সর্বদা Verb+ing (Gerund) বসে।" },
-            { id: 7, q: "He died ______ cancer.", options: ["from", "by", "of", "with"], correct: 2, ruleId: 22, explanation: "রোগে মারা গেলে 'died of' বসে।" },
-            { id: 8, q: "The news ______ true.", options: ["are", "were", "is", "have"], correct: 2, ruleId: 83, explanation: "'News' দেখতে Plural মনে হলেও এটি Singular, তাই 'is' বসবে।" },
-            { id: 9, q: "He works ______.", options: ["hardly", "hard", "harderly", "hards"], correct: 1, ruleId: 63, explanation: "কঠোর পরিশ্রম বোঝাতে 'hard' ব্যবহৃত হয়। 'Hardly' মানে কদাচিৎ।" },
-            { id: 10, q: "Hardly had I reached the station ______ the train left.", options: ["than", "then", "when", "after"], correct: 2, ruleId: 31, explanation: "Hardly had... থাকলে বাক্যের পরের অংশে 'when' বসে।" },
-            { id: 11, q: "It is time we ______ home.", options: ["go", "went", "gone", "will go"], correct: 1, ruleId: 6, explanation: "'It is time' এরপর Subject থাকলে Verb-এর Past form (went) হয়।" },
-            { id: 12, q: "Unless you work hard, you ______ fail.", options: ["will", "won't", "do", "did"], correct: 0, ruleId: 11, explanation: "Unless শর্ত বোঝায়। 'যদি না কাজ করো, তবে ফেল করবে' (will fail)।" },
-            { id: 13, q: "She is ______ best student in the class.", options: ["a", "an", "the", "no article"], correct: 2, ruleId: 5, explanation: "Superlative degree (best)-এর আগে সর্বদা 'the' বসে।" },
-            { id: 14, q: "Physics ______ an interesting subject.", options: ["are", "is", "were", "have"], correct: 1, ruleId: 83, explanation: "বিষয়ের নাম (Physics) সর্বদা Singular, তাই 'is' বসবে।" },
-            { id: 15, q: "Many a man ______ come.", options: ["have", "has", "are", "were"], correct: 1, ruleId: 3, explanation: "'Many a' এরপর Singular Noun এবং Singular Verb (has) বসে।" },
-            { id: 16, q: "He is used to ______ early.", options: ["wake", "waking", "woke", "waken"], correct: 1, ruleId: 48, explanation: "'Is used to' (অভ্যাস) বোঝালে এরপর Verb+ing বসে।" },
-            { id: 17, q: "If I ______ a bird, I would fly.", options: ["was", "am", "were", "are"], correct: 2, ruleId: 11, explanation: "অবাস্তব কল্পনা (Imaginary condition) বোঝালে সব Subject-এর সাথেই 'were' বসে।" },
-            { id: 18, q: "Lest you ______ fail.", options: ["may", "will", "should", "would"], correct: 2, ruleId: 45, explanation: "'Lest'-এর পরে সর্বদা 'should' বসে।" },
-            { id: 19, q: "The police ______ coming.", options: ["is", "are", "has", "was"], correct: 1, ruleId: 42, explanation: "'Police' শব্দটি Plural হিসেবে গণ্য হয়, তাই 'are' বসবে।" },
-            { id: 20, q: "Either you or he ______ to blame.", options: ["are", "is", "were", "have"], correct: 1, ruleId: 15, explanation: "'Or'-এর পরের Subject (he) অনুযায়ী Verb (is) বসবে।" },
-            { id: 21, q: "He is good ______ English.", options: ["in", "at", "on", "for"], correct: 1, ruleId: 21, explanation: "কোনো বিষয়ে দক্ষ বোঝাতে 'good at' বসে।" },
-            { id: 22, q: "I prefer tea ______ coffee.", options: ["than", "over", "to", "from"], correct: 2, ruleId: 12, explanation: "'Prefer'-এর পরে তুলনা বোঝাতে 'to' বসে।" },
-            { id: 23, q: "Fifty kilometers ______ a long distance.", options: ["are", "were", "is", "have"], correct: 2, ruleId: 1, explanation: "নির্দিষ্ট দূরত্ব বা পরিমাণ বোঝালে Verb Singular (is) হয়।" },
-            { id: 24, q: "He availed himself ______ the opportunity.", options: ["of", "with", "for", "in"], correct: 0, ruleId: 22, explanation: "'Avail'-এর পর reflexive pronoun এবং 'of' বসে।" },
-            { id: 25, q: "Scarcely had he gone ______ she came.", options: ["than", "then", "when", "before"], correct: 2, ruleId: 31, explanation: "Scarcely had... থাকলে লিঙ্কার হিসেবে 'when' বসে।" },
-            { id: 26, q: "No sooner did I see him ______ he ran away.", options: ["when", "then", "than", "that"], correct: 2, ruleId: 31, explanation: "No sooner... থাকলে লিঙ্কার হিসেবে 'than' বসে।" },
-            { id: 27, q: "He is ______ M.A.", options: ["a", "an", "the", "no article"], correct: 1, ruleId: 4, explanation: "M.A.-এর উচ্চারণ ভাওয়েল সাউন্ড (Em-A) দিয়ে শুরু, তাই 'an' বসে।" },
-            { id: 28, q: "The number of boys ______ increasing.", options: ["are", "is", "were", "have"], correct: 1, ruleId: 14, explanation: "'The number of' থাকলে Verb Singular (is) হয়।" },
-            { id: 29, q: "A number of students ______ present.", options: ["is", "are", "was", "has"], correct: 1, ruleId: 14, explanation: "'A number of' থাকলে Verb Plural (are) হয়।" },
-            { id: 30, q: "Let ______ go.", options: ["he", "him", "his", "they"], correct: 1, ruleId: 57, explanation: "'Let'-এর পরে Pronoun-এর Objective form (him) বসে।" },
-            { id: 31, q: "She made me ______.", options: ["to cry", "crying", "cry", "cried"], correct: 2, ruleId: 57, explanation: "'Make' (Causative verb)-এর পর to ছাড়া Verb (cry) বসে।" },
-            { id: 32, q: "He entered ______ the room.", options: ["in", "into", "to", "no preposition"], correct: 3, ruleId: 22, explanation: "প্রবেশ করা অর্থে 'enter'-এর পর কোনো preposition বসে না।" },
-            { id: 33, q: "The committee ______ divided in their opinion.", options: ["was", "were", "has", "is"], correct: 1, ruleId: 42, explanation: "মতামত ভিন্ন হলে Committee Plural হিসেবে গণ্য হয়, তাই 'were'।" },
-            { id: 34, q: "Each of the girls ______ done her work.", options: ["have", "has", "are", "were"], correct: 1, ruleId: 14, explanation: "'Each of' থাকলে Verb Singular (has) হয়।" },
-            { id: 35, q: "My scissors ______ missing.", options: ["is", "are", "was", "has"], correct: 1, ruleId: 2, explanation: "Scissors জোড়া জিনিস, তাই এটি Plural Verb (are) নেয়।" },
-            { id: 36, q: "Mathematics ______ difficult.", options: ["are", "were", "is", "have"], correct: 2, ruleId: 83, explanation: "বিষয়ের নাম Singular, তাই 'is'।" },
-            { id: 37, q: "I have ______ friends.", options: ["few", "a few", "the few", "little"], correct: 1, ruleId: 18, explanation: "বন্ধু আছে (positive sense) বোঝাতে 'a few' বসে।" },
-            { id: 38, q: "There is ______ water in the jug.", options: ["few", "many", "little", "a few"], correct: 2, ruleId: 19, explanation: "পানি নেই বললেই চলে (negative sense) বোঝাতে 'little' বসে।" },
-            { id: 39, q: "This is the ______ book I have ever read.", options: ["good", "better", "best", "most best"], correct: 2, ruleId: 5, explanation: "'The' এর পর Superlative degree (best) বসে।" },
-            { id: 40, q: "He is more wiser ______ than me.", options: ["then", "than", "to", "remove more"], correct: 3, ruleId: 13, explanation: "'Wiser' নিজেই Comparative, তাই 'more' ব্যবহার করা ভুল।" },
-            { id: 41, q: "Although he is rich, ______ he is miser.", options: ["but", "yet", "still", "and"], correct: 1, ruleId: 47, explanation: "Although-এর সাথে 'yet' বা কমা বসে, but বসে না।" },
-            { id: 42, q: "He walks as if he ______ lame.", options: ["is", "was", "were", "are"], correct: 2, ruleId: 46, explanation: "As if দ্বারা অবাস্তব তুলনা বোঝালে 'were' বসে।" },
-            { id: 43, q: "Not only Ram but also his friends ______ present.", options: ["is", "was", "are", "has"], correct: 2, ruleId: 68, explanation: "'But also'-র পরের Subject (friends) অনুযায়ী Verb (are) হবে।" },
-            { id: 44, q: "Two miles ______ not a long distance.", options: ["is", "are", "were", "have"], correct: 0, ruleId: 1, explanation: "নির্দিষ্ট দূরত্ব বোঝালে Verb Singular (is) হয়।" },
-            { id: 45, q: "He is ______ honest man.", options: ["a", "an", "the", "no article"], correct: 1, ruleId: 4, explanation: "Honest-এর উচ্চারণ ভাওয়েল (O-nest) এর মতো, তাই 'an' বসে।" },
-            { id: 46, q: "The cattle ______ grazing.", options: ["is", "are", "was", "has"], correct: 1, ruleId: 42, explanation: "'Cattle' সর্বদা Plural, তাই 'are' বসবে।" },
-            { id: 47, q: "Gulliver's Travels ______ written by Swift.", options: ["are", "were", "is", "have"], correct: 2, ruleId: 83, explanation: "বইয়ের নাম সর্বদা Singular, তাই 'is'।" },
-            { id: 48, q: "Slow and steady ______ the race.", options: ["win", "wins", "won", "winning"], correct: 1, ruleId: 1, explanation: "দুটি শব্দ মিলে একটি ভাব (singular idea) প্রকাশ করলে Verb Singular (wins) হয়।" },
-            { id: 49, q: "He is junior ______ me.", options: ["than", "from", "to", "of"], correct: 2, ruleId: 12, explanation: "Junior-এর পর 'to' বসে।" },
-            { id: 50, q: "Return the book ______ the library.", options: ["to", "at", "on", "for"], correct: 0, ruleId: 21, explanation: "কোনো দিকে বা স্থানে ফেরত দেওয়া বোঝাতে 'to' ব্যবহৃত হয়।" }
+            { id: 1, q: "The jury ______ divided in their opinions.", options: ["was", "were", "has", "is"], correct: 1, ruleId: 42, explanation: "Jury when divided acts as individuals (plural)." },
+            { id: 2, q: "One of the boys ______ missing.", options: ["are", "were", "is", "have"], correct: 2, ruleId: 14, explanation: "'One of' always takes a singular verb." },
+            { id: 3, q: "Bread and butter ______ my favorite breakfast.", options: ["are", "is", "were", "have"], correct: 1, ruleId: 1, explanation: "Bread and butter represents a single idea, hence singular." },
+            { id: 4, q: "Neither he nor his friends ______ responsible.", options: ["is", "was", "are", "has"], correct: 2, ruleId: 15, explanation: "Verb agrees with the nearest subject (friends)." },
+            { id: 5, q: "He is senior ______ me.", options: ["than", "to", "from", "of"], correct: 1, ruleId: 22, explanation: "Senior, Junior, Superior take 'to', not 'than'." },
+            { id: 6, q: "I look forward to ______ you.", options: ["meet", "met", "meeting", "will meet"], correct: 2, ruleId: 20, explanation: "'Look forward to' is followed by a Gerund (V+ing)." },
+            { id: 7, q: "He died ______ cancer.", options: ["from", "by", "of", "with"], correct: 2, ruleId: 22, explanation: "Died 'of' a disease." },
+            { id: 8, q: "The news ______ true.", options: ["are", "were", "is", "have"], correct: 2, ruleId: 83, explanation: "News is singular." },
+            { id: 9, q: "He works ______.", options: ["hardly", "hard", "harderly", "hards"], correct: 1, ruleId: 63, explanation: "Hard means 'with effort'. Hardly means 'barely'." },
+            { id: 10, q: "Hardly had I reached the station ______ the train left.", options: ["than", "then", "when", "after"], correct: 2, ruleId: 31, explanation: "Hardly/Scarcely... when." },
+            { id: 11, q: "It is time we ______ home.", options: ["go", "went", "gone", "will go"], correct: 1, ruleId: 6, explanation: "'It is time' + subject takes past tense." },
+            { id: 12, q: "Unless you work hard, you ______ fail.", options: ["will", "won't", "do", "did"], correct: 0, ruleId: 11, explanation: "Unless introduces a condition; main clause takes 'will'." },
+            { id: 13, q: "She is ______ best student in the class.", options: ["a", "an", "the", "no article"], correct: 2, ruleId: 5, explanation: "Superlative degrees take 'the'." },
+            { id: 14, q: "Physics ______ an interesting subject.", options: ["are", "is", "were", "have"], correct: 1, ruleId: 83, explanation: "Subject names are singular." },
+            { id: 15, q: "Many a man ______ come.", options: ["have", "has", "are", "were"], correct: 1, ruleId: 3, explanation: "'Many a' is followed by singular noun and verb." },
+            { id: 16, q: "He is used to ______ early.", options: ["wake", "waking", "woke", "waken"], correct: 1, ruleId: 48, explanation: "'Be used to' takes V+ing." },
+            { id: 17, q: "If I ______ a bird, I would fly.", options: ["was", "am", "were", "are"], correct: 2, ruleId: 11, explanation: "Hypothetical condition takes 'were'." },
+            { id: 18, q: "Lest you ______ fail.", options: ["may", "will", "should", "would"], correct: 2, ruleId: 45, explanation: "Lest is followed by 'should'." },
+            { id: 19, q: "The police ______ coming.", options: ["is", "are", "has", "was"], correct: 1, ruleId: 42, explanation: "Police is a plural noun." },
+            { id: 20, q: "Either you or he ______ to blame.", options: ["are", "is", "were", "have"], correct: 1, ruleId: 15, explanation: "Verb agrees with nearest subject (he)." },
+            { id: 21, q: "He is good ______ English.", options: ["in", "at", "on", "for"], correct: 1, ruleId: 21, explanation: "Good 'at' a subject/skill." },
+            { id: 22, q: "I prefer tea ______ coffee.", options: ["than", "over", "to", "from"], correct: 2, ruleId: 12, explanation: "Prefer takes 'to'." },
+            { id: 23, q: "Fifty kilometers ______ a long distance.", options: ["are", "were", "is", "have"], correct: 2, ruleId: 1, explanation: "Distances as a unit take singular verb." },
+            { id: 24, q: "He availed himself ______ the opportunity.", options: ["of", "with", "for", "in"], correct: 0, ruleId: 22, explanation: "Avail oneself 'of'." },
+            { id: 25, q: "Scarcely had he gone ______ she came.", options: ["than", "then", "when", "before"], correct: 2, ruleId: 31, explanation: "Scarcely... when." },
+            { id: 26, q: "No sooner did I see him ______ he ran away.", options: ["when", "then", "than", "that"], correct: 2, ruleId: 31, explanation: "No sooner... than." },
+            { id: 27, q: "He is ______ M.A.", options: ["a", "an", "the", "no article"], correct: 1, ruleId: 4, explanation: "M.A. starts with a vowel sound (Em)." },
+            { id: 28, q: "The number of boys ______ increasing.", options: ["are", "is", "were", "have"], correct: 1, ruleId: 14, explanation: "'The number of' takes singular verb." },
+            { id: 29, q: "A number of students ______ present.", options: ["is", "are", "was", "has"], correct: 1, ruleId: 14, explanation: "'A number of' takes plural verb." },
+            { id: 30, q: "Let ______ go.", options: ["he", "him", "his", "they"], correct: 1, ruleId: 57, explanation: "Let is followed by objective case (him)." },
+            { id: 31, q: "She made me ______.", options: ["to cry", "crying", "cry", "cried"], correct: 2, ruleId: 57, explanation: "Make takes bare infinitive (cry)." },
+            { id: 32, q: "He entered ______ the room.", options: ["in", "into", "to", "no preposition"], correct: 3, ruleId: 22, explanation: "Enter (meaning come in) takes no preposition." },
+            { id: 33, q: "The committee ______ divided in their opinion.", options: ["was", "were", "has", "is"], correct: 1, ruleId: 42, explanation: "Committee divided = plural." },
+            { id: 34, q: "Each of the girls ______ done her work.", options: ["have", "has", "are", "were"], correct: 1, ruleId: 14, explanation: "'Each of' takes singular verb." },
+            { id: 35, q: "My scissors ______ missing.", options: ["is", "are", "was", "has"], correct: 1, ruleId: 2, explanation: "Scissors is plural." },
+            { id: 36, q: "Mathematics ______ difficult.", options: ["are", "were", "is", "have"], correct: 2, ruleId: 83, explanation: "Subject names are singular." },
+            { id: 37, q: "I have ______ friends.", options: ["few", "a few", "the few", "little"], correct: 1, ruleId: 18, explanation: "'A few' means some (positive)." },
+            { id: 38, q: "There is ______ water in the jug.", options: ["few", "many", "little", "a few"], correct: 2, ruleId: 19, explanation: "'Little' means hardly any (uncountable)." },
+            { id: 39, q: "This is the ______ book I have ever read.", options: ["good", "better", "best", "most best"], correct: 2, ruleId: 5, explanation: "Superlative with 'the'." },
+            { id: 40, q: "He is more wiser ______ than me.", options: ["then", "than", "to", "remove more"], correct: 3, ruleId: 13, explanation: "Double comparative 'more wiser' is wrong." },
+            { id: 41, q: "Although he is rich, ______ he is miser.", options: ["but", "yet", "still", "and"], correct: 1, ruleId: 47, explanation: "Although pairs with 'yet' or comma." },
+            { id: 42, q: "He walks as if he ______ lame.", options: ["is", "was", "were", "are"], correct: 2, ruleId: 46, explanation: "As if + hypothetical = were." },
+            { id: 43, q: "Not only Ram but also his friends ______ present.", options: ["is", "was", "are", "has"], correct: 2, ruleId: 68, explanation: "Verb agrees with nearest subject (friends)." },
+            { id: 44, q: "Two miles ______ not a long distance.", options: ["is", "are", "were", "have"], correct: 0, ruleId: 1, explanation: "Distance as a unit is singular." },
+            { id: 45, q: "He is ______ honest man.", options: ["a", "an", "the", "no article"], correct: 1, ruleId: 4, explanation: "Honest starts with vowel sound." },
+            { id: 46, q: "The cattle ______ grazing.", options: ["is", "are", "was", "has"], correct: 1, ruleId: 42, explanation: "Cattle is plural." },
+            { id: 47, q: "Gulliver's Travels ______ written by Swift.", options: ["are", "were", "is", "have"], correct: 2, ruleId: 83, explanation: "Book title is singular." },
+            { id: 48, q: "Slow and steady ______ the race.", options: ["win", "wins", "won", "winning"], correct: 1, ruleId: 1, explanation: "Singular idea = singular verb." },
+            { id: 49, q: "He is junior ______ me.", options: ["than", "from", "to", "of"], correct: 2, ruleId: 12, explanation: "Junior takes 'to'." },
+            { id: 50, q: "Return the book ______ the library.", options: ["to", "at", "on", "for"], correct: 0, ruleId: 21, explanation: "Return 'to' a place." }
         ];
 
         // --- GLOBAL VARIABLES FOR QUIZ ---
@@ -441,6 +479,7 @@
 
         // --- RULES DATA (FULL 90 RULES) ---
         const rulesData = [
+            // Rule 1-60 (Previous)
             { id: 1, title: "Subject–Verb Agreement", subtitle: "Singular → Singular, Plural → Plural", icon: "fa-user-check", concept: "Subject-এর number অনুযায়ী verb বদলায়। যদি Subject singular হয় তবে verb-ও singular হবে, আর plural হলে verb-ও plural হবে।", examples: [{ en: "The boy plays cricket.", bn: "boy (Singular) → plays (Singular)", rule: "S-S Agreement" }, { en: "The boys play cricket.", bn: "boys (Plural) → play (Plural)", rule: "P-P Agreement" }, { en: "My friend and his brother are coming.", bn: "Two people → Plural verb 'are'", rule: "Compound Subject" }] },
             { id: 2, title: "Plural Noun Formation", subtitle: "Regular & Irregular Rules", icon: "fa-layer-group", concept: "সাধারণত Noun-এর শেষে s/es যোগ করে plural করা হয় (Regular), কিন্তু কিছু শব্দ সম্পূর্ণ বদলে যায় (Irregular) যা মুখস্ত রাখতে হয়।", examples: [{ en: "Book → books", bn: "Regular noun → s যুক্ত হয়েছে", rule: "Regular" }, { en: "Bus → buses", bn: "শেষে s/sh/ch/x থাকলে es হয়", rule: "Ending Rule" }, { en: "Child → children", bn: "পুরো শব্দ বদলে গেছে", rule: "Irregular" }] },
             { id: 3, title: "Many vs Much", subtitle: "Countable vs Uncountable", icon: "fa-scale-balanced", concept: "যেসব Noun গোনা যায় (Countable) তাদের আগে 'Many' বসে, আর যা গোনা যায় না (Uncountable/পরিমাণ) তাদের আগে 'Much' বসে।", examples: [{ en: "I don’t have many books.", bn: "Books গোনা যায় → Many", rule: "Countable" }, { en: "There isn’t much water.", bn: "Water গোনা যায় না → Much", rule: "Uncountable" }, { en: "Many mistakes, not much progress.", bn: "Mistakes (Countable), Progress (Uncountable)", rule: "Mixed" }] },
@@ -501,6 +540,8 @@
             { id: 58, title: "Except / Despite", subtitle: "Exclusion & Contrast", icon: "fa-circle-minus", concept: "Except মানে 'ব্যতীত' বা 'ছাড়া'। Despite বা In spite of মানে 'সত্ত্বেও' (বিপরীত পরিস্থিতি)।", examples: [{ en: "Everyone came except him.", bn: "সে ছাড়া সবাই (Exclusion)", rule: "Exclusion" }, { en: "Despite the rain, we played.", bn: "বৃষ্টি সত্ত্বেও (Contrast)", rule: "Preposition" }, { en: "In spite of effort, he failed.", bn: "চেষ্টা সত্ত্বেও ব্যর্থতা", rule: "Contrast" }] },
             { id: 59, title: "Which vs That", subtitle: "Clause Types", icon: "fa-paperclip", concept: "অপরিহার্য তথ্য দিতে 'That' (Restrictive) বসে। অতিরিক্ত তথ্য দিতে 'Which' (Non-restrictive) বসে এবং কমা (,) ব্যবহার করতে হয়।", examples: [{ en: "The book that you gave is good.", bn: "কোন বইটি? নির্দিষ্ট করা হচ্ছে → That", rule: "Essential Info" }, { en: "The book, which you gave, is good.", bn: "বইটি পরিচিত, বাড়তি তথ্য → Which", rule: "Extra Info" }, { en: "The man that I saw was tall.", bn: "নির্দিষ্ট ব্যক্তি → That", rule: "Defining" }] },
             { id: 60, title: "Whether vs If", subtitle: "Choice vs Condition", icon: "fa-question", concept: "দুটি বিকল্প বা অনিশ্চয়তা (Choice/Doubt) থাকলে 'Whether' বসে। আর শর্ত (Condition) বোঝালে 'If' বসে।", examples: [{ en: "I don't know whether he will come.", bn: "আসবে কি না (অনিশ্চয়তা) → Whether", rule: "Uncertainty" }, { en: "Tell me whether this is correct.", bn: "সঠিক কি না (Option) → Whether", rule: "Choice" }, { en: "If it rains, we will stay home.", bn: "শর্ত: যদি বৃষ্টি হয় → If", rule: "Condition" }] },
+
+            // --- NEW RULES (61-90) ---
             { id: 61, title: "Phrasal Verbs", subtitle: "Separable vs Inseparable", icon: "fa-puzzle-piece", concept: "Separable phrasal verb-এ object মাঝে বা শেষে বসতে পারে। কিন্তু Inseparable-এ object সবসময় শেষে বসে এবং particle আলাদা করা যায় না।", examples: [{ en: "He looked up the word. / looked the word up.", bn: "Separable: Object মাঝে বা শেষে বসতে পারে", rule: "Separable" }, { en: "He ran into an old friend.", bn: "Inseparable: Object শুধুই শেষে বসবে", rule: "Inseparable" }, { en: "She called the meeting off.", bn: "Separable: Object মাঝে বসেছে", rule: "Separable" }] },
             { id: 62, title: "Verb Patterns", subtitle: "Gerund vs Infinitive", icon: "fa-shapes", concept: "কিছু Verb-এর পর Gerund (-ing) বসে (যেমন: enjoy), আর কিছুর পর Infinitive (to+V1) বসে (যেমন: decide)। আবার কিছু শব্দে অর্থ বদলে যায়।", examples: [{ en: "I enjoy reading books.", bn: "Enjoy + Gerund (reading)", rule: "Verb + Gerund" }, { en: "He decided to go home.", bn: "Decide + Infinitive (to go)", rule: "Verb + Inf" }, { en: "Remember meeting vs Remember to meet", bn: "Meeting (Past Memory) vs To meet (Future Duty)", rule: "Meaning Change" }] },
             { id: 63, title: "Adjective vs Adverb", subtitle: "Confusion Words", icon: "fa-circle-exclamation", concept: "Adjective Noun-কে মডিফাই করে (Good singer), Adverb Verb-কে মডিফাই করে (Sings well)। Hard = কঠোর পরিশ্রম, Hardly = প্রায় না।", examples: [{ en: "He works hard.", bn: "Hard = কঠোর পরিশ্রম (Adverb)", rule: "Effort" }, { en: "He hardly works.", bn: "Hardly = প্রায় কাজ করে না (Negative)", rule: "Frequency" }, { en: "Good singer vs Sings well.", bn: "Good (Adj) vs Well (Adv)", rule: "Adj vs Adv" }] },
@@ -611,10 +652,6 @@
             btnElement.classList.remove('opacity-50');
 
             const feedbackEl = document.getElementById('quizFeedback');
-            const feedbackIcon = document.getElementById('feedbackIcon');
-            const feedbackTitle = document.getElementById('feedbackTitle');
-
-            // --- Updated Feedback Content ---
             let feedbackHTML = '';
 
             if (selectedIdx === q.correct) {
@@ -812,6 +849,7 @@
         function renderPracticeButtons() {
             const container = document.getElementById('filterButtons');
             const counts = { easy: 0, moderate: 0, difficult: 0, all: rulesData.length };
+            
             rulesData.forEach(r => {
                 const diff = getDifficulty(r.id);
                 if (diff) counts[diff]++;
@@ -847,11 +885,14 @@
             } else {
                 currentSessionRules = rulesData.filter(r => getDifficulty(r.id) === filterType);
             }
+
             if (currentSessionRules.length === 0) return;
+
             currentIndex = 0;
             document.getElementById('homeView').classList.add('hidden');
             document.getElementById('practiceMenu').classList.add('hidden');
             document.getElementById('sessionView').classList.remove('hidden');
+            
             renderCurrentRule();
             startTimer();
         }
@@ -862,6 +903,7 @@
             }
         }
 
+        // --- TIMER LOGIC ---
         function startTimer() {
             stopTimer();
             secondsElapsed = 0;
@@ -878,12 +920,15 @@
             clearInterval(timerInterval);
         }
 
+        // --- RULE RENDERING ---
         function renderCurrentRule() {
             const rule = currentSessionRules[currentIndex];
             const contentArea = document.getElementById('ruleContentArea');
             const total = currentSessionRules.length;
+
             document.getElementById('progressDisplay').innerText = `RULE ${currentIndex + 1} OF ${total}`;
             
+            // Buttons State
             document.getElementById('prevBtn').disabled = currentIndex === 0;
             const nextBtn = document.getElementById('nextBtn');
             if (currentIndex === total - 1) {
@@ -894,11 +939,14 @@
                 nextBtn.className = "flex-1 h-12 rounded-xl bg-gradient-to-r from-royal-gold to-amber-600 text-black font-bold text-sm shadow-lg shadow-amber-500/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2 uppercase tracking-wide";
             }
 
+            // Highlight Difficulty
             const diff = getDifficulty(rule.id);
             updateDifficultyUI(diff);
 
+            // Generate Content Animation
             contentArea.innerHTML = `
                 <div class="animate-slide-up space-y-6">
+                    <!-- Title Card -->
                     <div class="text-center space-y-2">
                         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-royal-gold/30 bg-royal-gold/10 text-royal-gold text-[10px] font-bold tracking-widest uppercase">
                             <i class="fa-solid ${rule.icon}"></i> Grammar Rule ${rule.id}
@@ -906,6 +954,8 @@
                         <h2 class="text-3xl sm:text-4xl font-bold text-white aristocratic-title leading-tight">${rule.title}</h2>
                         <p class="text-gray-400 font-medium">${rule.subtitle}</p>
                     </div>
+
+                    <!-- Concept Box (Glass) -->
                     <div class="glass-card rounded-2xl p-6 border-l-4 border-royal-gold relative overflow-hidden group">
                         <div class="absolute top-0 right-0 w-24 h-24 bg-royal-gold/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
                         <h4 class="text-xs text-royal-gold font-bold uppercase tracking-widest mb-3 flex items-center gap-2">
@@ -913,10 +963,13 @@
                         </h4>
                         <p class="text-lg text-gray-200 bengali-text leading-relaxed font-light">${rule.concept}</p>
                     </div>
+
+                    <!-- Examples -->
                     <div>
                         <h4 class="text-sm font-bold text-gray-400 mb-4 uppercase tracking-widest flex items-center gap-2">
                             <i class="fa-solid fa-bolt text-yellow-500"></i> Master Examples
                         </h4>
+                        
                         <div class="space-y-4">
                             ${rule.examples.map((ex, i) => `
                                 <div class="bg-white/5 rounded-xl p-5 border border-white/10 hover:border-royal-gold/30 transition-colors">
@@ -944,6 +997,8 @@
             const ruleId = currentSessionRules[currentIndex].id;
             saveDifficulty(ruleId, level);
             updateDifficultyUI(level);
+            
+            // Visual feedback
             const btn = document.getElementById(`btn-${level}`);
             btn.classList.add('scale-105');
             setTimeout(() => btn.classList.remove('scale-105'), 200);
@@ -956,9 +1011,11 @@
                 moderate: 'bg-yellow-500/20 text-yellow-400 border-yellow-500',
                 difficult: 'bg-red-500/20 text-red-400 border-red-500'
             };
+            
             levels.forEach(l => {
                 const btn = document.getElementById(`btn-${l}`);
                 btn.className = `flex-1 py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-wider border transition-all flex items-center justify-center gap-2 text-gray-400 hover:text-white hover:bg-white/5 border-white/10`;
+                
                 if (l === level) {
                     btn.className = `flex-1 py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-wider border transition-all flex items-center justify-center gap-2 ${activeClass[l]} shadow-[0_0_10px_rgba(0,0,0,0.3)]`;
                 }
