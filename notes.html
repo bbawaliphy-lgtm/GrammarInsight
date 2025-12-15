@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grammar Notes - SSC INSIGHT</title>
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -41,8 +41,8 @@
         .aristocratic-title { font-family: 'Cinzel', serif; letter-spacing: 0.02em; }
         .bg-royal-mesh {
             background-color: #020617;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(124, 58, 237, 0.08) 0%, transparent 20%), 
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(124, 58, 237, 0.08) 0%, transparent 20%),
                 radial-gradient(circle at 90% 80%, rgba(234, 179, 8, 0.08) 0%, transparent 20%);
         }
         .glass-card {
@@ -86,7 +86,7 @@
                 { id: "narration", title: "Narration (Speech)", icon: "fa-comments", color: "text-purple-400", border: "border-purple-500/30" },
                 { id: "vocab", title: "Vocabulary", icon: "fa-book-open", color: "text-pink-400", border: "border-pink-500/30" }
             ],
-            
+
             // --- MODULE LISTS ---
             "pos": [
                 { id: "noun_mod", title: "1. Noun (বিশেষ্য)", desc: "Deep Dive: Rules, Countability, Gender" },
@@ -122,129 +122,19 @@
                 { id: "narration_optative", title: "8. Optative Sentence", desc: "Prayed, Wished (May/Might)" },
                 { id: "narration_exclamatory", title: "9. Exclamatory Sentence", desc: "Exclaimed with Joy/Sorrow" }
             ],
+            // --- VOCABULARY SECTION (UPDATED LINKS) ---
             "vocab": [
-                { id: "vocab_syn_ant", title: "1. Synonyms & Antonyms", desc: "Similar & Opposite Words" },
-                { id: "vocab_idioms", title: "2. Idioms & Phrases", desc: "Special Meanings (বাগধারা)" },
-                { id: "vocab_oneword", title: "3. One Word Substitution", desc: "এককথায় প্রকাশ" },
-                { id: "vocab_phrasal", title: "4. Group Verbs", desc: "Verbs with Prepositions" },
-                { id: "vocab_homophones", title: "5. Homophones", desc: "Same Sound, Different Meaning" }
+                { id: "vocab_syn_ant", title: "1. Synonyms & Antonyms", desc: "500 Important Words for SSC CGL", externalLink: "syno_anto.html" },
+                { id: "vocab_idioms", title: "2. Idioms & Phrases", desc: "500 Important Idioms for SSC CGL", externalLink: "idioms.html" },
+                { id: "vocab_oneword", title: "3. One Word Substitution", desc: "এককথায় প্রকাশ", externalLink: "oneword.html" },
+                { id: "vocab_phrasal", title: "4. Group Verbs", desc: "Verbs with Prepositions", externalLink: "groupverbs.html" },
+                { id: "vocab_homophones", title: "5. Homophones", desc: "Same Sound, Different Meaning", externalLink: "homophones.html" }
             ],
 
-            // --- VOCABULARY MODULES (MASSIVELY EXPANDED) ---
+            // Note: External links replace internal data for vocab sections.
+            // All other Grammar Modules (Parts of Speech, Tense, Voice, Narration) are preserved below.
 
-            // 1. SYNONYMS & ANTONYMS
-            "vocab_syn_ant": [
-                {
-                    title: "Concept (ধারণা)",
-                    eng: "Synonyms: Words with same meaning. Antonyms: Words with opposite meaning.",
-                    ben: "🔹 **Synonym (সমার্থক শব্দ):** একই অর্থবোধক শব্দ। (যেমন: Beautiful - Pretty)\n🔹 **Antonym (বিপরীত শব্দ):** বিপরীত অর্থবোধক শব্দ। (যেমন: Good - Bad)",
-                    eg: "Happy (Syn: Glad, Ant: Sad)"
-                },
-                {
-                    title: "Common Examples - A",
-                    eng: "Words starting with A.",
-                    ben: "1. **Abandon** (ত্যাগ করা) -> Syn: Leave, Ant: Keep\n2. **Ability** (ক্ষমতা) -> Syn: Skill, Ant: Inability\n3. **Active** (সক্রিয়) -> Syn: Energetic, Ant: Lazy",
-                    eg: "He abandoned the plan."
-                },
-                {
-                    title: "Common Examples - B & C",
-                    eng: "Words starting with B and C.",
-                    ben: "1. **Beautiful** (সুন্দর) -> Syn: Pretty, Ant: Ugly\n2. **Brave** (সাহসী) -> Syn: Bold, Ant: Coward\n3. **Calm** (শান্ত) -> Syn: Quiet, Ant: Noisy\n4. **Create** (তৈরি করা) -> Syn: Make, Ant: Destroy",
-                    eg: "Be brave in danger."
-                }
-            ],
-
-            // 2. IDIOMS
-            "vocab_idioms": [
-                {
-                    title: "Idioms (বাগধারা) - Concept",
-                    eng: "A phrase where the meaning is not clear from the words themselves.",
-                    ben: "এমন শব্দগুচ্ছ যার আক্ষরিক অর্থ এক, কিন্তু ভাবার্থ বা প্রকৃত অর্থ সম্পূর্ণ আলাদা।",
-                    eg: "**'A bed of roses'** মানে 'গোলাপের বিছানা' নয়, এর অর্থ 'আরামদায়ক অবস্থা' (Comfortable life)."
-                },
-                {
-                    title: "Important Idioms (A-B)",
-                    eng: "Frequently asked in exams.",
-                    ben: "1. **A B C:** প্রাথমিক জ্ঞান (Primary knowledge). -> He does not know the A B C of music.\n2. **All in all:** সর্বেসর্বা (All powerful). -> The HM is all in all in the school.\n3. **Bag and baggage:** তল্পিতল্পাসহ (With belongings). -> He left Kolkata bag and baggage.",
-                    eg: ""
-                },
-                {
-                    title: "Important Idioms (C-K)",
-                    eng: "Frequently asked in exams.",
-                    ben: "1. **Cats and dogs:** মুষলধারে (Heavily). -> It is raining cats and dogs.\n2. **Crocodile tears:** মায়াকান্না (False tears).\n3. **Gala day:** উৎসবের দিন (Day of festivity). -> The 15th August is a gala day for Indians.\n4. **Kith and kin:** আত্মীয়-স্বজন (Relatives).",
-                    eg: ""
-                }
-            ],
-
-            // 3. ONE WORD SUBSTITUTION
-            "vocab_oneword": [
-                {
-                    title: "One Word Substitution (এককথায় প্রকাশ)",
-                    eng: "Replacing a phrase with a single word.",
-                    ben: "একটি বড় বাক্য বা বাক্যাংশকে একটিমাত্র শব্দ দিয়ে প্রকাশ করা।",
-                    eg: "One who cannot die = **Immortal** (অমর)."
-                },
-                {
-                    title: "Common Examples (Persons)",
-                    eng: "Related to types of people.",
-                    ben: "1. **Atheist:** যে ঈশ্বরে বিশ্বাস করে না (One who does not believe in God).\n2. **Omnivorous:** যে সবকিছু খায় (One who eats everything).\n3. **Bachelor:** অবিবাহিত পুরুষ (An unmarried man).\n4. **Optimist:** আশাবাদী (One who looks at the bright side).",
-                    eg: ""
-                },
-                {
-                    title: "Common Examples (Places & Groups)",
-                    eng: "Related to locations and collections.",
-                    ben: "1. **Aviary:** পক্ষীশালা (A place where birds are kept).\n2. **Zoo:** চিড়িয়াখানা (A place where animals are kept).\n3. **Audience:** শ্রোতৃমণ্ডলী (A number of people listening to a lecture).\n4. **Mob:** উত্তেজিত জনতা (An angry crowd).",
-                    eg: ""
-                }
-            ],
-
-            // 4. GROUP VERBS / PHRASAL VERBS
-            "vocab_phrasal": [
-                {
-                    title: "Group Verbs (Phrasal Verbs)",
-                    eng: "Verb + Preposition/Adverb = New Meaning.",
-                    ben: "মূল Verb-এর সাথে Preposition বা Adverb যুক্ত হয়ে যখন সম্পূর্ণ নতুন অর্থ প্রকাশ করে।",
-                    eg: "**Give up** (ত্যাগ করা) - Give (দেওয়া) + Up (উপরে) = ত্যাগ করা।"
-                },
-                {
-                    title: "Important List - 1",
-                    eng: "Exam favorites.",
-                    ben: "1. **Act on:** ক্ষতি করা (Affect). -> Over-eating acts on health.\n2. **Bear with:** সহ্য করা (Tolerate). -> I cannot bear with this insult.\n3. **Blow out:** নেভানো (Extinguish). -> Blow out the lamp.\n4. **Bring up:** লালন-পালন করা (Rear). -> He was brought up by his aunt.",
-                    eg: ""
-                },
-                {
-                    title: "Important List - 2",
-                    eng: "Exam favorites.",
-                    ben: "1. **Call in:** ডাকা (Send for). -> Call in a doctor.\n2. **Carry out:** পালন করা (Obey). -> Carry out my order.\n3. **Come round:** আরোগ্য লাভ করা (Recover). -> The patient will come round soon.\n4. **Give up:** ত্যাগ করা (Leave). -> Give up bad habits.",
-                    eg: ""
-                }
-            ],
-
-            // 5. HOMOPHONES
-            "vocab_homophones": [
-                {
-                    title: "Homophones (সমোচ্চারিত শব্দ)",
-                    eng: "Words having same sound but different meaning and spelling.",
-                    ben: "উচ্চারণ একই কিন্তু বানান ও অর্থ ভিন্ন।",
-                    eg: "Sun (সূর্য) vs Son (পুত্র)।"
-                },
-                {
-                    title: "Confusing Pairs - 1",
-                    eng: "Check the spelling carefully.",
-                    ben: "1. **Accept** (গ্রহণ করা) vs **Except** (ব্যতীত)।\n2. **Advice** (উপদেশ - Noun) vs **Advise** (উপদেশ দেওয়া - Verb)।\n3. **Break** (ভাঙা) vs **Brake** (গাড়ির ব্রেক)।",
-                    eg: ""
-                },
-                {
-                    title: "Confusing Pairs - 2",
-                    eng: "Check the spelling carefully.",
-                    ben: "1. **Check** (পরীক্ষা করা) vs **Cheque** (ব্যাংকের চেক)।\n2. **Die** (মারা যাওয়া) vs **Dye** (রং করা)।\n3. **Peace** (শান্তি) vs **Piece** (টুকরো)।\n4. **Right** (সঠিক) vs **Write** (লেখা)।",
-                    eg: ""
-                }
-            ],
-
-            // --- NARRATION MODULES (EXISTING) ---
-
-            // 1. INTRO
+            // --- NARRATION MODULES ---
             "narration_intro": [
                 {
                     title: "Narration (উক্তি) - Definition",
@@ -265,8 +155,6 @@
                     eg: "Direct: Rahul said, \"I am busy now.\"\nIndirect: Rahul said that he was busy then."
                 }
             ],
-
-            // 2. PERSON CHANGE
             "narration_person": [
                 {
                     title: "The 'SON' Formula (1-2-3)",
@@ -287,8 +175,6 @@
                     eg: "Direct: I said to **him**, \"**You** look tired.\"\nIndirect: I told **him** that **he** looked tired."
                 }
             ],
-
-            // 3. TENSE CHANGE
             "narration_tense": [
                 {
                     title: "The Golden Rule of Tense",
@@ -315,8 +201,6 @@
                     eg: "Direct: He said, \"I **will** go.\"\nIndirect: He said that he **would** go."
                 }
             ],
-
-            // 4. TIME & PLACE CHANGE
             "narration_time": [
                 {
                     title: "Time & Place Words List",
@@ -331,8 +215,6 @@
                     eg: "Direct: He said, \"I came **here** long **ago**.\"\nIndirect: He said that he had gone **there** long **before**."
                 }
             ],
-
-            // 5. ASSERTIVE
             "narration_assertive": [
                 {
                     title: "Assertive Sentence Rules",
@@ -347,8 +229,6 @@
                     eg: "Direct: Teacher said, \"The earth **is** round.\"\nIndirect: Teacher said that the earth **is** round."
                 }
             ],
-
-            // 6. INTERROGATIVE
             "narration_interrogative": [
                 {
                     title: "Interrogative Rules",
@@ -363,8 +243,6 @@
                     eg: "Direct: He said, \"**What** is your name?\"\nIndirect: He asked **what** my name was."
                 }
             ],
-
-            // 7. IMPERATIVE
             "narration_imperative": [
                 {
                     title: "Imperative Rules",
@@ -379,8 +257,6 @@
                     eg: "Direct: He said, \"Let us go out.\"\nIndirect: He **proposed** that we **should** go out."
                 }
             ],
-
-            // 8. OPTATIVE
             "narration_optative": [
                 {
                     title: "Optative Rules",
@@ -389,8 +265,6 @@
                     eg: "Direct: He said, \"May you live long.\"\nIndirect: He **wished that** I **might** live long."
                 }
             ],
-
-            // 9. EXCLAMATORY
             "narration_exclamatory": [
                 {
                     title: "Exclamatory Rules",
@@ -400,9 +274,7 @@
                 }
             ],
 
-            // --- VOICE CHANGE MODULES (EXISTING) ---
-
-            // 1. BASICS
+            // --- VOICE CHANGE MODULES ---
             "voice_intro": [
                 {
                     title: "Voice (বাচ্য) - Definition",
@@ -423,8 +295,6 @@
                     eg: "He helps me -> I am helped by him."
                 }
             ],
-
-            // 2. TENSE RULES
             "voice_tense": [
                 {
                     title: "Present Tense Rules",
@@ -445,8 +315,6 @@
                     eg: "Active: I will do it.\nPassive: It **will be done** by me."
                 }
             ],
-
-            // 3. MODALS
             "voice_modal": [
                 {
                     title: "Modal Auxiliaries Rule",
@@ -461,8 +329,6 @@
                     eg: "Active: He **could have done** it.\nPassive: It **could have been done** by him."
                 }
             ],
-
-            // 4. IMPERATIVE
             "voice_imperative": [
                 {
                     title: "Imperative with Object (আদেশ/অনুরোধ)",
@@ -489,8 +355,6 @@
                     eg: "Active: **Stand up.**\nPassive: **You are ordered to** stand up."
                 }
             ],
-
-            // 5. INTERROGATIVE
             "voice_interrogative": [
                 {
                     title: "Yes/No Questions (Do/Did/Does)",
@@ -511,8 +375,6 @@
                     eg: "Active: **What** do you want?\nPassive: **What is wanted** by you?"
                 }
             ],
-
-            // 6. ADVANCED / EXCEPTIONS
             "voice_advanced": [
                 {
                     title: "Prepositions other than 'By'",
@@ -540,9 +402,7 @@
                 }
             ],
 
-            // --- TENSE MODULES (EXISTING) ---
-
-            // 1. PRESENT TENSE - MASTER CLASS
+            // --- TENSE MODULES ---
             "present_mod": [
                 {
                     title: "Present Tense (বর্তমান কাল) - Overview",
@@ -550,7 +410,6 @@
                     ben: "বর্তমান সময়ে কোনো কাজ সম্পন্ন হয় বা হচ্ছে বোঝালে তাকে Present Tense বলে। এটি ৪ প্রকার: Indefinite, Continuous, Perfect, Perfect Continuous।",
                     eg: "Example: I **read** a book. I **am reading** a book."
                 },
-                // --- INDEFINITE ---
                 {
                     title: "1. Present Indefinite Tense (সাধারণ বর্তমান)",
                     eng: "Used for habitual facts, universal truths, or general statements.",
@@ -569,8 +428,6 @@
                     ben: "সাহায্যকারী Verb না থাকায় Negative বা প্রশ্ন করতে **Do** বা **Does** আনতে হয়।\n🔹 **Does:** He, She, It-এর সাথে।\n🔹 **Do:** I, We, You, They-এর সাথে।",
                     eg: "Negative: He **does not** play cricket.\nQuestion: **Do** you know him?"
                 },
-
-                // --- CONTINUOUS ---
                 {
                     title: "2. Present Continuous Tense (ঘটমান বর্তমান)",
                     eng: "Action happening right now or in progress.",
@@ -589,8 +446,6 @@
                     ben: "কিছু Verb আছে যা সাধারণত Continuous হয় না (যেমন: See, Hear, Love, Hate, Know, Believe)। এদের Indefinite Tense-এ লিখতে হয়।",
                     eg: "Incorrect: I am knowing him.\nCorrect: I **know** him."
                 },
-
-                // --- PERFECT ---
                 {
                     title: "3. Present Perfect Tense (পুরাঘটিত বর্তমান)",
                     eng: "Action just finished, but the result or effect is still there.",
@@ -609,8 +464,6 @@
                     ben: "অতীতের নির্দিষ্ট সময় উল্লেখ থাকলে (yesterday, last night) সেটি **Past Indefinite** হবে, Present Perfect নয়।",
                     eg: "Incorrect: I have seen him yesterday.\nCorrect: I **saw** him yesterday."
                 },
-
-                // --- PERFECT CONTINUOUS ---
                 {
                     title: "4. Present Perfect Continuous (পুরাঘটিত ঘটমান)",
                     eng: "Action started in the past and is still continuing.",
@@ -630,8 +483,6 @@
                     eg: "He has been ill **since** Friday.\nHe has been ill **for** five days."
                 }
             ],
-
-            // 2. PAST TENSE - MASTER CLASS
             "past_mod": [
                 {
                     title: "1. Past Indefinite Tense (সাধারণ অতীত)",
@@ -700,8 +551,6 @@
                     eg: "They **had been playing** before it started to rain."
                 }
             ],
-
-            // 3. FUTURE TENSE - MASTER CLASS
             "future_mod": [
                 {
                     title: "1. Future Indefinite Tense (সাধারণ ভবিষ্যৎ)",
@@ -759,9 +608,7 @@
                 }
             ],
 
-            // --- POS DETAILED FLASHCARDS (EXISTING) ---
-
-            // 1. NOUNS - MASTER CLASS
+            // --- POS MODULES ---
             "noun_mod": [
                 {
                     title: "Noun (বিশেষ্য) - The Foundation",
@@ -818,8 +665,6 @@
                     eg: "Tips: প্রকৃতি যখন রুদ্রমূর্তি ধারণ করে (Sun, Summer) তখন Masculine। যখন কোমলতা প্রকাশ করে (Moon, Earth) তখন Feminine ধরা হয়।"
                 }
             ],
-
-            // 2. PRONOUNS - MASTER CLASS
             "pronoun_mod": [
                 {
                     title: "Pronoun (সর্বনাম) - The Basics",
@@ -900,8 +745,6 @@
                     eg: "**It** is raining.\n**This** is my friend, Arjun."
                 }
             ],
-
-            // 3. ADJECTIVES - MASTER CLASS
             "adj_mod": [
                 {
                     title: "Adjective (বিশেষণ) - The Foundation",
@@ -976,8 +819,6 @@
                     eg: "A **beautiful** (Op) **old** (Age) **Indian** (Or) **gold** (Mat) necklace."
                 }
             ],
-
-            // 4. VERBS - MASTER CLASS
             "verb_mod": [
                 {
                     title: "Verb (ক্রিয়া) - The Heart of Sentence",
@@ -1052,8 +893,6 @@
                     eg: "The sun **rises** in the East. Ice **floats** on water."
                 }
             ],
-
-            // 5. ADVERBS - MASTER CLASS
             "adv_mod": [
                 {
                     title: "Adverb (ক্রিয়া বিশেষণ) - The Modifier",
@@ -1122,8 +961,6 @@
                     eg: "**Never have I** seen such a tiger. (Not 'Never I have...')"
                 }
             ],
-
-            // 6. PREPOSITIONS - MASTER CLASS
             "prep_mod": [
                 {
                     title: "Preposition (পদান্বয়ী অব্যয়) - The Connector",
@@ -1186,8 +1023,6 @@
                     eg: "The ring is made **of** gold."
                 }
             ],
-
-            // 7. CONJUNCTIONS - MASTER CLASS
             "conj_mod": [
                 {
                     title: "Conjunction (সংযোজক অব্যয়) - The Joiner",
@@ -1250,8 +1085,6 @@
                     eg: "He talks **as if** he **were** (not was) mad."
                 }
             ],
-
-            // 8. INTERJECTIONS - MASTER CLASS
             "inter_mod": [
                 {
                     title: "Interjection (আবেগসূচক অব্যয়) - The Emotion Word",
@@ -1317,30 +1150,23 @@
         };
 
         // --- STATE ---
-        let navigationStack = ['root']; // ['root', 'pos', 'noun_mod']
+        let navigationStack = ['root'];
 
         // --- RENDER LOGIC ---
         function render() {
             const currentId = navigationStack[navigationStack.length - 1];
             const container = document.getElementById('contentContainer');
-            
-            // Clear current content
+
             container.innerHTML = '';
 
             // CASE 1: ROOT or TOPIC LEVEL (Show Folders/Modules)
-            if (Array.isArray(notesData[currentId]) && !notesData[currentId][0].eng) { 
-                
-                // Set Header
+            if (Array.isArray(notesData[currentId]) && !notesData[currentId][0].eng) {
+
+                // Set Header Logic
                 if (currentId === 'root') {
                     document.getElementById('navSubtitle').innerText = "Library";
                 } else if (currentId === 'pos') {
                     document.getElementById('navSubtitle').innerText = "Parts of Speech";
-                } else if (currentId === 'tense') {
-                    document.getElementById('navSubtitle').innerText = "Tense";
-                } else if (currentId === 'voice') {
-                    document.getElementById('navSubtitle').innerText = "Voice Change";
-                } else if (currentId === 'narration') {
-                    document.getElementById('navSubtitle').innerText = "Narration (Speech)";
                 } else if (currentId === 'vocab') {
                     document.getElementById('navSubtitle').innerText = "Vocabulary";
                 } else {
@@ -1352,7 +1178,6 @@
 
                 notesData[currentId].forEach(item => {
                     const btn = document.createElement('button');
-                    // Style depends on level
                     if (currentId === 'root') {
                         btn.className = `folder-btn w-full p-6 rounded-2xl glass-card text-left hover:bg-white/5 transition-all border-l-4 ${item.border} group`;
                         btn.innerHTML = `
@@ -1382,17 +1207,24 @@
                             </div>
                         `;
                     }
-                    
-                    btn.onclick = () => navigateTo(item.id);
+
+                    // Link Logic
+                    btn.onclick = () => {
+                        if (item.externalLink) {
+                            window.location.href = item.externalLink;
+                        } else {
+                            navigateTo(item.id);
+                        }
+                    };
                     grid.appendChild(btn);
                 });
                 container.appendChild(grid);
 
-            } 
+            }
             // CASE 2: FLASHCARDS LEVEL
             else if (Array.isArray(notesData[currentId])) {
                 document.getElementById('navSubtitle').innerText = "Reading Mode";
-                
+
                 const list = document.createElement('div');
                 list.className = "max-w-2xl mx-auto space-y-6 animate-fade-in pb-20";
 
@@ -1402,12 +1234,12 @@
                     cardEl.innerHTML = `
                         <div class="absolute top-0 right-0 p-4 opacity-10 text-6xl text-purple-500 font-serif font-bold italic">${idx + 1}</div>
                         <h3 class="text-xl font-bold text-white mb-4 border-b border-white/10 pb-2 inline-block pr-8">${card.title}</h3>
-                        
+
                         <div class="space-y-4">
                             <div class="bg-black/20 p-4 rounded-xl border border-white/5">
                                 <p class="text-sm text-gray-300 font-serif leading-relaxed">${card.eng}</p>
                             </div>
-                            
+
                             <div class="flex gap-3">
                                 <div class="w-1 bg-purple-500/50 rounded-full mt-1.5 h-12"></div>
                                 <p class="text-sm text-gray-200 bengali-text leading-relaxed">${card.ben}</p>
@@ -1421,15 +1253,14 @@
                     `;
                     list.appendChild(cardEl);
                 });
-                
-                // End of list marker
+
                 const end = document.createElement('div');
                 end.className = "text-center text-xs text-gray-500 uppercase tracking-widest pt-8 pb-10";
                 end.innerText = "End of Module";
                 list.appendChild(end);
 
                 container.appendChild(list);
-            } 
+            }
             else {
                 container.innerHTML = `<div class="text-center text-gray-500 mt-20">Content coming soon!</div>`;
             }
@@ -1450,9 +1281,7 @@
                 navigationStack.pop();
                 render();
             } else {
-                // If it's a standalone file, we just stay at root or do nothing
-                // If integrated, this might redirect
-                console.log("At root");
+                window.location.href = "index.html";
             }
         }
 
