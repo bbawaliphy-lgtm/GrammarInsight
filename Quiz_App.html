@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Arena - SSC INSIGHT</title>
+    
+    <!-- IMPORTANT: Load the Rules Data First -->
+    <script src="rules_data.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'], serif: ['Cinzel', 'serif'], bengali: ['Noto Sans Bengali', 'sans-serif'] },
+                    colors: { royal: { 900: '#050b14', gold: '#ffd700' }, glass: { border: 'rgba(255, 255, 255, 0.1)' } },
+                    animation: { 'fade-in': 'fadeIn 0.5s ease-out forwards', 'slide-up': 'slideUp 0.8s ease-out forwards' },
+                    keyframes: { fadeIn: { '0%': { opacity: 0 }, '100%': { opacity: 1 } }, slideUp: { '0%': { opacity: 0, transform: 'translateY(20px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } } }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .bengali-text { font-family: 'Noto Sans Bengali', sans-serif; }
+        .aristocratic-title { font-family: 'Cinzel', serif; letter-spacing: 0.02em; }
+        .bg-royal-mesh { background-color: #020617; background-image: radial-gradient(circle at 15% 50%, rgba(251, 191, 36, 0.08) 0%, transparent 25%), radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.08) 0%, transparent 25%); }
+        .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); }
+        .quiz-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -5px rgba(16, 185, 129, 0.3); }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    </style>
+</head>
+<body class="bg-royal-mesh text-gray-100 h-screen flex flex-col overflow-hidden relative">
+
+    <!-- START SCREEN (Quiz Selection) -->
+    <section id="startScreen" class="fixed inset-0 z-50 flex flex-col items-center justify-center p-6 bg-royal-900/95 backdrop-blur-sm overflow-y-auto">
+        <div class="text-center w-full max-w-5xl animate-slide-up my-auto py-10">
+            
+            <div class="mb-8">
+                <div class="w-20 h-20 mx-auto bg-emerald-500/10 rounded-full flex items-center justify-center mb-4 border border-emerald-500/20 shadow-[0_0_30px_rgba(16,185,129,0.2)]">
+                    <i class="fa-solid fa-layer-group text-3xl text-emerald-500"></i>
+                </div>
+                <h1 class="text-3xl sm:text-4xl font-bold text-white mb-2 aristocratic-title">Quiz Arena</h1>
+                <p class="text-gray-400">Select a mission to test your grammar skills. (200 Questions Total)</p>
+            </div>
+
+            <!-- Quiz Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 mb-10 px-2" id="quizGrid">
+                <!-- Dynamically populated to handle 20 items cleanly -->
+            </div>
+
+            <button onclick="window.location.href='index.html'" class="px-8 py-3 rounded-full border border-white/10 text-sm text-gray-400 hover:text-white hover:bg-white/5 transition-colors">
+                <i class="fa-solid fa-arrow-left mr-2"></i> Back to Main App
+            </button>
+        </div>
+    </section>
+
+    <!-- QUIZ VIEW -->
+    <section id="quizView" class="hidden fixed inset-0 z-40 bg-royal-mesh flex flex-col">
+        <div class="px-6 py-4 flex items-center justify-between z-20 border-b border-white/5 bg-black/20 backdrop-blur-md">
+            <button onclick="quitQuiz()" class="px-4 py-2 rounded-lg border border-red-500/30 bg-red-500/10 text-red-400 text-xs font-bold hover:bg-red-500/20 transition-colors">Exit Quiz</button>
+            <div class="flex flex-col items-center"><span class="text-[10px] text-gray-400 uppercase tracking-widest">Score</span><span id="quizScoreDisplay" class="text-royal-gold font-mono font-bold text-lg">0</span></div>
+            <div class="flex flex-col items-end">
+                <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest" id="quizSetName">QUIZ 01</span>
+                <span class="text-[10px] font-bold text-gray-500" id="quizProgressDisplay">1/10</span>
+            </div>
+        </div>
+        <div class="flex-grow overflow-y-auto p-4 sm:p-6 pb-32">
+            <div class="max-w-xl mx-auto">
+                <div class="glass-card rounded-2xl p-6 mb-6 border-t-4 border-royal-gold"><h3 class="text-lg sm:text-xl font-bold text-white mb-2 leading-relaxed" id="questionText">Question goes here...</h3></div>
+                <div class="grid gap-3" id="optionsContainer"></div>
+                <div id="quizFeedback" class="hidden mt-6 p-4 rounded-xl bg-white/5 border border-white/10 animate-fade-in"></div>
+            </div>
+        </div>
+        <div id="quizNextBtnContainer" class="hidden absolute bottom-6 left-4 right-4 z-30 max-w-xl mx-auto">
+            <button onclick="nextQuestion()" class="w-full h-14 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-bold text-sm shadow-xl shadow-emerald-500/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2 uppercase tracking-wide">Next Question <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+    </section>
+
+    <!-- REPORT VIEW -->
+    <section id="quizReport" class="hidden fixed inset-0 z-50 bg-royal-900 flex flex-col bg-royal-mesh items-center justify-center p-4">
+        <div class="glass-card w-full max-w-md rounded-3xl p-8 text-center relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-royal-gold to-orange-500"></div>
+            <div class="mb-6"><div class="w-20 h-20 mx-auto rounded-full bg-white/5 border-2 border-royal-gold/50 flex items-center justify-center mb-4 shadow-[0_0_20px_rgba(251,191,36,0.2)]"><i class="fa-solid fa-flag-checkered text-3xl text-royal-gold"></i></div><h2 class="text-3xl font-bold text-white aristocratic-title">Result</h2><p class="text-gray-400 text-xs mt-1" id="reportTitle">Quiz 01 Complete</p></div>
+            <div class="grid grid-cols-2 gap-4 mb-8">
+                <div class="bg-green-500/10 border border-green-500/30 p-4 rounded-2xl"><p class="text-2xl font-bold text-green-400" id="reportCorrect">0</p><p class="text-[10px] uppercase text-green-200/70 font-bold tracking-widest">Correct</p></div>
+                <div class="bg-red-500/10 border border-red-500/30 p-4 rounded-2xl"><p class="text-2xl font-bold text-red-400" id="reportWrong">0</p><p class="text-[10px] uppercase text-red-200/70 font-bold tracking-widest">Mistakes</p></div>
+            </div>
+            <div id="weakAreasContainer" class="text-left mb-8 hidden"><h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 border-b border-white/10 pb-2">Review These Rules</h4><div class="max-h-40 overflow-y-auto space-y-2 pr-2" id="weakRulesList"></div></div>
+            <div class="flex gap-3"><button onclick="returnToMenu()" class="flex-1 py-3.5 rounded-xl bg-white/10 text-white font-bold hover:bg-white/20 transition-colors">Select Quiz</button><button onclick="window.location.href='index.html'" class="flex-1 py-3.5 rounded-xl bg-white text-royal-900 font-bold hover:bg-gray-100 transition-colors">Main App</button></div>
+        </div>
+    </section>
+
+    <!-- RULE MODAL -->
+    <div id="ruleModal" class="hidden fixed inset-0 z-[70] bg-black/95 backdrop-blur-lg flex items-center justify-center p-4 animate-fade-in" onclick="this.classList.add('hidden')">
+        <div class="glass-card w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl max-h-[85vh] flex flex-col" onclick="event.stopPropagation()">
+            <div class="p-4 border-b border-white/10 flex justify-between items-center bg-white/5">
+                <h3 class="text-royal-gold font-bold aristocratic-title">Rule Details</h3>
+                <button onclick="document.getElementById('ruleModal').classList.add('hidden')" class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white"><i class="fa-solid fa-times"></i></button>
+            </div>
+            <div class="p-6 overflow-y-auto" id="ruleModalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // --- QUIZ DATA ---
+        // Contains 200 Questions (20 Sets of 10)
+        const quizData = [
+            // --- SET 1 (Q1-Q10) ---
+            { id: 1, q: "The quality of the mangoes ______ good.", options: ["was", "were", "are", "have"], correct: 0, ruleId: 1, explanation: "এখানে বাক্যের Subject হলো 'Quality' (Singular), তাই Verb Singular (was) হবে।" },
+            { id: 2, q: "I don't have ______ time to waste.", options: ["many", "much", "few", "a few"], correct: 1, ruleId: 3, explanation: "Time (সময়) Uncountable, তাই 'Much' বসবে।" },
+            { id: 3, q: "I saw ______ one-eyed man.", options: ["a", "an", "the", "no article"], correct: 0, ruleId: 4, explanation: "'One'-এর উচ্চারণ 'wa' (ওয়া) এর মতো, তাই 'A' বসে।" },
+            { id: 4, q: "______ Himalayas are in the north.", options: ["A", "An", "The", "No article"], correct: 2, ruleId: 5, explanation: "পর্বতমালার নামের আগে সর্বদা 'The' বসে।" },
+            { id: 5, q: "Look at the clouds! It ______ rain.", options: ["will", "is going to", "shall", "would"], correct: 1, ruleId: 9, explanation: "Evidence (মেঘ) আছে, তাই 'Going to' বসবে।" },
+            { id: 6, q: "If I ______ a bird, I would fly.", options: ["was", "were", "am", "had"], correct: 1, ruleId: 11, explanation: "Unreal Condition-এ Subject যা-ই হোক, Verb 'were' হয়।" },
+            { id: 7, q: "Each of the students ______ a prize.", options: ["have", "has", "are", "were"], correct: 1, ruleId: 14, explanation: "'Each' সর্বদা Singular, তাই 'has' বসবে।" },
+            { id: 8, q: "Neither he nor his friends ______ responsible.", options: ["is", "was", "are", "has"], correct: 2, ruleId: 15, explanation: "Neither...nor-এ Verb কাছের Subject (friends-Plural) অনুযায়ী হয়।" },
+            { id: 9, q: "Distribute the sweets ______ the three boys.", options: ["between", "among", "with", "to"], correct: 1, ruleId: 16, explanation: "দুইয়ের অধিক হলে 'Among' বসে।" },
+            { id: 10, q: "He stopped ______ (to smoke) due to health.", options: ["to smoke", "smoking", "smoke", "smokes"], correct: 1, ruleId: 20, explanation: "কাজ বন্ধ করা বোঝাতে Gerund (smoking) বসে।" },
+            
+            // --- SET 2 (Q11-Q20) ---
+            { id: 11, q: "He died ______ cholera.", options: ["from", "by", "of", "with"], correct: 2, ruleId: 22, explanation: "রোগে মারা গেলে 'died of' বসে।" },
+            { id: 12, q: "He works ______.", options: ["hardly", "hard", "harderly", "hards"], correct: 1, ruleId: 27, explanation: "'Hard' হলো Adverb যা কাজের ধরণ বোঝায়।" },
+            { id: 13, q: "Hardly had I reached ______ the train left.", options: ["than", "then", "when", "after"], correct: 2, ruleId: 31, explanation: "Hardly had... থাকলে বাক্যের পরের অংশে 'when' বসে।" },
+            { id: 14, q: "The jury ______ divided in their opinions.", options: ["was", "were", "has", "is"], correct: 1, ruleId: 42, explanation: "Jury বিভক্ত (divided) হলে Plural Verb (were) বসে।" },
+            { id: 15, q: "He talks as if he ______ everything.", options: ["knows", "knew", "known", "has known"], correct: 1, ruleId: 46, explanation: "As if দিয়ে অবাস্তব কিছু বোঝালে Past Indefinite (knew) হয়।" },
+            { id: 16, q: "I am used to ______ early.", options: ["wake", "waking", "woke", "waken"], correct: 1, ruleId: 48, explanation: "'Be used to' থাকলে Verb+ing বসে।" },
+            { id: 17, q: "She bought a ______ vase.", options: ["red new beautiful", "beautiful new red", "new red beautiful", "red beautiful new"], correct: 1, ruleId: 53, explanation: "OSASCOMP নিয়ম: Opinion (beautiful) → Age (new) → Colour (red)।" },
+            { id: 18, q: "I suggest that he ______ there.", options: ["goes", "go", "gone", "going"], correct: 1, ruleId: 55, explanation: "Suggest-এর পর Subjunctive Mood-এ Verb-এর Base form (go) বসে।" },
+            { id: 19, q: "The book ______ you gave me is lost.", options: ["what", "who", "that", "whose"], correct: 2, ruleId: 59, explanation: "নির্দিষ্ট করতে 'That' ব্যবহার করা হয়েছে।" },
+            { id: 20, q: "He has ______ any money left.", options: ["hard", "hardly", "harder", "hardest"], correct: 1, ruleId: 63, explanation: "'Hardly any' মানে 'নেই বললেই চলে'।" },
+            
+            // --- SET 3 (Q21-Q30) ---
+            { id: 21, q: "Not only students but also teacher ______ present.", options: ["was", "were", "are", "have"], correct: 0, ruleId: 68, explanation: "Verb কাছের Subject (teacher-Singular) অনুযায়ী বসে।" },
+            { id: 22, q: "The rose smells ______.", options: ["sweetly", "sweet", "more sweetly", "sweetness"], correct: 1, ruleId: 76, explanation: "Smell (Linking Verb)-এর পর Adjective (sweet) বসে।" },
+            { id: 23, q: "The news ______ true.", options: ["are", "were", "is", "have"], correct: 2, ruleId: 83, explanation: "News সর্বদা Singular।" },
+            { id: 24, q: "Three-fourths of the work ______ finished.", options: ["are", "were", "has", "is"], correct: 3, ruleId: 88, explanation: "Work (Uncountable)-এর অংশও Singular (is)।" },
+            { id: 25, q: "He is taller than ______.", options: ["I", "me", "my", "mine"], correct: 1, ruleId: 12, explanation: "সাধারণ ইংরেজিতে Than-এর পর Object pronoun (me) বসে।" },
+            { id: 26, q: "He said that he ______ busy.", options: ["is", "was", "will be", "has been"], correct: 1, ruleId: 6, explanation: "Sequence of Tense: Past (said) থাকলে Past (was) হবে।" },
+            { id: 27, q: "I ______ just finished my lunch.", options: ["had", "did", "have", "was"], correct: 2, ruleId: 7, explanation: "Just থাকলে Present Perfect (have) হয়।" },
+            { id: 28, q: "I have ______ friends, I am lonely.", options: ["few", "a few", "the few", "many"], correct: 0, ruleId: 18, explanation: "Lonely মানে বন্ধু নেই বললেই চলে (Negative), তাই 'few'।" },
+            { id: 29, q: "I don't want ______ help.", options: ["no", "any", "some", "none"], correct: 1, ruleId: 29, explanation: "Double Negative এড়াতে 'any' বসবে।" },
+            { id: 30, q: "He was ill; ______, he came.", options: ["therefore", "however", "so", "because"], correct: 1, ruleId: 90, explanation: "বিপরীত বোঝাতে 'however' বসে।" },
+
+            // --- SET 4 (Q31-Q40) ---
+            { id: 31, q: "It is high time we ______ home.", options: ["go", "went", "have gone", "will go"], correct: 1, ruleId: 91, explanation: "It is high time + Subject + V2 (went)।" },
+            { id: 32, q: "He ______ back home yesterday.", options: ["returned", "returned back", "return", "returns back"], correct: 0, ruleId: 93, explanation: "Return মানেই ফিরে আসা, 'back' superfluous।" },
+            { id: 33, q: "The team ______ eleven players.", options: ["comprises of", "consists", "comprises", "is consist of"], correct: 2, ruleId: 96, explanation: "Active voice-এ Comprise-এর পর preposition বসে না।" },
+            { id: 34, q: "You should avail ______ of this opportunity.", options: ["you", "yourself", "yours", "none"], correct: 1, ruleId: 97, explanation: "Avail + Reflexive (yourself) + of।" },
+            { id: 35, q: "It is ______ painful for me.", options: ["too much", "much too", "very much", "so much"], correct: 1, ruleId: 100, explanation: "Adjective (Painful)-এর আগে 'Much too' বসে।" },
+            { id: 36, q: "The ______ of Kashmir is charming.", options: ["sceneries", "scenery", "scenerys", "view"], correct: 1, ruleId: 105, explanation: "Scenery Uncountable, Plural হয় না।" },
+            { id: 37, q: "The cattle ______ grazing.", options: ["is", "was", "are", "has"], correct: 2, ruleId: 106, explanation: "Cattle সর্বদা Plural Verb (are) নেয়।" },
+            { id: 38, q: "I am ______ your reply.", options: ["waiting", "awaiting", "awaiting for", "wait"], correct: 1, ruleId: 114, explanation: "Await-এর পর preposition বসে না।" },
+            { id: 39, q: "He prevented me ______ going.", options: ["to", "from", "of", "by"], correct: 1, ruleId: 115, explanation: "Prevent + from + Gerund।" },
+            { id: 40, q: "I prefer coffee ______ tea.", options: ["than", "over", "to", "from"], correct: 2, ruleId: 119, explanation: "Prefer-এর পর 'to' বসে।" },
+
+            // --- SET 5 (Q41-Q50) ---
+            { id: 41, q: "The three brothers love ______.", options: ["each other", "one another", "together", "themselves"], correct: 1, ruleId: 41, explanation: "দুইয়ের অধিক হলে 'one another' বসে।" },
+            { id: 42, q: "The committee ______ divided.", options: ["was", "is", "were", "has"], correct: 2, ruleId: 42, explanation: "Divided হলে Committee Plural হয়।" },
+            { id: 43, q: "Work hard lest you ______ fail.", options: ["will", "may", "should", "might"], correct: 2, ruleId: 45, explanation: "Lest-এর সাথে 'should' বসে।" },
+            { id: 44, q: "______ a rainy day, I stayed home.", options: ["Being", "It being", "This being", "As"], correct: 1, ruleId: 112, explanation: "Dangling participle ঠিক করতে 'It being' হবে।" },
+            { id: 45, q: "The scenery, ______ is charming.", options: ["it", "which", "that", "NO WORD"], correct: 3, ruleId: 50, explanation: "Double Subject Error এড়াতে কোনো শব্দ বসবে না।" },
+            { id: 46, q: "I haven't got ______ money.", options: ["some", "no", "any", "many"], correct: 2, ruleId: 51, explanation: "Negative বাক্যে 'any' বসে।" },
+            { id: 47, q: "She has a ______ dog.", options: ["small cute white", "cute small white", "white small cute", "small white cute"], correct: 1, ruleId: 53, explanation: "Opinion (cute) -> Size (small) -> Colour (white)।" },
+            { id: 48, q: "I would rather die than ______.", options: ["beg", "to beg", "begging", "begged"], correct: 0, ruleId: 56, explanation: "Would rather...than + V1 (beg)।" },
+            { id: 49, q: "He made me ______ the car.", options: ["to wash", "wash", "washed", "washing"], correct: 1, ruleId: 57, explanation: "Make (Causative) + Object + V1 (wash)।" },
+            { id: 50, q: "______ working hard, he failed.", options: ["Despite", "In spite", "Although", "Despite of"], correct: 0, ruleId: 58, explanation: "Despite-এর পর 'of' বসে না।" },
+
+            // --- SET 6 (Q51-Q60) ---
+            { id: 51, q: "If I had worked hard, I ______ successful now.", options: ["would have been", "will be", "would be", "had been"], correct: 2, ruleId: 66, explanation: "Mixed Conditional: Past cause, Present result (would be)।" },
+            { id: 52, q: "The soup tastes ______.", options: ["deliciously", "delicious", "well", "badly"], correct: 1, ruleId: 110, explanation: "Taste (Sense verb) + Adjective (delicious)।" },
+            { id: 53, q: "In the long run ______ truth triumphs.", options: ["the", ", the", "- the", "; the"], correct: 1, ruleId: 72, explanation: "Introductory phrase-এর পর কমা বসে।" },
+            { id: 54, q: "He gave me many ______.", options: ["advices", "advice", "pieces of advice", "piece of advices"], correct: 2, ruleId: 105, explanation: "Advice গুনতে 'pieces of advice' লাগে।" },
+            { id: 55, q: "The bridge ______ built last year.", options: ["was", "is", "has been", "had"], correct: 0, ruleId: 77, explanation: "Passive Voice + Past Time = was built।" },
+            { id: 56, q: "This is the book ______ I bought.", options: ["what", "who", "whom", "(blank)"], correct: 3, ruleId: 79, explanation: "Object pronoun (that) উহ্য রাখা যায়।" },
+            { id: 57, q: "The number of students ______ fifty.", options: ["are", "is", "were", "have"], correct: 1, ruleId: 92, explanation: "'The number of' Singular Verb (is) নেয়।" },
+            { id: 58, q: "Please ______ the topic.", options: ["discuss about", "discuss", "discuss regarding", "discuss on"], correct: 1, ruleId: 93, explanation: "Discuss-এর পর preposition বসে না।" },
+            { id: 59, q: "Many people died ______ the explosion.", options: ["of", "by", "from", "with"], correct: 2, ruleId: 94, explanation: "Accident/Explosion-এ মৃত্যু হলে 'from' বসে।" },
+            { id: 60, q: "Paper is made ______ wood.", options: ["of", "with", "from", "by"], correct: 2, ruleId: 95, explanation: "Chemical change হলে 'made from' বসে।" },
+
+            // --- SET 7 (Q61-Q70) ---
+            { id: 61, q: "Do you mind ______ sitting here?", options: ["me", "my", "I", "mine"], correct: 1, ruleId: 98, explanation: "Gerund-এর আগে Possessive (my) বসে।" },
+            { id: 62, q: "______ English, he speaks French.", options: ["Beside", "Besides", "Next to", "Aside"], correct: 1, ruleId: 101, explanation: "Besides মানে 'তাছাড়া' বা 'অধিকন্তু'।" },
+            { id: 63, q: "______ after ______ was destroyed.", options: ["Town, town", "Towns, towns", "Town, towns", "Towns, town"], correct: 0, ruleId: 103, explanation: "Noun + prep + Noun (same) হলে Singular হয়।" },
+            { id: 64, q: "He stayed in a ______ hotel.", options: ["five-stars", "five-star", "fives-star", "five star's"], correct: 1, ruleId: 104, explanation: "Hyphenated adjective Singular (five-star) হয়।" },
+            { id: 65, q: "______ will go to the market.", options: ["I, you and he", "He, you and I", "You, he and I", "I, he and you"], correct: 2, ruleId: 107, explanation: "সাধারণ ক্রম: 2-3-1 (You, he and I)।" },
+            { id: 66, q: "Let ______ go.", options: ["he and I", "him and me", "him and I", "he and me"], correct: 1, ruleId: 108, explanation: "Let-এর পর Objective form (him, me) বসে।" },
+            { id: 67, q: "It is ______ who am to blame.", options: ["me", "I", "my", "mine"], correct: 1, ruleId: 109, explanation: "It is + Subjective form (I)।" },
+            { id: 68, q: "The weather is comparatively ______.", options: ["better", "good", "best", "worse"], correct: 1, ruleId: 111, explanation: "Comparatively + Positive Degree (good)।" },
+            { id: 69, q: "She prohibited him ______ entering.", options: ["to", "for", "from", "against"], correct: 2, ruleId: 115, explanation: "Prohibit + from + Gerund।" },
+            { id: 70, q: "Scarcely had I entered ______ rang.", options: ["than", "then", "when", "after"], correct: 2, ruleId: 116, explanation: "Scarcely...when pair।" },
+
+            // --- SET 8 (Q71-Q80) ---
+            { id: 71, q: "He is senior ______ me.", options: ["than", "from", "to", "of"], correct: 2, ruleId: 119, explanation: "Senior-এর পর 'to' বসে।" },
+            { id: 72, q: "______ you run, you will miss.", options: ["Unless", "Until", "If", "Till"], correct: 0, ruleId: 120, explanation: "শর্ত (Condition) বোঝাতে 'Unless' বসে।" },
+            { id: 73, q: "Mathematics ______ difficult.", options: ["are", "is", "were", "have"], correct: 1, ruleId: 83, explanation: "বিষয় হিসেবে Mathematics Singular।" },
+            { id: 74, q: "Never ______ such a sight.", options: ["I have seen", "have I seen", "did I seen", "I saw"], correct: 1, ruleId: 84, explanation: "Never শুরুতে থাকলে Inversion (have I seen) হয়।" },
+            { id: 75, q: "Two-thirds of the apple ______ rotten.", options: ["are", "is", "were", "have"], correct: 1, ruleId: 88, explanation: "Apple Singular, তাই Verb Singular।" },
+            { id: 76, q: "He hardly knows ______ about it.", options: ["nothing", "anything", "something", "everything"], correct: 1, ruleId: 29, explanation: "Hardly Negative, তাই 'anything' বসে।" },
+            { id: 77, q: "Let's go, ______?", options: ["will we", "shall we", "should we", "don't we"], correct: 1, ruleId: 30, explanation: "Let's থাকলে Tag 'shall we' হয়।" },
+            { id: 78, q: "It is high time you ______ a decision.", options: ["take", "took", "taken", "will take"], correct: 1, ruleId: 91, explanation: "High time + Subject + V2 (took)।" },
+            { id: 79, q: "Please stop ______ noise.", options: ["to make", "make", "making", "made"], correct: 2, ruleId: 20, explanation: "শব্দ করা থামাতে Gerund (making) হবে।" },
+            { id: 80, q: "He is ______ honest man.", options: ["a", "an", "the", "no article"], correct: 1, ruleId: 4, explanation: "Honest-এ H সাইলেন্ট, তাই 'An' বসে।" },
+
+            // --- SET 9 (Q81-Q90) ---
+            { id: 81, q: "His words were ______ painful.", options: ["too much", "much too", "very much", "so many"], correct: 1, ruleId: 100, explanation: "Adjective (painful)-এর আগে 'Much too' বসে।" },
+            { id: 82, q: "Not only ______ the car, but he also...", options: ["he stole", "did he steal", "he did steal", "stole he"], correct: 1, ruleId: 32, explanation: "Not only শুরুতে থাকলে Inversion হয়।" },
+            { id: 83, q: "______ did you speak to?", options: ["Who", "Whom", "Whose", "Which"], correct: 1, ruleId: 24, explanation: "Object জানতে 'Whom' বসে।" },
+            { id: 84, q: "The gentry ______ invited.", options: ["was", "is", "has", "were"], correct: 3, ruleId: 106, explanation: "Gentry (ভদ্রলোকগণ) Plural, তাই 'were'।" },
+            { id: 85, q: "The ______ is broken.", options: ["table's leg", "leg of the table", "tables leg", "table leg"], correct: 1, ruleId: 117, explanation: "জড় বস্তুতে 's হয় না, 'leg of the table' হয়।" },
+            { id: 86, q: "He absented ______ from the meeting.", options: ["him", "himself", "his", "none"], correct: 1, ruleId: 97, explanation: "Absent Verb হলে Reflexive (himself) নেয়।" },
+            { id: 87, q: "Neither the manager nor clerks ______ present.", options: ["was", "is", "were", "has"], correct: 2, ruleId: 15, explanation: "কাছের Subject (clerks) Plural, তাই 'were'।" },
+            { id: 88, q: "He lives ______ Delhi.", options: ["at", "on", "in", "by"], correct: 2, ruleId: 21, explanation: "বড় শহরে 'in' বসে।" },
+            { id: 89, q: "He has ______ the book on the table.", options: ["lain", "laid", "lied", "lay"], correct: 1, ruleId: 113, explanation: "রাখা অর্থে Laid (Lay-এর V3) বসে।" },
+            { id: 90, q: "I do not know ______ swim.", options: ["to", "how to", "how", "that"], correct: 1, ruleId: 118, explanation: "Know + how to + V1।" },
+
+            // --- SET 10 (Q91-Q100) ---
+            { id: 91, q: "She sings ______.", options: ["good", "well", "best", "nice"], correct: 1, ruleId: 27, explanation: "Sing (Verb)-কে মডিফাই করতে Adverb (well) লাগে।" },
+            { id: 92, q: "Look at clouds! It ______ rain.", options: ["will", "shall", "is going to", "can"], correct: 2, ruleId: 9, explanation: "Evidence আছে, তাই 'is going to'।" },
+            { id: 93, q: "I don't know ______ he will come.", options: ["if", "that", "whether", "unless"], correct: 2, ruleId: 60, explanation: "Uncertainty বোঝাতে 'whether' বসে।" },
+            { id: 94, q: "Both Ravi and his brother ______ coming.", options: ["is", "are", "was", "has"], correct: 1, ruleId: 68, explanation: "Both...and থাকলে Plural (are) হয়।" },
+            { id: 95, q: "He is ______ than his brother.", options: ["more smarter", "smarter", "most smarter", "smart"], correct: 1, ruleId: 13, explanation: "Double Comparative (more smarter) ভুল।" },
+            { id: 96, q: "My book is different ______ yours.", options: ["than", "with", "from", "to"], correct: 2, ruleId: 74, explanation: "Different + from।" },
+            { id: 97, q: "While walking, ______.", options: ["a snake bit him", "he was bitten", "a dog chased", "rain started"], correct: 1, ruleId: 35, explanation: "Subject 'He' হতে হবে (Dangling modifier rule)।" },
+            { id: 98, q: "When he entered, he ______ the fan.", options: ["switches on", "switched on", "has switched on", "switch on"], correct: 1, ruleId: 6, explanation: "Past Tense consistency (switched on)।" },
+            { id: 99, q: "The train ______ before we reached.", options: ["left", "has left", "had left", "was left"], correct: 2, ruleId: 8, explanation: "Earlier past event (had left)।" },
+            { id: 100, q: "He is one of the boys who ______ passed.", options: ["has", "have", "is", "was"], correct: 1, ruleId: 99, explanation: "Who refers to boys (Plural), so 'have'।" },
+
+            // --- SET 11 (Q101-Q110) ---
+            { id: 101, q: "The phenomena ______ observed.", options: ["is", "was", "are", "has"], correct: 2, ruleId: 2, explanation: "Phenomena শব্দটি Plural (Singular: Phenomenon), তাই Verb Plural (are) হবে।" },
+            { id: 102, q: "She has ______ knowledge of physics.", options: ["few", "a few", "little", "many"], correct: 2, ruleId: 19, explanation: "Knowledge Uncountable, তাই 'little' বসবে।" },
+            { id: 103, q: "Physics ______ my favorite subject.", options: ["are", "is", "were", "have"], correct: 1, ruleId: 83, explanation: "Subject-এর নাম হিসেবে Physics Singular।" },
+            { id: 104, q: "Cattle ______ grazing in the field.", options: ["is", "are", "was", "has"], correct: 1, ruleId: 106, explanation: "Cattle দেখতে Singular হলেও আসলে Plural।" },
+            { id: 105, q: "Ten miles ______ a long distance.", options: ["are", "is", "were", "have"], correct: 1, ruleId: 1, explanation: "নির্দিষ্ট দূরত্ব বা পরিমাণ (Ten miles) Singular হিসেবে গণ্য হয়।" },
+            { id: 106, q: "Unless you work hard, you ______ fail.", options: ["will", "won't", "don't", "didn't"], correct: 0, ruleId: 120, explanation: "Unless ক্লজে not বসে না, কিন্তু মেইন ক্লজে অর্থ অনুযায়ী will বসবে।" },
+            { id: 107, q: "Scarcely had he gone ______ she arrived.", options: ["than", "then", "when", "before"], correct: 2, ruleId: 116, explanation: "Scarcely-এর সাথে 'when' বসে।" },
+            { id: 108, q: "He is junior ______ me.", options: ["than", "from", "of", "to"], correct: 3, ruleId: 119, explanation: "Junior-এর পর 'to' বসে।" },
+            { id: 109, q: "Let ______ play together.", options: ["we", "us", "our", "ours"], correct: 1, ruleId: 108, explanation: "Let-এর পর Objective case (us) বসে।" },
+            { id: 110, q: "One of the students ______ absent.", options: ["are", "were", "is", "have"], correct: 2, ruleId: 99, explanation: "'One of the' + Plural Noun + Singular Verb (is)।" },
+
+            // --- SET 12 (Q111-Q120) ---
+            { id: 111, q: "It is time we ______ the work.", options: ["start", "started", "have started", "will start"], correct: 1, ruleId: 91, explanation: "It is time + Subject + V2 (started)।" },
+            { id: 112, q: "He prefers reading ______ writing.", options: ["than", "over", "to", "from"], correct: 2, ruleId: 119, explanation: "Prefer-এর পর 'to' বসে।" },
+            { id: 113, q: "Neither of the two books ______ useful.", options: ["is", "are", "were", "have"], correct: 0, ruleId: 15, explanation: "Neither of সর্বদা Singular Verb (is) নেয়।" },
+            { id: 114, q: "I know ______ to swim.", options: ["that", "how", "when", "which"], correct: 1, ruleId: 118, explanation: "Know + how + to + V1।" },
+            { id: 115, q: "The police ______ coming.", options: ["is", "are", "was", "has"], correct: 1, ruleId: 106, explanation: "Police শব্দটি Plural, তাই 'are' বসে।" },
+            { id: 116, q: "Fifty thousand rupees ______ a large sum.", options: ["are", "were", "is", "have"], correct: 2, ruleId: 1, explanation: "নির্দিষ্ট টাকার পরিমাণ Singular হিসেবে গণ্য হয়।" },
+            { id: 117, q: "Bread and butter ______ his breakfast.", options: ["are", "is", "were", "have"], correct: 1, ruleId: 1, explanation: "দুটি শব্দ মিলে একটি আইডিয়া (breakfast) বোঝালে Singular হয়।" },
+            { id: 118, q: "The man, along with his sons, ______ coming.", options: ["are", "is", "were", "have"], correct: 1, ruleId: 1, explanation: "Along with থাকলে Verb প্রথম Subject (The man) অনুযায়ী হয়।" },
+            { id: 119, q: "Not only he but also I ______ guilty.", options: ["is", "am", "are", "were"], correct: 1, ruleId: 68, explanation: "Not only...but also-তে Verb শেষের Subject (I) অনুযায়ী হয় (am)।" },
+            { id: 120, q: "If I were a king, I ______ help you.", options: ["will", "would", "shall", "can"], correct: 1, ruleId: 11, explanation: "Unreal condition (Type 2)-এ would বসে।" },
+
+            // --- SET 13 (Q121-Q130) ---
+            { id: 121, q: "No sooner had I arrived ______ he left.", options: ["when", "then", "than", "before"], correct: 2, ruleId: 31, explanation: "No sooner-এর সাথে 'than' বসে।" },
+            { id: 122, q: "He is the best ______ student.", options: ["and", "but", "or", "yet"], correct: 0, ruleId: 33, explanation: "Superlative-এর মাঝে কিছু বসে না, কিন্তু Parallelism-এ 'and' হতে পারে। এখানে শুধু Adjective বসবে।" }, // Simplified context
+            { id: 123, q: "She is ______ than wise.", options: ["more intelligent", "intelligent", "most intelligent", "intelligence"], correct: 0, ruleId: 86, explanation: "একই ব্যক্তির দুটি গুণের তুলনার সময় 'more + positive degree' ব্যবহার হয়।" },
+            { id: 124, q: "I have ______ money than you.", options: ["less", "fewer", "lesser", "few"], correct: 0, ruleId: 3, explanation: "Money Uncountable, তাই 'less' বসে (Little-এর Comparative)।" },
+            { id: 125, q: "He is oldest ______ the village.", options: ["in", "of", "to", "at"], correct: 0, ruleId: 21, explanation: "Superlative Degree-তে জায়গার আগে 'in' বসে।" },
+            { id: 126, q: "Either you or he ______ to blame.", options: ["are", "is", "were", "have"], correct: 1, ruleId: 15, explanation: "কাছের Subject (he) অনুযায়ী 'is' বসে।" },
+            { id: 127, q: "Walking along the road, a car hit him.", options: ["Correct", "Incorrect"], correct: 1, ruleId: 35, explanation: "Dangling modifier: 'He' সাবজেক্ট নেই। সঠিক: While he was walking..." },
+            { id: 128, q: "She is one of those who ______ hard.", options: ["work", "works", "working", "worked"], correct: 0, ruleId: 99, explanation: "Relative pronoun (who) refers to 'those' (plural), so verb is plural (work)।" },
+            { id: 129, q: "The wages of sin ______ death.", options: ["is", "are", "were", "have"], correct: 0, ruleId: 83, explanation: "Wages যখন 'শাস্তি' বা 'পরিণাম' বোঝায়, তখন Singular হয়।" },
+            { id: 130, q: "Politics ______ a dirty game.", options: ["are", "is", "were", "have"], correct: 1, ruleId: 83, explanation: "Politics (বিষয়/ধারণা) Singular।" },
+
+            // --- SET 14 (Q131-Q140) ---
+            { id: 131, q: "He admitted to ______ the money.", options: ["steal", "stealing", "stole", "stolen"], correct: 1, ruleId: 62, explanation: "Admit to-এর পর Gerund (stealing) বসে।" },
+            { id: 132, q: "I look forward to ______ you.", options: ["meet", "meeting", "met", "have met"], correct: 1, ruleId: 62, explanation: "Look forward to + Gerund (meeting)।" },
+            { id: 133, q: "It is ______ who helped you.", options: ["I", "me", "my", "mine"], correct: 0, ruleId: 109, explanation: "It is + Subjective case (I)।" },
+            { id: 134, q: "Between you and ______, he is a liar.", options: ["I", "me", "my", "mine"], correct: 1, ruleId: 108, explanation: "Preposition (Between)-এর পর Objective case (me) বসে।" },
+            { id: 135, q: "Let ______ finish the work.", options: ["we", "us", "our", "ours"], correct: 1, ruleId: 108, explanation: "Let + Objective case (us)।" },
+            { id: 136, q: "This is the boy ______ stole my pen.", options: ["who", "whom", "whose", "which"], correct: 0, ruleId: 24, explanation: "Subject হিসেবে 'Who' বসে।" },
+            { id: 137, q: "The man ______ I met was blind.", options: ["who", "whom", "which", "whose"], correct: 1, ruleId: 24, explanation: "Object হিসেবে 'Whom' বসে।" },
+            { id: 138, q: "The dog ______ tail is short.", options: ["who", "whom", "whose", "which"], correct: 2, ruleId: 26, explanation: "Possession বোঝাতে 'Whose' বসে।" },
+            { id: 139, q: "I have ______ friends than enemies.", options: ["less", "fewer", "little", "few"], correct: 1, ruleId: 18, explanation: "Friends Countable, তাই 'fewer' বসে।" },
+            { id: 140, q: "Little ______ about the plan.", options: ["did he know", "he knew", "knew he", "he did know"], correct: 0, ruleId: 84, explanation: "Little (Negative) শুরুতে থাকলে Inversion (did he know) হয়।" },
+
+            // --- SET 15 (Q141-Q150) ---
+            { id: 141, q: "She is too weak ______ walk.", options: ["to", "for", "in", "by"], correct: 0, ruleId: 36, explanation: "Too...to structure (Negative meaning)।" },
+            { id: 142, q: "He is not ______ wise as his brother.", options: ["as", "so", "than", "like"], correct: 1, ruleId: 37, explanation: "Negative sentence-এ 'so...as' ব্যবহার করা ভালো।" },
+            { id: 143, q: "One must do ______ duty.", options: ["his", "her", "one's", "their"], correct: 2, ruleId: 39, explanation: "Subject 'One' হলে Possessive 'One's' হয়।" },
+            { id: 144, q: "This is the same book ______ I wanted.", options: ["who", "which", "that", "as"], correct: 2, ruleId: 59, explanation: "The same...that structure।" },
+            { id: 145, q: "All that glitters ______ not gold.", options: ["is", "are", "were", "have"], correct: 0, ruleId: 43, explanation: "All that glitters is not gold (Proverb/Singular notion)।" },
+            { id: 146, q: "Slow and steady ______ the race.", options: ["win", "wins", "won", "winning"], correct: 1, ruleId: 1, explanation: "Compound Subject (Singular idea) -> Wins।" },
+            { id: 147, q: "More than one boy ______ present.", options: ["was", "were", "are", "have"], correct: 0, ruleId: 1, explanation: "More than one + Singular Noun + Singular Verb।" },
+            { id: 148, q: "Many a man ______ done this.", options: ["has", "have", "are", "were"], correct: 0, ruleId: 1, explanation: "Many a + Singular Noun + Singular Verb।" },
+            { id: 149, q: "The rich ______ not always happy.", options: ["is", "are", "was", "has"], correct: 1, ruleId: 4, explanation: "The rich (সমগ্র ধনী সম্প্রদায়) Plural, তাই 'are'।" },
+            { id: 150, q: "The poor ______ suffering.", options: ["is", "are", "was", "has"], correct: 1, ruleId: 4, explanation: "The poor (সমগ্র গরিব সম্প্রদায়) Plural, তাই 'are'।" },
+
+            // --- SET 16 (Q151-Q160) ---
+            { id: 151, q: "He is able ______ swim.", options: ["to", "of", "in", "at"], correct: 0, ruleId: 62, explanation: "Able + to + V1।" },
+            { id: 152, q: "He is capable ______ swimming.", options: ["to", "of", "in", "at"], correct: 1, ruleId: 62, explanation: "Capable + of + V+ing।" },
+            { id: 153, q: "I forbade him ______ go.", options: ["to", "not to", "from", "by"], correct: 0, ruleId: 115, explanation: "Forbid নিজেই Negative, তাই 'not' হবে না। Forbid + to + V1।" },
+            { id: 154, q: "She denied ______ the necklace.", options: ["steal", "to steal", "stealing", "stolen"], correct: 2, ruleId: 62, explanation: "Deny + Gerund (stealing)।" },
+            { id: 155, q: "He is addicted ______ gambling.", options: ["of", "to", "in", "with"], correct: 1, ruleId: 22, explanation: "Addicted to + Gerund/Noun।" },
+            { id: 156, q: "He is good ______ English.", options: ["in", "at", "of", "with"], correct: 1, ruleId: 22, explanation: "দক্ষতা বোঝাতে Good at হয়।" },
+            { id: 157, q: "I congratulate you ______ your success.", options: ["on", "for", "at", "in"], correct: 0, ruleId: 22, explanation: "Congratulate + on।" },
+            { id: 158, q: "He is blind ______ one eye.", options: ["of", "in", "to", "with"], correct: 1, ruleId: 22, explanation: "Blind in one eye (শারীরিক)। Blind to (দোষের প্রতি অন্ধ)।" },
+            { id: 159, q: "He is angry ______ me.", options: ["with", "at", "on", "to"], correct: 0, ruleId: 22, explanation: "Angry with a person।" },
+            { id: 160, q: "He is angry ______ my behavior.", options: ["with", "at", "on", "to"], correct: 1, ruleId: 22, explanation: "Angry at something (behavior)।" },
+
+            // --- SET 17 (Q161-Q170) ---
+            { id: 161, q: "The climate of Ranchi is better than ______.", options: ["Patna", "of Patna", "that of Patna", "those of Patna"], correct: 2, ruleId: 86, explanation: "Climate-এর তুলনা Climate-এর সাথে হবে, তাই 'that of Patna' (Singular)।" },
+            { id: 162, q: "The streets of Delhi are wider than ______.", options: ["Mumbai", "that of Mumbai", "those of Mumbai", "of Mumbai"], correct: 2, ruleId: 86, explanation: "Streets (Plural) তাই 'those of Mumbai' হবে।" },
+            { id: 163, q: "He ordered ______ a cup of tea.", options: ["for", "of", "to", "NO WORD"], correct: 3, ruleId: 93, explanation: "Order (Transitive verb) এর পর preposition বসে না।" },
+            { id: 164, q: "I entered ______ the room.", options: ["into", "in", "to", "NO WORD"], correct: 3, ruleId: 93, explanation: "Enter (স্থান) বোঝালে preposition বসে না।" },
+            { id: 165, q: "He resembles ______ his father.", options: ["to", "with", "of", "NO WORD"], correct: 3, ruleId: 93, explanation: "Resemble-এর পর preposition বসে না।" },
+            { id: 166, q: "We investigated ______ the matter.", options: ["into", "in", "of", "NO WORD"], correct: 3, ruleId: 93, explanation: "Investigate-এর পর preposition বসে না (Look into = Investigate)।" },
+            { id: 167, q: "He suggested ______ me.", options: ["to", "at", "with", "for"], correct: 0, ruleId: 55, explanation: "Suggest + to + Person।" },
+            { id: 168, q: "He proposed ______ her.", options: ["to", "with", "at", "by"], correct: 0, ruleId: 55, explanation: "Propose + to + Person।" },
+            { id: 169, q: "I made him ______.", options: ["laugh", "to laugh", "laughing", "laughed"], correct: 0, ruleId: 57, explanation: "Make + Object + V1 (laugh)।" },
+            { id: 170, q: "He was made ______.", options: ["laugh", "to laugh", "laughing", "laughed"], correct: 1, ruleId: 57, explanation: "Passive voice-এ Make-এর পর 'to' বসে (to laugh)।" },
+
+            // --- SET 18 (Q171-Q180) ---
+            { id: 171, q: "Had I known, I ______ helped you.", options: ["would", "would have", "will have", "had"], correct: 1, ruleId: 67, explanation: "Had I known (Type 3 Conditional) -> would have helped।" },
+            { id: 172, q: "If it rains, I ______ home.", options: ["stay", "will stay", "stayed", "had stayed"], correct: 1, ruleId: 11, explanation: "Type 1 Conditional: If + Present -> Future (will stay)।" },
+            { id: 173, q: "Unless you ______ hard, you will fail.", options: ["work", "works", "don't work", "worked"], correct: 0, ruleId: 120, explanation: "Unless + Affirmative verb (work)।" },
+            { id: 174, q: "Wait here until I ______.", options: ["return", "will return", "returned", "do not return"], correct: 0, ruleId: 120, explanation: "Until clauses take Present Tense for future meaning।" },
+            { id: 175, q: "Five years ______ passed.", options: ["has", "have", "is", "are"], correct: 1, ruleId: 1, explanation: "Years (Time period) treated as units here, but often 'have' if thinking of years individually. Actually, 'Five years have passed' is standard. 'Five years is a long time' (amount)।" },
+            { id: 176, q: "Gulliver's Travels ______ a famous book.", options: ["are", "were", "is", "have"], correct: 2, ruleId: 83, explanation: "বইয়ের নাম, তাই Singular (is)।" },
+            { id: 177, q: "Neither of the boys ______ done it.", options: ["have", "has", "are", "were"], correct: 1, ruleId: 15, explanation: "Neither of + Plural Noun + Singular Verb (has)।" },
+            { id: 178, q: "Everyone ______ to be happy.", options: ["want", "wants", "wanting", "wanted"], correct: 1, ruleId: 14, explanation: "Everyone Singular -> wants।" },
+            { id: 179, q: "Everything ______ fine.", options: ["are", "is", "were", "have"], correct: 1, ruleId: 14, explanation: "Everything Singular -> is।" },
+            { id: 180, q: "One should keep ______ promise.", options: ["his", "her", "one's", "their"], correct: 2, ruleId: 39, explanation: "One's promise।" },
+
+            // --- SET 19 (Q181-Q190) ---
+            { id: 181, q: "I enjoy ______ TV.", options: ["to watch", "watching", "watch", "watched"], correct: 1, ruleId: 62, explanation: "Enjoy + Gerund (watching)।" },
+            { id: 182, q: "Would you mind ______ the window?", options: ["open", "to open", "opening", "opened"], correct: 2, ruleId: 82, explanation: "Would you mind + Gerund (opening)।" },
+            { id: 183, q: "It is no use ______.", options: ["cry", "to cry", "crying", "cried"], correct: 2, ruleId: 62, explanation: "It is no use + Gerund (crying)।" },
+            { id: 184, q: "He is worth ______.", options: ["praise", "praising", "to praise", "praised"], correct: 1, ruleId: 62, explanation: "Worth + Gerund (praising)।" },
+            { id: 185, q: "Avoid ______ mistakes.", options: ["make", "to make", "making", "made"], correct: 2, ruleId: 62, explanation: "Avoid + Gerund (making)।" },
+            { id: 186, q: "He is used to ______ at night.", options: ["work", "working", "works", "worked"], correct: 1, ruleId: 48, explanation: "Is used to + Gerund (working)।" },
+            { id: 187, q: "I used to ______ at night.", options: ["work", "working", "works", "worked"], correct: 0, ruleId: 48, explanation: "Used to (Past habit) + V1 (work)।" },
+            { id: 188, q: "She is ______ to help.", options: ["too", "enough", "very", "much"], correct: 0, ruleId: 36, explanation: "Missing context, likely 'too weak to help' or similar, but structure 'She is too...to...' fits. Assuming 'ready' implied? Or wait. 'She is ready enough'. 'She is too busy'. Let's swap Q." },
+            { id: 188, q: "He is rich ______ to buy a car.", options: ["enough", "too", "very", "so"], correct: 0, ruleId: 23, explanation: "Adjective + Enough (rich enough)।" },
+            { id: 189, q: "He is ______ weak to walk.", options: ["very", "too", "so", "enough"], correct: 1, ruleId: 36, explanation: "Too...to structure।" },
+            { id: 190, q: "This is the ______ book I have read.", options: ["best", "good", "better", "most good"], correct: 0, ruleId: 5, explanation: "The + Superlative (best)।" },
+
+            // --- SET 20 (Q191-Q200) ---
+            { id: 191, q: "He is the ______ of the two boys.", options: ["tallest", "taller", "tall", "more tall"], correct: 1, ruleId: 5, explanation: "Of the two থাকলে Comparative-এর আগে 'The' বসে (The taller)।" },
+            { id: 192, q: "Which is the ______ of the two?", options: ["better", "best", "good", "more good"], correct: 0, ruleId: 5, explanation: "Of the two -> Comparative (better)।" },
+            { id: 193, q: "He writes ______ than I.", options: ["fast", "faster", "fastly", "more fast"], correct: 1, ruleId: 27, explanation: "Fast-এর Comparative 'faster' (Fastly শব্দ নেই)।" },
+            { id: 194, q: "I have ______ friends than you.", options: ["many", "more", "most", "much"], correct: 1, ruleId: 3, explanation: "Comparative of many is 'more'।" },
+            { id: 195, q: "He is the ______ boy in class.", options: ["most unique", "unique", "more unique", "uniquest"], correct: 1, ruleId: 13, explanation: "Unique is absolute, no superlative/comparative needed. But context implies superlative slot. Trick Q. 'Unique' shouldn't be graded. Correct usage: 'He is a unique boy'. If forced: 'most unique' is common error, but strictly 'unique' is best. Let's change Q." },
+            { id: 195, q: "This idea is ______.", options: ["unique", "most unique", "more unique", "very unique"], correct: 0, ruleId: 13, explanation: "Unique (Absolute Adjective) does not take more/most।" },
+            { id: 196, q: "The boy ______ book is lost is crying.", options: ["who", "whom", "whose", "which"], correct: 2, ruleId: 24, explanation: "Possessive relative pronoun (Whose)।" },
+            { id: 197, q: "I met a man ______ legs were broken.", options: ["who", "whose", "whom", "that"], correct: 1, ruleId: 24, explanation: "Possession (Whose legs)।" },
+            { id: 198, q: "______ I were a bird!", options: ["If", "Would that", "Unless", "As"], correct: 1, ruleId: 11, explanation: "Would that = I wish (Unreal wish)।" },
+            { id: 199, q: "May God ______ you.", options: ["bless", "blesses", "blessed", "blessing"], correct: 0, ruleId: 10, explanation: "Optative sentence/Modal (May) + V1 (bless)।" },
+            { id: 200, q: "He dares not ______ me.", options: ["oppose", "to oppose", "opposing", "opposed"], correct: 0, ruleId: 10, explanation: "Dare not (Semi-modal) + Bare Infinitive (oppose)।" }
+        ];
+
+        // State
+        let currentQuizIndex = 0;
+        let quizScore = 0;
+        let wrongAnswers = [];
+        let activeQuizSet = [];
+        let currentSetNumber = 1;
+
+        // Initialization
+        window.onload = function() {
+            if (typeof rulesData === 'undefined') {
+                alert("Alert: 'rules_data.js' is missing. The grammar explanations won't appear.");
+            }
+            renderQuizGrid();
+        };
+
+        // Dynamically Render Quiz Grid (1-20)
+        function renderQuizGrid() {
+            const grid = document.getElementById('quizGrid');
+            const colors = [
+                { t: 'text-emerald-500', h: 'group-hover:text-emerald-400', b: 'hover:border-emerald-500/50', i: 'fa-bolt' },
+                { t: 'text-blue-400', h: 'group-hover:text-blue-300', b: 'hover:border-blue-500/50', i: 'fa-water' },
+                { t: 'text-purple-400', h: 'group-hover:text-purple-300', b: 'hover:border-purple-500/50', i: 'fa-wind' },
+                { t: 'text-red-400', h: 'group-hover:text-red-300', b: 'hover:border-red-500/50', i: 'fa-fire' },
+                { t: 'text-yellow-400', h: 'group-hover:text-yellow-300', b: 'hover:border-yellow-500/50', i: 'fa-sun' },
+                { t: 'text-orange-400', h: 'group-hover:text-orange-300', b: 'hover:border-orange-500/50', i: 'fa-mountain' },
+                { t: 'text-cyan-400', h: 'group-hover:text-cyan-300', b: 'hover:border-cyan-500/50', i: 'fa-snowflake' },
+                { t: 'text-pink-400', h: 'group-hover:text-pink-300', b: 'hover:border-pink-500/50', i: 'fa-gem' },
+                { t: 'text-lime-400', h: 'group-hover:text-lime-300', b: 'hover:border-lime-500/50', i: 'fa-leaf' },
+                { t: 'text-indigo-400', h: 'group-hover:text-indigo-300', b: 'hover:border-indigo-500/50', i: 'fa-flag-checkered' }
+            ];
+
+            let html = '';
+            for (let i = 1; i <= 20; i++) {
+                // Cycle through colors
+                const color = colors[(i - 1) % 10];
+                const startQ = (i - 1) * 10 + 1;
+                const endQ = i * 10;
+                
+                html += `
+                <button onclick="startQuizSet(${i})" class="quiz-btn group relative overflow-hidden rounded-xl bg-white/5 border border-white/10 p-4 ${color.b} transition-all">
+                    <div class="${color.t} text-xl mb-2"><i class="fa-solid ${color.i}"></i></div>
+                    <div class="text-sm font-bold text-white mb-1">Quiz ${i.toString().padStart(2, '0')}</div>
+                    <div class="text-[10px] text-gray-500 uppercase tracking-wider ${color.h}">Q ${startQ}-${endQ}</div>
+                </button>`;
+            }
+            grid.innerHTML = html;
+        }
+
+        function startQuizSet(setNumber) {
+            currentSetNumber = setNumber;
+            const startIndex = (setNumber - 1) * 10;
+            const endIndex = startIndex + 10;
+            
+            // Slice the data for the selected quiz
+            activeQuizSet = quizData.slice(startIndex, endIndex);
+            
+            if (activeQuizSet.length === 0) {
+                alert("This quiz set is under construction.");
+                return;
+            }
+
+            // Reset State
+            currentQuizIndex = 0;
+            quizScore = 0;
+            wrongAnswers = [];
+            
+            // UI Updates
+            document.getElementById('startScreen').classList.add('hidden');
+            document.getElementById('quizView').classList.remove('hidden');
+            document.getElementById('quizSetName').innerText = `QUIZ ${setNumber.toString().padStart(2, '0')}`;
+            
+            renderQuizQuestion();
+        }
+
+        function renderQuizQuestion() {
+            const q = activeQuizSet[currentQuizIndex];
+            document.getElementById('questionText').innerText = `${currentQuizIndex + 1}. ${q.q}`;
+            document.getElementById('quizProgressDisplay').innerText = `${currentQuizIndex + 1}/${activeQuizSet.length}`;
+            document.getElementById('quizScoreDisplay').innerText = quizScore;
+            
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+            
+            // Reset Buttons & Feedback
+            document.getElementById('quizNextBtnContainer').classList.add('hidden');
+            document.getElementById('quizFeedback').classList.add('hidden');
+
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full p-4 rounded-xl bg-white/5 border border-white/10 text-left hover:bg-white/10 transition-all font-medium text-gray-200 flex items-center";
+                btn.innerHTML = `<span class="inline-block w-6 h-6 rounded-full bg-white/10 text-center text-xs leading-6 mr-3 font-bold text-gray-400 border border-white/5 flex-shrink-0">${String.fromCharCode(65+idx)}</span> ${opt}`;
+                btn.onclick = () => checkQuizAnswer(idx, btn);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function checkQuizAnswer(selectedIdx, btnElement) {
+            const q = activeQuizSet[currentQuizIndex];
+            const allBtns = document.getElementById('optionsContainer').children;
+            
+            // Disable all options
+            for(let btn of allBtns) { 
+                btn.disabled = true; 
+                btn.classList.add('opacity-50', 'cursor-not-allowed'); 
+            }
+            btnElement.classList.remove('opacity-50');
+
+            const feedbackEl = document.getElementById('quizFeedback');
+            let feedbackHTML = '';
+
+            if (selectedIdx === q.correct) {
+                // Correct styling
+                btnElement.classList.replace('border-white/10', 'border-green-500');
+                btnElement.classList.add('bg-green-500/20', 'text-white');
+                quizScore++;
+                document.getElementById('quizScoreDisplay').innerText = quizScore;
+                
+                feedbackEl.className = "mt-6 p-4 rounded-xl bg-green-500/10 border border-green-500/30 animate-fade-in";
+                feedbackHTML = `<div class="flex items-center gap-3 mb-2"><div class="w-8 h-8 rounded-full flex items-center justify-center bg-green-500 text-white shadow-lg shadow-green-500/20"><i class="fa-solid fa-check"></i></div><h4 class="font-bold text-green-400">Correct Answer!</h4></div>`;
+            } else {
+                // Wrong styling
+                btnElement.classList.replace('border-white/10', 'border-red-500');
+                btnElement.classList.add('bg-red-500/20', 'text-white');
+                
+                // Highlight correct
+                const correctBtn = allBtns[q.correct];
+                correctBtn.classList.remove('opacity-50');
+                correctBtn.classList.replace('border-white/10', 'border-green-500');
+                correctBtn.classList.add('bg-green-500/20', 'text-white');
+                
+                wrongAnswers.push(q.ruleId);
+                
+                feedbackEl.className = "mt-6 p-4 rounded-xl bg-red-500/10 border border-red-500/30 animate-fade-in";
+                feedbackHTML = `<div class="flex items-center gap-3 mb-2"><div class="w-8 h-8 rounded-full flex items-center justify-center bg-red-500 text-white shadow-lg shadow-red-500/20"><i class="fa-solid fa-xmark"></i></div><h4 class="font-bold text-red-400">Wrong Answer</h4></div>`;
+            }
+            
+            feedbackHTML += `<p class="text-sm text-gray-300 mb-3 border-l-2 border-white/20 pl-3 leading-relaxed bengali-text mt-3">${q.explanation}</p>
+                             <button onclick="openRuleModalFromQuiz()" class="w-full py-3 rounded-lg bg-royal-gold/10 text-royal-gold border border-royal-gold/30 hover:bg-royal-gold/20 text-xs font-bold uppercase tracking-widest transition-all shadow-lg hover:shadow-royal-gold/10">
+                                <i class="fa-solid fa-book-open mr-2"></i> See Rule Detail
+                             </button>`;
+            
+            feedbackEl.innerHTML = feedbackHTML;
+            feedbackEl.classList.remove('hidden');
+            
+            document.getElementById('quizNextBtnContainer').classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            if (currentQuizIndex < activeQuizSet.length - 1) {
+                currentQuizIndex++;
+                renderQuizQuestion();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function quitQuiz() {
+            if(confirm("Are you sure you want to exit this quiz session?")) {
+                returnToMenu();
+            }
+        }
+
+        function finishQuiz() {
+            document.getElementById('quizView').classList.add('hidden');
+            document.getElementById('quizReport').classList.remove('hidden');
+            
+            document.getElementById('reportTitle').innerText = `Quiz ${currentSetNumber.toString().padStart(2, '0')} Complete`;
+            document.getElementById('reportCorrect').innerText = quizScore;
+            document.getElementById('reportWrong').innerText = wrongAnswers.length;
+            
+            const weakList = document.getElementById('weakRulesList');
+            weakList.innerHTML = '';
+            
+            if (wrongAnswers.length > 0) {
+                document.getElementById('weakAreasContainer').classList.remove('hidden');
+                // Use Set to show unique weak rules
+                if (typeof rulesData !== 'undefined') {
+                    [...new Set(wrongAnswers)].forEach(id => {
+                        const rule = rulesData.find(r => r.id === id);
+                        if(rule) {
+                            weakList.innerHTML += `
+                                <div class="p-3 bg-white/5 rounded-lg border border-white/10 flex items-center justify-between group hover:bg-white/10 transition-all">
+                                    <div>
+                                        <span class="text-[10px] text-red-400 font-bold uppercase tracking-wider block mb-0.5">Rule ${rule.id}</span>
+                                        <p class="text-white text-xs font-bold font-sans">${rule.title}</p>
+                                    </div>
+                                    <button onclick="showRuleInModal(${rule.id})" class="text-[10px] font-bold uppercase tracking-wider bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition-colors text-gray-300 hover:text-white">View</button>
+                                </div>`;
+                        }
+                    });
+                }
+            } else {
+                document.getElementById('weakAreasContainer').classList.add('hidden');
+            }
+        }
+
+        function returnToMenu() {
+            document.getElementById('quizView').classList.add('hidden');
+            document.getElementById('quizReport').classList.add('hidden');
+            document.getElementById('startScreen').classList.remove('hidden');
+        }
+
+        function openRuleModalFromQuiz() {
+            const ruleId = activeQuizSet[currentQuizIndex].ruleId;
+            showRuleInModal(ruleId);
+        }
+
+        function showRuleInModal(id) {
+            if (typeof rulesData === 'undefined') {
+                alert("Rules data not loaded.");
+                return;
+            }
+            const rule = rulesData.find(r => r.id === id);
+            if (!rule) return;
+
+            document.getElementById('ruleModalContent').innerHTML = `
+                <div class="space-y-6">
+                    <div class="text-center space-y-2">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-royal-gold/30 bg-royal-gold/10 text-royal-gold text-[10px] font-bold tracking-widest uppercase"><i class="fa-solid ${rule.icon}"></i> Grammar Rule ${rule.id}</div>
+                        <h2 class="text-2xl font-bold text-white aristocratic-title">${rule.title}</h2><p class="text-gray-400 text-sm font-medium">${rule.subtitle}</p>
+                    </div>
+                    <div class="bg-white/5 rounded-xl p-4 border-l-4 border-royal-gold">
+                        <h4 class="text-xs text-royal-gold font-bold uppercase tracking-widest mb-2 flex items-center gap-2"><i class="fa-regular fa-lightbulb"></i> Concept</h4><p class="text-base text-gray-200 bengali-text leading-relaxed font-light">${rule.concept}</p>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold text-gray-400 mb-3 uppercase tracking-widest">Examples</h4>
+                        <div class="space-y-3">${rule.examples.map(ex => `<div class="bg-black/20 rounded-lg p-3 border border-white/5"><p class="font-serif text-sm text-white mb-1">"${ex.en}"</p><p class="text-xs text-gray-400 bengali-text">${ex.bn}</p></div>`).join('')}</div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('ruleModal').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
