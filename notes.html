@@ -81,7 +81,9 @@
         const notesData = {
             "root": [
                 { id: "pos", title: "Parts of Speech", icon: "fa-shapes", color: "text-blue-400", border: "border-blue-500/30" },
-                { id: "tense", title: "Tense & Voice", icon: "fa-clock", color: "text-green-400", border: "border-green-500/30" },
+                { id: "tense", title: "Tense", icon: "fa-clock", color: "text-green-400", border: "border-green-500/30" },
+                { id: "voice", title: "Voice Change", icon: "fa-exchange-alt", color: "text-orange-400", border: "border-orange-500/30" },
+                { id: "narration", title: "Narration (Speech)", icon: "fa-comments", color: "text-purple-400", border: "border-purple-500/30" },
                 { id: "vocab", title: "Vocabulary", icon: "fa-book-open", color: "text-pink-400", border: "border-pink-500/30" }
             ],
             
@@ -97,12 +99,667 @@
                 { id: "inter_mod", title: "8. Interjection (আবেগসূচক অব্যয়)", desc: "Master Class: Emotion, Tone & Rules" }
             ],
             "tense": [
-                { id: "present_mod", title: "Present Tense", desc: "Simple, Continuous, Perfect, Perfect Continuous" },
-                { id: "past_mod", title: "Past Tense", desc: "Simple, Continuous, Perfect, Perfect Continuous" },
-                { id: "future_mod", title: "Future Tense", desc: "Simple, Continuous, Perfect" }
+                { id: "present_mod", title: "1. Present Tense (বর্তমান কাল)", desc: "Deep Dive: Indefinite, Continuous, Perfect & Rules" },
+                { id: "past_mod", title: "2. Past Tense (অতীত কাল)", desc: "Deep Dive: Rules, Before/After Logic" },
+                { id: "future_mod", title: "3. Future Tense (ভবিষ্যৎ কাল)", desc: "Deep Dive: Shall/Will, By Time Rules" }
+            ],
+            "voice": [
+                { id: "voice_intro", title: "1. Basic Concept & Rules", desc: "Active vs Passive, The 5 Golden Rules" },
+                { id: "voice_tense", title: "2. Tense-wise Rules", desc: "Present, Past & Future Structures" },
+                { id: "voice_modal", title: "3. Modal Auxiliaries", desc: "Can, Could, Should, Must" },
+                { id: "voice_imperative", title: "4. Imperative Sentence", desc: "Order, Request, Advice (Let rules)" },
+                { id: "voice_interrogative", title: "5. Interrogative Sentence", desc: "Who, What, Do/Did based questions" },
+                { id: "voice_advanced", title: "6. Exceptional Rules", desc: "Quasi-Passive, Without 'By', Double Object" }
+            ],
+            "narration": [
+                { id: "narration_intro", title: "1. Introduction & Parts", desc: "Reporter, Reporting Verb, Reported Speech" },
+                { id: "narration_person", title: "2. Change of Person", desc: "The 'SON' Formula (123)" },
+                { id: "narration_tense", title: "3. Change of Tense", desc: "Present to Past, Past to Perfect" },
+                { id: "narration_time", title: "4. Change of Time & Place", desc: "Now→Then, Here→There list" },
+                { id: "narration_assertive", title: "5. Assertive Sentence", desc: "Universal Truths & General Rules" },
+                { id: "narration_interrogative", title: "6. Interrogative Sentence", desc: "Asked, If/Whether, WH-Questions" },
+                { id: "narration_imperative", title: "7. Imperative Sentence", desc: "Ordered, Requested, Let Rules" },
+                { id: "narration_optative", title: "8. Optative Sentence", desc: "Prayed, Wished (May/Might)" },
+                { id: "narration_exclamatory", title: "9. Exclamatory Sentence", desc: "Exclaimed with Joy/Sorrow" }
+            ],
+            "vocab": [
+                { id: "vocab_syn_ant", title: "1. Synonyms & Antonyms", desc: "Similar & Opposite Words" },
+                { id: "vocab_idioms", title: "2. Idioms & Phrases", desc: "Special Meanings (বাগধারা)" },
+                { id: "vocab_oneword", title: "3. One Word Substitution", desc: "এককথায় প্রকাশ" },
+                { id: "vocab_phrasal", title: "4. Group Verbs", desc: "Verbs with Prepositions" },
+                { id: "vocab_homophones", title: "5. Homophones", desc: "Same Sound, Different Meaning" }
             ],
 
-            // --- DETAILED FLASHCARDS ---
+            // --- VOCABULARY MODULES (MASSIVELY EXPANDED) ---
+
+            // 1. SYNONYMS & ANTONYMS
+            "vocab_syn_ant": [
+                {
+                    title: "Concept (ধারণা)",
+                    eng: "Synonyms: Words with same meaning. Antonyms: Words with opposite meaning.",
+                    ben: "🔹 **Synonym (সমার্থক শব্দ):** একই অর্থবোধক শব্দ। (যেমন: Beautiful - Pretty)\n🔹 **Antonym (বিপরীত শব্দ):** বিপরীত অর্থবোধক শব্দ। (যেমন: Good - Bad)",
+                    eg: "Happy (Syn: Glad, Ant: Sad)"
+                },
+                {
+                    title: "Common Examples - A",
+                    eng: "Words starting with A.",
+                    ben: "1. **Abandon** (ত্যাগ করা) -> Syn: Leave, Ant: Keep\n2. **Ability** (ক্ষমতা) -> Syn: Skill, Ant: Inability\n3. **Active** (সক্রিয়) -> Syn: Energetic, Ant: Lazy",
+                    eg: "He abandoned the plan."
+                },
+                {
+                    title: "Common Examples - B & C",
+                    eng: "Words starting with B and C.",
+                    ben: "1. **Beautiful** (সুন্দর) -> Syn: Pretty, Ant: Ugly\n2. **Brave** (সাহসী) -> Syn: Bold, Ant: Coward\n3. **Calm** (শান্ত) -> Syn: Quiet, Ant: Noisy\n4. **Create** (তৈরি করা) -> Syn: Make, Ant: Destroy",
+                    eg: "Be brave in danger."
+                }
+            ],
+
+            // 2. IDIOMS
+            "vocab_idioms": [
+                {
+                    title: "Idioms (বাগধারা) - Concept",
+                    eng: "A phrase where the meaning is not clear from the words themselves.",
+                    ben: "এমন শব্দগুচ্ছ যার আক্ষরিক অর্থ এক, কিন্তু ভাবার্থ বা প্রকৃত অর্থ সম্পূর্ণ আলাদা।",
+                    eg: "**'A bed of roses'** মানে 'গোলাপের বিছানা' নয়, এর অর্থ 'আরামদায়ক অবস্থা' (Comfortable life)."
+                },
+                {
+                    title: "Important Idioms (A-B)",
+                    eng: "Frequently asked in exams.",
+                    ben: "1. **A B C:** প্রাথমিক জ্ঞান (Primary knowledge). -> He does not know the A B C of music.\n2. **All in all:** সর্বেসর্বা (All powerful). -> The HM is all in all in the school.\n3. **Bag and baggage:** তল্পিতল্পাসহ (With belongings). -> He left Kolkata bag and baggage.",
+                    eg: ""
+                },
+                {
+                    title: "Important Idioms (C-K)",
+                    eng: "Frequently asked in exams.",
+                    ben: "1. **Cats and dogs:** মুষলধারে (Heavily). -> It is raining cats and dogs.\n2. **Crocodile tears:** মায়াকান্না (False tears).\n3. **Gala day:** উৎসবের দিন (Day of festivity). -> The 15th August is a gala day for Indians.\n4. **Kith and kin:** আত্মীয়-স্বজন (Relatives).",
+                    eg: ""
+                }
+            ],
+
+            // 3. ONE WORD SUBSTITUTION
+            "vocab_oneword": [
+                {
+                    title: "One Word Substitution (এককথায় প্রকাশ)",
+                    eng: "Replacing a phrase with a single word.",
+                    ben: "একটি বড় বাক্য বা বাক্যাংশকে একটিমাত্র শব্দ দিয়ে প্রকাশ করা।",
+                    eg: "One who cannot die = **Immortal** (অমর)."
+                },
+                {
+                    title: "Common Examples (Persons)",
+                    eng: "Related to types of people.",
+                    ben: "1. **Atheist:** যে ঈশ্বরে বিশ্বাস করে না (One who does not believe in God).\n2. **Omnivorous:** যে সবকিছু খায় (One who eats everything).\n3. **Bachelor:** অবিবাহিত পুরুষ (An unmarried man).\n4. **Optimist:** আশাবাদী (One who looks at the bright side).",
+                    eg: ""
+                },
+                {
+                    title: "Common Examples (Places & Groups)",
+                    eng: "Related to locations and collections.",
+                    ben: "1. **Aviary:** পক্ষীশালা (A place where birds are kept).\n2. **Zoo:** চিড়িয়াখানা (A place where animals are kept).\n3. **Audience:** শ্রোতৃমণ্ডলী (A number of people listening to a lecture).\n4. **Mob:** উত্তেজিত জনতা (An angry crowd).",
+                    eg: ""
+                }
+            ],
+
+            // 4. GROUP VERBS / PHRASAL VERBS
+            "vocab_phrasal": [
+                {
+                    title: "Group Verbs (Phrasal Verbs)",
+                    eng: "Verb + Preposition/Adverb = New Meaning.",
+                    ben: "মূল Verb-এর সাথে Preposition বা Adverb যুক্ত হয়ে যখন সম্পূর্ণ নতুন অর্থ প্রকাশ করে।",
+                    eg: "**Give up** (ত্যাগ করা) - Give (দেওয়া) + Up (উপরে) = ত্যাগ করা।"
+                },
+                {
+                    title: "Important List - 1",
+                    eng: "Exam favorites.",
+                    ben: "1. **Act on:** ক্ষতি করা (Affect). -> Over-eating acts on health.\n2. **Bear with:** সহ্য করা (Tolerate). -> I cannot bear with this insult.\n3. **Blow out:** নেভানো (Extinguish). -> Blow out the lamp.\n4. **Bring up:** লালন-পালন করা (Rear). -> He was brought up by his aunt.",
+                    eg: ""
+                },
+                {
+                    title: "Important List - 2",
+                    eng: "Exam favorites.",
+                    ben: "1. **Call in:** ডাকা (Send for). -> Call in a doctor.\n2. **Carry out:** পালন করা (Obey). -> Carry out my order.\n3. **Come round:** আরোগ্য লাভ করা (Recover). -> The patient will come round soon.\n4. **Give up:** ত্যাগ করা (Leave). -> Give up bad habits.",
+                    eg: ""
+                }
+            ],
+
+            // 5. HOMOPHONES
+            "vocab_homophones": [
+                {
+                    title: "Homophones (সমোচ্চারিত শব্দ)",
+                    eng: "Words having same sound but different meaning and spelling.",
+                    ben: "উচ্চারণ একই কিন্তু বানান ও অর্থ ভিন্ন।",
+                    eg: "Sun (সূর্য) vs Son (পুত্র)।"
+                },
+                {
+                    title: "Confusing Pairs - 1",
+                    eng: "Check the spelling carefully.",
+                    ben: "1. **Accept** (গ্রহণ করা) vs **Except** (ব্যতীত)।\n2. **Advice** (উপদেশ - Noun) vs **Advise** (উপদেশ দেওয়া - Verb)।\n3. **Break** (ভাঙা) vs **Brake** (গাড়ির ব্রেক)।",
+                    eg: ""
+                },
+                {
+                    title: "Confusing Pairs - 2",
+                    eng: "Check the spelling carefully.",
+                    ben: "1. **Check** (পরীক্ষা করা) vs **Cheque** (ব্যাংকের চেক)।\n2. **Die** (মারা যাওয়া) vs **Dye** (রং করা)।\n3. **Peace** (শান্তি) vs **Piece** (টুকরো)।\n4. **Right** (সঠিক) vs **Write** (লেখা)।",
+                    eg: ""
+                }
+            ],
+
+            // --- NARRATION MODULES (EXISTING) ---
+
+            // 1. INTRO
+            "narration_intro": [
+                {
+                    title: "Narration (উক্তি) - Definition",
+                    eng: "Narration acts as the art of reporting the words of a speaker.",
+                    ben: "বক্তার কথাকে অন্যের নিকট বর্ণনা করাকেই Narration বা উক্তি পরিবর্তন বলে। এটি দুই প্রকার: Direct (প্রত্যক্ষ) এবং Indirect (পরোক্ষ)।",
+                    eg: "Direct: He said, \"I am ill.\"\nIndirect: He said that he was ill."
+                },
+                {
+                    title: "Parts of Narration",
+                    eng: "Understanding the structure is crucial.",
+                    ben: "বাক্য: He said to me, \"I like you.\"\n🔹 **Reporter:** যে কথা বলছে (He)।\n🔹 **Reporting Verb:** যে Verb দিয়ে কথা শুরু হয় (said)।\n🔹 **Reported Speech:** Inverted comma-র ভেতরের অংশ (\"I like you\")।",
+                    eg: ""
+                },
+                {
+                    title: "Basic Concept of Change",
+                    eng: "We change the speech to fit our perspective.",
+                    ben: "আমরা যখন অন্যের কথা নিজের ভাষায় বলি, তখন তিনটি প্রধান পরিবর্তন করতে হয়:\n১. Person (পুরুষ)\n২. Tense (কাল)\n৩. Time & Place (সময় ও স্থান)।",
+                    eg: "Direct: Rahul said, \"I am busy now.\"\nIndirect: Rahul said that he was busy then."
+                }
+            ],
+
+            // 2. PERSON CHANGE
+            "narration_person": [
+                {
+                    title: "The 'SON' Formula (1-2-3)",
+                    eng: "How to change First, Second, and Third persons.",
+                    ben: "Reported Speech-এর Person পরিবর্তন করার নিয়ম:\n🔹 **1st Person (I, We):** Reporting Verb-এর **Subject** (S) অনুযায়ী বদলায়।\n🔹 **2nd Person (You):** Reporting Verb-এর **Object** (O) অনুযায়ী বদলায়।\n🔹 **3rd Person (He, She, It):** **No Change** (N)।",
+                    eg: "S-O-N = 1-2-3"
+                },
+                {
+                    title: "1st Person Change Rule",
+                    eng: "I/We follows the Subject.",
+                    ben: "Direct: **He** said, \"**I** do it.\"\nIndirect: **He** said that **he** did it. (I -> He)",
+                    eg: "Direct: **She** said, \"**My** pen is lost.\"\nIndirect: **She** said that **her** pen was lost."
+                },
+                {
+                    title: "2nd Person Change Rule",
+                    eng: "You follows the Object.",
+                    ben: "Direct: He said to **me**, \"**You** are good.\"\nIndirect: He told **me** that **I** was good. (You -> Me -> I)",
+                    eg: "Direct: I said to **him**, \"**You** look tired.\"\nIndirect: I told **him** that **he** looked tired."
+                }
+            ],
+
+            // 3. TENSE CHANGE
+            "narration_tense": [
+                {
+                    title: "The Golden Rule of Tense",
+                    eng: "If Reporting Verb is Past (said), Tense changes. If Present/Future (says/will say), Tense DOES NOT change.",
+                    ben: "Reporting Verb যদি Past Tense (said) হয়, তবেই ভেতরের Tense বদলাবে। যদি Present (says) বা Future (will say) হয়, তবে ভেতরের Tense একই থাকবে।",
+                    eg: "Direct: He **says**, \"I am ill.\"\nIndirect: He **says** that he **is** ill. (No Change)"
+                },
+                {
+                    title: "Present to Past Rules",
+                    eng: "Corresponding Past forms.",
+                    ben: "🔹 Present Indefinite -> Past Indefinite (Go -> Went)\n🔹 Present Continuous -> Past Continuous (Am/Is/Are -> Was/Were)\n🔹 Present Perfect -> Past Perfect (Have/Has -> Had)\n🔹 Present Perf. Cont. -> Past Perf. Cont.",
+                    eg: "Direct: He said, \"I **write**.\"\nIndirect: He said that he **wrote**."
+                },
+                {
+                    title: "Past to Past Rules",
+                    eng: "Past shifts to deeper Past.",
+                    ben: "🔹 Past Indefinite -> Past Perfect (Went -> Had gone)\n🔹 Past Continuous -> Past Perfect Continuous (Was going -> Had been going)\n🔴 Past Perfect & Past Perf. Cont. -> **No Change**.",
+                    eg: "Direct: He said, \"I **did** it.\"\nIndirect: He said that he **had done** it."
+                },
+                {
+                    title: "Future Tense & Modals",
+                    eng: "Will/Shall changes to Would/Should.",
+                    ben: "🔹 Will -> Would\n🔹 Shall -> Should (or Would)\n🔹 Can -> Could\n🔹 May -> Might\n🔴 Must -> Had to (বাধ্যবাধকতা বোঝালে)।",
+                    eg: "Direct: He said, \"I **will** go.\"\nIndirect: He said that he **would** go."
+                }
+            ],
+
+            // 4. TIME & PLACE CHANGE
+            "narration_time": [
+                {
+                    title: "Time & Place Words List",
+                    eng: "Words denoting nearness become distance.",
+                    ben: "নিকটবর্তী শব্দ দূরবর্তী শব্দে পরিণত হয়।\n🔹 Now -> Then\n🔹 Here -> There\n🔹 Today -> That day\n🔹 Tonight -> That night\n🔹 Tomorrow -> The next day\n🔹 Yesterday -> The previous day",
+                    eg: "Direct: He said, \"I will come **tomorrow**.\"\nIndirect: He said that he would go **the next day**."
+                },
+                {
+                    title: "More Examples",
+                    eng: "This/These/Ago rules.",
+                    ben: "🔹 This -> That\n🔹 These -> Those\n🔹 Ago -> Before\n🔹 Come -> Go (যদি বক্তার থেকে দূরে যাওয়ার অর্থ হয়)।",
+                    eg: "Direct: He said, \"I came **here** long **ago**.\"\nIndirect: He said that he had gone **there** long **before**."
+                }
+            ],
+
+            // 5. ASSERTIVE
+            "narration_assertive": [
+                {
+                    title: "Assertive Sentence Rules",
+                    eng: "Statements or simple facts.",
+                    ben: "১. Reporting Verb: **said** অপরিবর্তিত থাকে, কিন্তু **said to** থাকলে **told** হয়।\n২. Connector: Inverted comma উঠে **that** বসে।",
+                    eg: "Direct: He said to me, \"I play football.\"\nIndirect: He **told** me **that** he played football."
+                },
+                {
+                    title: "Universal Truth Exception",
+                    eng: "Facts that never change.",
+                    ben: "চিরন্তন সত্য বা অভ্যাসগত সত্য বোঝালে Tense-এর কোনো পরিবর্তন হয় না, যদিও Reporting Verb Past Tense হয়।",
+                    eg: "Direct: Teacher said, \"The earth **is** round.\"\nIndirect: Teacher said that the earth **is** round."
+                }
+            ],
+
+            // 6. INTERROGATIVE
+            "narration_interrogative": [
+                {
+                    title: "Interrogative Rules",
+                    eng: "Asking questions.",
+                    ben: "১. Reporting Verb: **Said/Told** উঠে **Asked** বসে।\n২. বাক্যটি আর প্রশ্নবোধক থাকে না, **Assertive** (Subject + Verb) হয়ে যায়।",
+                    eg: "Direct: He said, \"Are you ill?\"\nIndirect: He **asked** if I **was** ill. (Subject আগে এসেছে)"
+                },
+                {
+                    title: "Connector Rules (If vs WH)",
+                    eng: "Two types of questions.",
+                    ben: "🔹 **Yes/No Question:** (Do/Did/Is/Are দিয়ে শুরু) -> **If** বা **Whether** বসে।\n🔹 **WH Question:** (Who/What/Why দিয়ে শুরু) -> **WH Word**-টিই বসে।",
+                    eg: "Direct: He said, \"**What** is your name?\"\nIndirect: He asked **what** my name was."
+                }
+            ],
+
+            // 7. IMPERATIVE
+            "narration_imperative": [
+                {
+                    title: "Imperative Rules",
+                    eng: "Order, Request, Advice.",
+                    ben: "১. Reporting Verb পরিবর্তন হয়:\n- আদেশ -> **Ordered**\n- অনুরোধ -> **Requested**\n- উপদেশ -> **Advised**\n- নিষেধ -> **Forbade**\n২. Connector: Comma উঠে **To** বসে। (Negative হলে **Not to**)।",
+                    eg: "Direct: Father said, \"**Do not** run in the sun.\"\nIndirect: Father **advised not to** run in the sun."
+                },
+                {
+                    title: "Imperative with 'Let'",
+                    eng: "Let's vs Let me/him.",
+                    ben: "🔹 **Let us (Let's):** প্রস্তাব বোঝায়। Reporting Verb -> **Proposed/Suggested**। Connector -> **That**। Subject-এর পর **should** বসে।\n🔹 **Let me/him:** অনুমতি বোঝায়। Reporting Verb -> **Requested**। Subject-এর পর **might/might be allowed to** বসে।",
+                    eg: "Direct: He said, \"Let us go out.\"\nIndirect: He **proposed** that we **should** go out."
+                }
+            ],
+
+            // 8. OPTATIVE
+            "narration_optative": [
+                {
+                    title: "Optative Rules",
+                    eng: "Wish or Prayer.",
+                    ben: "১. Reporting Verb: **Wished** (ইচ্ছা) বা **Prayed** (প্রার্থনা) হয়।\n২. Connector: **That** বসে।\n৩. Subject-এর পরে **Might** বসে।",
+                    eg: "Direct: He said, \"May you live long.\"\nIndirect: He **wished that** I **might** live long."
+                }
+            ],
+
+            // 9. EXCLAMATORY
+            "narration_exclamatory": [
+                {
+                    title: "Exclamatory Rules",
+                    eng: "Expressing strong emotion.",
+                    ben: "১. Reporting Verb:\n- আনন্দ -> **Exclaimed with joy**\n- দুঃখ -> **Exclaimed with sorrow**\n- বিস্ময় -> **Exclaimed with wonder**\n২. Connector: **That** বসে।\n৩. বাক্যটি Assertive হয়ে যায় (Very/Great যোগ হয়)।",
+                    eg: "Direct: He said, \"How beautiful the bird is!\"\nIndirect: He **exclaimed with joy that** the bird was **very** beautiful."
+                }
+            ],
+
+            // --- VOICE CHANGE MODULES (EXISTING) ---
+
+            // 1. BASICS
+            "voice_intro": [
+                {
+                    title: "Voice (বাচ্য) - Definition",
+                    eng: "Active Voice: Subject does the work. Passive Voice: Work is done by the Subject.",
+                    ben: "🔹 **Active Voice:** যখন কর্তা (Subject) নিজে কাজটি সম্পন্ন করে। (I eat rice)\n🔹 **Passive Voice:** যখন কর্ম (Object)-কে প্রাধান্য দেওয়া হয় এবং কর্তার দ্বারা কাজটি সম্পন্ন হয়। (Rice is eaten by me)",
+                    eg: "Active: He writes a letter.\nPassive: A letter is written by him."
+                },
+                {
+                    title: "The 5 Golden Rules of Conversion",
+                    eng: "Follow these 5 steps to change Active to Passive.",
+                    ben: "১. Active-এর **Object** -> Passive-এর **Subject** হবে।\n২. Tense ও Person অনুযায়ী **Auxiliary Verb** বসবে।\n৩. মূল Verb-এর **Past Participle (V3)** বসবে।\n৪. সাধারণত **Preposition (by)** বসবে।\n৫. Active-এর **Subject** -> Passive-এর **Object** হবে।",
+                    eg: "I (Sub) eat (V1) rice (Obj).\n-> Rice (Sub) is (Aux) eaten (V3) by (Prep) me (Obj)."
+                },
+                {
+                    title: "Pronoun Changes (Subject -> Object)",
+                    eng: "How pronouns change form.",
+                    ben: "I -> Me\nWe -> Us\nYou -> You\nHe -> Him\nShe -> Her\nThey -> Them\nIt -> It\nWho -> By whom",
+                    eg: "He helps me -> I am helped by him."
+                }
+            ],
+
+            // 2. TENSE RULES
+            "voice_tense": [
+                {
+                    title: "Present Tense Rules",
+                    eng: "Auxiliary Verbs for Present Tense.",
+                    ben: "🔹 **Indefinite:** am / is / are + V3\n🔹 **Continuous:** am / is / are + **being** + V3\n🔹 **Perfect:** have / has + **been** + V3",
+                    eg: "Active: He is reading a book.\nPassive: A book **is being read** by him."
+                },
+                {
+                    title: "Past Tense Rules",
+                    eng: "Auxiliary Verbs for Past Tense.",
+                    ben: "🔹 **Indefinite:** was / were + V3\n🔹 **Continuous:** was / were + **being** + V3\n🔹 **Perfect:** had + **been** + V3",
+                    eg: "Active: He played football.\nPassive: Football **was played** by him.\nActive: He was calling me.\nPassive: I **was being called** by him."
+                },
+                {
+                    title: "Future Tense Rules",
+                    eng: "Auxiliary Verbs for Future Tense.",
+                    ben: "🔹 **Indefinite:** shall be / will be + V3\n🔹 **Perfect:** shall have been / will have been + V3\n🔴 Note: Future Continuous-এর Passive সচরাচর হয় না।",
+                    eg: "Active: I will do it.\nPassive: It **will be done** by me."
+                }
+            ],
+
+            // 3. MODALS
+            "voice_modal": [
+                {
+                    title: "Modal Auxiliaries Rule",
+                    eng: "Can, Could, May, Might, Should, Would, Must, Ought to.",
+                    ben: "Modal Verb থাকলে তার সাথে শুধু **'be'** যুক্ত করে V3 করতে হয়।",
+                    eg: "Active: You **must** do the work.\nPassive: The work **must be done** by you."
+                },
+                {
+                    title: "Modals + Have",
+                    eng: "Could have, Should have, Must have.",
+                    ben: "যদি Modal-এর সাথে 'have' থাকে, তবে Passive-এ **'been'** যুক্ত হয়।",
+                    eg: "Active: He **could have done** it.\nPassive: It **could have been done** by him."
+                }
+            ],
+
+            // 4. IMPERATIVE
+            "voice_imperative": [
+                {
+                    title: "Imperative with Object (আদেশ/অনুরোধ)",
+                    eng: "Sentences starting with Verb.",
+                    ben: "শুরুতে **Let** বসে।\n🔴 Structure: Let + Object + be + V3.",
+                    eg: "Active: **Close** the door.\nPassive: **Let** the door **be closed**."
+                },
+                {
+                    title: "Negative Imperative",
+                    eng: "Sentences starting with 'Do not'.",
+                    ben: "শুরুতে **Let not** বসে।\n🔴 Structure: Let not + Object + be + V3.",
+                    eg: "Active: **Do not** play football at noon.\nPassive: **Let not** football **be played** at noon."
+                },
+                {
+                    title: "Imperative with 'Let' (Personal Object)",
+                    eng: "Sentences starting with Let me, Let him etc.",
+                    ben: "যদি Active বাক্যটিই 'Let' দিয়ে শুরু হয়, তবে Passive-এও 'Let' থাকে, কিন্তু শেষে 'by' বসে।\n🔴 Structure: Let + Obj(thing) + be + V3 + by + Obj(person).",
+                    eg: "Active: **Let me** do the work.\nPassive: **Let** the work **be done by me**."
+                },
+                {
+                    title: "Imperative without Object",
+                    eng: "When there is no object to make subject.",
+                    ben: "যদি Object না থাকে, তবে 'You are requested/ordered to' দিয়ে শুরু করতে হয়।",
+                    eg: "Active: **Stand up.**\nPassive: **You are ordered to** stand up."
+                }
+            ],
+
+            // 5. INTERROGATIVE
+            "voice_interrogative": [
+                {
+                    title: "Yes/No Questions (Do/Did/Does)",
+                    eng: "Questions starting with Do verbs.",
+                    ben: "Do/Does উঠে গিয়ে Tense ও Person অনুযায়ী **Am/Is/Are** বসে। Did উঠে গিয়ে **Was/Were** বসে।\n🔴 Structure: Aux + Sub + V3 + by + Obj?",
+                    eg: "Active: **Do** you eat rice?\nPassive: **Is** rice eaten by you?"
+                },
+                {
+                    title: "WH Questions (Who)",
+                    eng: "'Who' changes to 'By whom'.",
+                    ben: "বাক্যে 'Who' থাকলে তার পরিবর্তে **'By whom'** বসে। বাকি নিয়ম Interrogative-এর মতো।",
+                    eg: "Active: **Who** broke the glass?\nPassive: **By whom** was the glass broken?"
+                },
+                {
+                    title: "WH Questions (What/When/Where)",
+                    eng: "Other WH words remain unchanged.",
+                    ben: "Who বাদে অন্য WH word (What, Why) থাকলে তা অপরিবর্তিত থাকে এবং বাক্যের শুরুতে বসে।",
+                    eg: "Active: **What** do you want?\nPassive: **What is wanted** by you?"
+                }
+            ],
+
+            // 6. ADVANCED / EXCEPTIONS
+            "voice_advanced": [
+                {
+                    title: "Prepositions other than 'By'",
+                    eng: "Some verbs take specific prepositions instead of 'by'.",
+                    ben: "সবসময় 'by' বসে না। কিছু নির্দিষ্ট Verb-এর ক্ষেত্রে নির্দিষ্ট Preposition বসে।\n🔹 **Know/Marry -> To**\n🔹 **Fill/Cover/Seize -> With**\n🔹 **Contain/Interest -> In**\n🔹 **Annoy/Shock -> At** (Behavior) / **With** (Person)",
+                    eg: "Active: I **know** him.\nPassive: He is known **to** me (Not 'by me').\nActive: Smoke filled the room.\nPassive: The room was filled **with** smoke."
+                },
+                {
+                    title: "Quasi-Passive Voice",
+                    eng: "Active in form but Passive in sense.",
+                    ben: "যে বাক্য দেখতে Active কিন্তু অর্থ Passive-এর মতো।\n🔴 Rule 1: Sub + Verb + Adj -> Sub + Aux + Adj + **when it is** + V3.",
+                    eg: "Active: Honey **tastes** sweet.\nPassive: Honey **is** sweet **when it is tasted**."
+                },
+                {
+                    title: "Double Object",
+                    eng: "When a sentence has two objects.",
+                    ben: "দুটি Object থাকলে (ব্যক্তিবাচক ও বস্তুবাচক), যেকোনো একটিকে Subject করা যায়। তবে ব্যক্তিবাচক (Indirect Object)-কে Subject করা ভালো। অন্য Object-টি (Retained Object) V3-এর পরে থেকে যায়।",
+                    eg: "Active: He gave **me** (1) a **flower** (2).\nPassive 1: **I** was given a flower by him. (Better)\nPassive 2: A **flower** was given **to** me by him."
+                },
+                {
+                    title: "Reflexive Object",
+                    eng: "Myself, Yourself, Himself etc.",
+                    ben: "Reflexive Object কখনো Subject হতে পারে না। Subject একই থাকে, শুধু 'by' যোগ হয়।\n🔴 Structure: Sub + Aux + V3 + Reflexive Obj + by + Sub (উহ্য থাকে বা বসে না, কারণ Subject ও Object একই)।",
+                    eg: "Active: He killed **himself**.\nPassive: He **was killed by himself**."
+                }
+            ],
+
+            // --- TENSE MODULES (EXISTING) ---
+
+            // 1. PRESENT TENSE - MASTER CLASS
+            "present_mod": [
+                {
+                    title: "Present Tense (বর্তমান কাল) - Overview",
+                    eng: "Refers to an action done in the present time.",
+                    ben: "বর্তমান সময়ে কোনো কাজ সম্পন্ন হয় বা হচ্ছে বোঝালে তাকে Present Tense বলে। এটি ৪ প্রকার: Indefinite, Continuous, Perfect, Perfect Continuous।",
+                    eg: "Example: I **read** a book. I **am reading** a book."
+                },
+                // --- INDEFINITE ---
+                {
+                    title: "1. Present Indefinite Tense (সাধারণ বর্তমান)",
+                    eng: "Used for habitual facts, universal truths, or general statements.",
+                    ben: "বর্তমান কালের সাধারণ কাজ, অভ্যাসগত সত্য, বা চিরন্তন সত্য বোঝাতে ব্যবহৃত হয়।\n🔹 **বাংলায় চেনার উপায়:** ক্রিয়ার শেষে ই, অ, আ, এ, ও, এন, এস, আন, আয় ইত্যাদি থাকে। (যাই, খাই, করো, যান)।",
+                    eg: "Universal Truth: The sun **rises** in the East.\nHabit: He **drinks** tea every morning."
+                },
+                {
+                    title: "🔴 Structure: Present Indefinite",
+                    eng: "Formula: Subject + V1 (Base form) + Object.",
+                    ben: "🔴 **Golden Rule:** Subject যদি **Third Person Singular Number** (He, She, It, Rahim) হয়, তবে Verb-এর শেষে **s** বা **es** যুক্ত করতে হয়।",
+                    eg: "I **go** (First Person).\nHe **goes** (Third Person Singular).\nThey **go** (Third Person Plural)."
+                },
+                {
+                    title: "🔴 Negative & Interrogative Rules",
+                    eng: "Use 'Do' or 'Does'.",
+                    ben: "সাহায্যকারী Verb না থাকায় Negative বা প্রশ্ন করতে **Do** বা **Does** আনতে হয়।\n🔹 **Does:** He, She, It-এর সাথে।\n🔹 **Do:** I, We, You, They-এর সাথে।",
+                    eg: "Negative: He **does not** play cricket.\nQuestion: **Do** you know him?"
+                },
+
+                // --- CONTINUOUS ---
+                {
+                    title: "2. Present Continuous Tense (ঘটমান বর্তমান)",
+                    eng: "Action happening right now or in progress.",
+                    ben: "বর্তমানে কোনো কাজ চলছে বা হচ্ছে এবং এখনো শেষ হয়নি।\n🔹 **বাংলায় চেনার উপায়:** ক্রিয়ার শেষে তেছি, তেছ, তেছে (সাধু) বা চ্ছে, চ্ছি, চ্ছ (চলিত) থাকে। (খাচ্ছি, যাচ্ছে)।",
+                    eg: "I **am writing** a letter.\nLook! The birds **are flying**."
+                },
+                {
+                    title: "🔴 Structure: Present Continuous",
+                    eng: "Formula: Subject + am/is/are + Verb(ing) + Object.",
+                    ben: "🔹 **Am:** শুধু I-এর সাথে।\n🔹 **Is:** He, She, It (Singular)-এর সাথে।\n🔹 **Are:** We, You, They (Plural)-এর সাথে।",
+                    eg: "She **is cooking** rice.\nWe **are playing** football."
+                },
+                {
+                    title: "🔴 Warning: Stative Verbs",
+                    eng: "Verbs that are not usually used in Continuous form.",
+                    ben: "কিছু Verb আছে যা সাধারণত Continuous হয় না (যেমন: See, Hear, Love, Hate, Know, Believe)। এদের Indefinite Tense-এ লিখতে হয়।",
+                    eg: "Incorrect: I am knowing him.\nCorrect: I **know** him."
+                },
+
+                // --- PERFECT ---
+                {
+                    title: "3. Present Perfect Tense (পুরাঘটিত বর্তমান)",
+                    eng: "Action just finished, but the result or effect is still there.",
+                    ben: "কাজটি এইমাত্র শেষ হয়েছে, কিন্তু তার ফল বা রেশ এখনো বিদ্যমান।\n🔹 **বাংলায় চেনার উপায়:** ক্রিয়ার শেষে য়াছি, য়াছ, য়াছে (সাধু) বা এছি, এছ, এছে (চলিত) থাকে। (খেয়েছি, গিয়েছ)।",
+                    eg: "I **have eaten** rice (পেট এখনো ভরা)।\nHe **has broken** the glass (গ্লাসটি এখনো ভাঙা)।"
+                },
+                {
+                    title: "🔴 Structure: Present Perfect",
+                    eng: "Formula: Subject + have/has + V3 (Past Participle) + Object.",
+                    ben: "🔹 **Has:** He, She, It (Singular)-এর সাথে।\n🔹 **Have:** বাকি সব ক্ষেত্রে।",
+                    eg: "They **have won** the match.\nShe **has finished** her work."
+                },
+                {
+                    title: "🔴 Rule: Past Indefinite vs Present Perfect",
+                    eng: "Don't confuse them.",
+                    ben: "অতীতের নির্দিষ্ট সময় উল্লেখ থাকলে (yesterday, last night) সেটি **Past Indefinite** হবে, Present Perfect নয়।",
+                    eg: "Incorrect: I have seen him yesterday.\nCorrect: I **saw** him yesterday."
+                },
+
+                // --- PERFECT CONTINUOUS ---
+                {
+                    title: "4. Present Perfect Continuous (পুরাঘটিত ঘটমান)",
+                    eng: "Action started in the past and is still continuing.",
+                    ben: "কাজটি অতীতে কোনো এক সময় শুরু হয়ে বর্তমান পর্যন্ত একটানা চলছে।\n🔹 **চেনার উপায়:** সময়ের উল্লেখ থাকে (সকাল থেকে, দুই ঘণ্টা ধরে)।",
+                    eg: "It **has been raining** since morning."
+                },
+                {
+                    title: "🔴 Structure: Present Perf. Cont.",
+                    eng: "Formula: Sub + have/has been + V(ing) + Since/For + Time.",
+                    ben: "সময়ের উল্লেখ থাকা বাধ্যতামূলক।",
+                    eg: "He **has been reading** for two hours."
+                },
+                {
+                    title: "🔴 Rule: Since vs For",
+                    eng: "Crucial for exam.",
+                    ben: "🔹 **Since:** নির্দিষ্ট সময় বা শুরুর সময় বোঝালে (Point of time)। (Since Sunday, Since 1990, Since morning)।\n🔹 **For:** সময়ের ব্যপ্তি বা পরিমাণ বোঝালে (Period of time)। (For 3 days, For 5 hours, For a long time)।",
+                    eg: "He has been ill **since** Friday.\nHe has been ill **for** five days."
+                }
+            ],
+
+            // 2. PAST TENSE - MASTER CLASS
+            "past_mod": [
+                {
+                    title: "1. Past Indefinite Tense (সাধারণ অতীত)",
+                    eng: "Refers to an action completed in the past or a past habit.",
+                    ben: "অতীত কালে কোনো কাজ শেষ হয়েছিল বা অতীতের কোনো অভ্যাস বোঝালে।\n🔹 **বাংলায় চেনার উপায়:** ক্রিয়ার শেষে লাম, লে, লেন, ল, ত, তাম, তেন (করলাম, করলে, করতেন, করত) ইত্যাদি থাকে।",
+                    eg: "I **saw** a bird.\nHe **came** home yesterday."
+                },
+                {
+                    title: "🔴 Structure: Past Indefinite",
+                    eng: "Formula: Subject + V2 (Past Form of Verb) + Object.",
+                    ben: "এখানে Verb-এর Past Form ব্যবহৃত হয়। (Go -> Went, Eat -> Ate)।",
+                    eg: "I **ate** rice.\nThey **played** football."
+                },
+                {
+                    title: "🔴 Rule: Past Habit ('Used to')",
+                    eng: "Used for habits in the past that have stopped.",
+                    ben: "অতীতে নিয়মিত কোনো কাজ করা হতো কিন্তু এখন আর করা হয় না বোঝালে **'Used to'** বসে।",
+                    eg: "I **used to** swim in the river everyday."
+                },
+                {
+                    title: "2. Past Continuous Tense (ঘটমান অতীত)",
+                    eng: "Action was happening or going on in the past.",
+                    ben: "অতীত কালে কোনো কাজ কিছুক্ষণ ধরে চলছিল।\n🔹 **বাংলায় চেনার উপায়:** ক্রিয়ার শেষে তেছিলাম, তেছিলে, তেছিলেন, চ্ছিল, চ্ছিলাম ইত্যাদি থাকে।",
+                    eg: "I **was eating** rice.\nThe boys **were playing** cricket."
+                },
+                {
+                    title: "🔴 Structure: Past Continuous",
+                    eng: "Formula: Subject + was/were + Verb(ing) + Object.",
+                    ben: "🔹 **Was:** I, He, She, It (Singular) এর সাথে।\n🔹 **Were:** We, You, They (Plural) এর সাথে।",
+                    eg: "He **was reading** a book.\nThey **were watching** TV."
+                },
+                {
+                    title: "🔴 Rule: 'While' in Past Continuous",
+                    eng: "Action happening at the same time.",
+                    ben: "অতীতে যখন একটি কাজ চলছিল তখন অন্য একটি ঘটনা ঘটলে, চলমান কাজটির সাথে **While** বসে এবং সেটি Past Continuous হয়।",
+                    eg: "**While** I **was walking** in the garden, I saw a snake."
+                },
+                {
+                    title: "3. Past Perfect Tense (পুরাঘটিত অতীত)",
+                    eng: "Used when two actions happened in the past. The earlier action is Past Perfect.",
+                    ben: "অতীতে দুটি কাজ সম্পন্ন হয়ে থাকলে, যে কাজটি **আগে** হয়েছিল সেটি Past Perfect এবং যেটি **পরে** হয়েছিল সেটি Past Indefinite।",
+                    eg: "The patient **had died** before the doctor **came**."
+                },
+                {
+                    title: "🔴 Structure: Past Perfect",
+                    eng: "Formula: Subject + had + V3 (Past Participle) + Object.",
+                    ben: "এখানে সর্বদা **had** বসে এবং Verb-এর Past Participle Form হয়।",
+                    eg: "I **had reached** school before the bell rang."
+                },
+                {
+                    title: "🔴 Rule: Before & After (Confusion Clear)",
+                    eng: "Placement of 'Had'.",
+                    ben: "🔹 **Before**-এর **আগে** Past Perfect (Had) বসে। (Had + V3 ... before ... V2)\n🔹 **After**-এর **পরে** Past Perfect (Had) বসে। (V2 ... after ... Had + V3)",
+                    eg: "The train **had left** before we reached.\nWe reached the station after the train **had left**."
+                },
+                {
+                    title: "4. Past Perfect Continuous Tense (পুরাঘটিত ঘটমান)",
+                    eng: "Action started in the past and continued for some time before another action.",
+                    ben: "অতীতে একটি কাজ দীর্ঘ সময় ধরে চলছিল এবং তার পরেই আরেকটি কাজ হয়েছে।",
+                    eg: "He **had been reading** for two hours before he went to bed."
+                },
+                {
+                    title: "🔴 Structure: Past Perf. Cont.",
+                    eng: "Formula: Sub + had been + V(ing) + Time reference.",
+                    ben: "এখানে Had been এবং সময়ের উল্লেখ থাকে।",
+                    eg: "They **had been playing** before it started to rain."
+                }
+            ],
+
+            // 3. FUTURE TENSE - MASTER CLASS
+            "future_mod": [
+                {
+                    title: "1. Future Indefinite Tense (সাধারণ ভবিষ্যৎ)",
+                    eng: "Indicates an action that will take place in the future.",
+                    ben: "ভবিষ্যতে কোনো কাজ ঘটবে বা হবে।\n🔹 **বাংলায় চেনার উপায়:** ক্রিয়ার শেষে ব, বে, বেন, বি (করব, করবে, করবেন) থাকে।",
+                    eg: "I **shall go** to the market.\nHe **will buy** a pen."
+                },
+                {
+                    title: "🔴 Structure: Future Indefinite",
+                    eng: "Formula: Subject + Shall/Will + V1 (Base Form) + Object.",
+                    ben: "সাধারণত **I** এবং **We**-এর সাথে **Shall** বসে। বাকি সব ক্ষেত্রে **Will** বসে।",
+                    eg: "We **shall play**.\nYou **will see**."
+                },
+                {
+                    title: "🔴 Rule: Shall vs Will (Determination)",
+                    eng: "When expressing promise, determination, or threat.",
+                    ben: "প্রতিজ্ঞা, দৃঢ়তা বা হুমকি বোঝালে নিয়ম উল্টে যায়। তখন I/We-এর সাথে **Will** এবং বাকিদের সাথে **Shall** বসে।",
+                    eg: "I **will** teach him a lesson (Threat).\nYou **shall** get a prize (Promise)."
+                },
+                {
+                    title: "2. Future Continuous Tense (ঘটমান ভবিষ্যৎ)",
+                    eng: "Action will be going on or continuing in the future.",
+                    ben: "ভবিষ্যতে কোনো কাজ কিছুক্ষণ ধরে চলতে থাকবে।\n🔹 **চেনার উপায়:** ক্রিয়ার শেষে তে-থাকিব, তে-থাকিবে (করতে থাকব, পড়তে থাকবে) থাকে।",
+                    eg: "I **shall be sleeping** then.\nThe boys **will be playing**."
+                },
+                {
+                    title: "🔴 Structure: Future Continuous",
+                    eng: "Formula: Subject + Shall be / Will be + Verb(ing) + Object.",
+                    ben: "মূল Verb-এর সাথে ing যুক্ত হয় এবং তার আগে shall be বা will be বসে।",
+                    eg: "Mother **will be cooking** rice."
+                },
+                {
+                    title: "3. Future Perfect Tense (পুরাঘটিত ভবিষ্যৎ)",
+                    eng: "Action will be completed by a certain time in the future.",
+                    ben: "ভবিষ্যতে কোনো নির্দিষ্ট সময়ের মধ্যে কাজটি হয়ে থাকবে বা শেষ হয়ে যাবে।\n🔹 **চেনার উপায়:** সাধারণত **'By + Time'** (By 5 PM, By Monday) উল্লেখ থাকে।",
+                    eg: "I **shall have finished** the book by Monday."
+                },
+                {
+                    title: "🔴 Structure: Future Perfect",
+                    eng: "Formula: Subject + Shall have / Will have + V3 (Past Participle) + Object.",
+                    ben: "মনে রাখবেন: এখানে সর্বদা **Have** বসে, কখনো Has বসে না।",
+                    eg: "He **will have done** the work by then."
+                },
+                {
+                    title: "🔴 Rule: Two Future Actions (Future Perfect)",
+                    eng: "If two actions happen in future, the earlier one is Future Perfect.",
+                    ben: "ভবিষ্যতে দুটি কাজের মধ্যে যেটি আগে হবে সেটি Future Perfect, আর যেটি পরে হবে সেটি **Present Indefinite** (Not Future Indefinite)।",
+                    eg: "I **shall have reached** (1st) home before the sun **sets** (2nd)."
+                },
+                {
+                    title: "4. Future Perfect Continuous Tense",
+                    eng: "Action will continue for a period of time in the future.",
+                    ben: "ভবিষ্যতে কোনো কাজ দীর্ঘ সময় ধরে চলতে থাকবে।\n🔴 ব্যবহার খুবই কম।",
+                    eg: "I **shall have been reading** for two hours."
+                }
+            ],
+
+            // --- POS DETAILED FLASHCARDS (EXISTING) ---
 
             // 1. NOUNS - MASTER CLASS
             "noun_mod": [
@@ -594,7 +1251,7 @@
                 }
             ],
 
-            // 8. INTERJECTIONS - MASTER CLASS (EXPANDED)
+            // 8. INTERJECTIONS - MASTER CLASS
             "inter_mod": [
                 {
                     title: "Interjection (আবেগসূচক অব্যয়) - The Emotion Word",
@@ -678,6 +1335,14 @@
                     document.getElementById('navSubtitle').innerText = "Library";
                 } else if (currentId === 'pos') {
                     document.getElementById('navSubtitle').innerText = "Parts of Speech";
+                } else if (currentId === 'tense') {
+                    document.getElementById('navSubtitle').innerText = "Tense";
+                } else if (currentId === 'voice') {
+                    document.getElementById('navSubtitle').innerText = "Voice Change";
+                } else if (currentId === 'narration') {
+                    document.getElementById('navSubtitle').innerText = "Narration (Speech)";
+                } else if (currentId === 'vocab') {
+                    document.getElementById('navSubtitle').innerText = "Vocabulary";
                 } else {
                     document.getElementById('navSubtitle').innerText = "Select Module";
                 }
