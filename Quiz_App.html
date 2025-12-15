@@ -42,25 +42,28 @@
 <body class="bg-royal-mesh text-gray-100 h-screen flex flex-col overflow-hidden relative">
 
     <!-- START SCREEN (Quiz Selection) -->
-    <section id="startScreen" class="fixed inset-0 z-50 flex flex-col items-center justify-center p-6 bg-royal-900/95 backdrop-blur-sm overflow-y-auto">
-        <div class="text-center w-full max-w-5xl animate-slide-up my-auto py-10">
-            
-            <div class="mb-8">
-                <div class="w-20 h-20 mx-auto bg-emerald-500/10 rounded-full flex items-center justify-center mb-4 border border-emerald-500/20 shadow-[0_0_30px_rgba(16,185,129,0.2)]">
-                    <i class="fa-solid fa-layer-group text-3xl text-emerald-500"></i>
+    <!-- Fixed Layout: Changed to allow full scrolling without clipping top content -->
+    <section id="startScreen" class="fixed inset-0 z-50 overflow-y-auto bg-royal-900/95 backdrop-blur-sm">
+        <div class="min-h-full flex flex-col items-center justify-center p-6 py-12">
+            <div class="text-center w-full max-w-5xl animate-slide-up">
+                
+                <div class="mb-8">
+                    <div class="w-20 h-20 mx-auto bg-emerald-500/10 rounded-full flex items-center justify-center mb-4 border border-emerald-500/20 shadow-[0_0_30px_rgba(16,185,129,0.2)]">
+                        <i class="fa-solid fa-layer-group text-3xl text-emerald-500"></i>
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl font-bold text-white mb-2 aristocratic-title">Quiz Arena</h1>
+                    <p class="text-gray-400">Select a mission to test your grammar skills. (200 Questions Total)</p>
                 </div>
-                <h1 class="text-3xl sm:text-4xl font-bold text-white mb-2 aristocratic-title">Quiz Arena</h1>
-                <p class="text-gray-400">Select a mission to test your grammar skills. (200 Questions Total)</p>
-            </div>
 
-            <!-- Quiz Grid -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 mb-10 px-2" id="quizGrid">
-                <!-- Dynamically populated to handle 20 items cleanly -->
-            </div>
+                <!-- Quiz Grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 mb-10 px-2" id="quizGrid">
+                    <!-- Dynamically populated to handle 20 items cleanly -->
+                </div>
 
-            <button onclick="window.location.href='index.html'" class="px-8 py-3 rounded-full border border-white/10 text-sm text-gray-400 hover:text-white hover:bg-white/5 transition-colors">
-                <i class="fa-solid fa-arrow-left mr-2"></i> Back to Main App
-            </button>
+                <button onclick="window.location.href='index.html'" class="px-8 py-3 rounded-full border border-white/10 text-sm text-gray-400 hover:text-white hover:bg-white/5 transition-colors">
+                    <i class="fa-solid fa-arrow-left mr-2"></i> Back to Main App
+                </button>
+            </div>
         </div>
     </section>
 
@@ -339,7 +342,6 @@
             { id: 185, q: "Avoid ______ mistakes.", options: ["make", "to make", "making", "made"], correct: 2, ruleId: 62, explanation: "Avoid + Gerund (making)।" },
             { id: 186, q: "He is used to ______ at night.", options: ["work", "working", "works", "worked"], correct: 1, ruleId: 48, explanation: "Is used to + Gerund (working)।" },
             { id: 187, q: "I used to ______ at night.", options: ["work", "working", "works", "worked"], correct: 0, ruleId: 48, explanation: "Used to (Past habit) + V1 (work)।" },
-            { id: 188, q: "She is ______ to help.", options: ["too", "enough", "very", "much"], correct: 0, ruleId: 36, explanation: "Missing context, likely 'too weak to help' or similar, but structure 'She is too...to...' fits. Assuming 'ready' implied? Or wait. 'She is ready enough'. 'She is too busy'. Let's swap Q." },
             { id: 188, q: "He is rich ______ to buy a car.", options: ["enough", "too", "very", "so"], correct: 0, ruleId: 23, explanation: "Adjective + Enough (rich enough)।" },
             { id: 189, q: "He is ______ weak to walk.", options: ["very", "too", "so", "enough"], correct: 1, ruleId: 36, explanation: "Too...to structure।" },
             { id: 190, q: "This is the ______ book I have read.", options: ["best", "good", "better", "most good"], correct: 0, ruleId: 5, explanation: "The + Superlative (best)।" },
@@ -349,7 +351,6 @@
             { id: 192, q: "Which is the ______ of the two?", options: ["better", "best", "good", "more good"], correct: 0, ruleId: 5, explanation: "Of the two -> Comparative (better)।" },
             { id: 193, q: "He writes ______ than I.", options: ["fast", "faster", "fastly", "more fast"], correct: 1, ruleId: 27, explanation: "Fast-এর Comparative 'faster' (Fastly শব্দ নেই)।" },
             { id: 194, q: "I have ______ friends than you.", options: ["many", "more", "most", "much"], correct: 1, ruleId: 3, explanation: "Comparative of many is 'more'।" },
-            { id: 195, q: "He is the ______ boy in class.", options: ["most unique", "unique", "more unique", "uniquest"], correct: 1, ruleId: 13, explanation: "Unique is absolute, no superlative/comparative needed. But context implies superlative slot. Trick Q. 'Unique' shouldn't be graded. Correct usage: 'He is a unique boy'. If forced: 'most unique' is common error, but strictly 'unique' is best. Let's change Q." },
             { id: 195, q: "This idea is ______.", options: ["unique", "most unique", "more unique", "very unique"], correct: 0, ruleId: 13, explanation: "Unique (Absolute Adjective) does not take more/most।" },
             { id: 196, q: "The boy ______ book is lost is crying.", options: ["who", "whom", "whose", "which"], correct: 2, ruleId: 24, explanation: "Possessive relative pronoun (Whose)।" },
             { id: 197, q: "I met a man ______ legs were broken.", options: ["who", "whose", "whom", "that"], correct: 1, ruleId: 24, explanation: "Possession (Whose legs)।" },
