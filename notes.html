@@ -89,12 +89,12 @@
             "pos": [
                 { id: "noun_mod", title: "1. Noun (বিশেষ্য)", desc: "Deep Dive: Rules, Countability, Gender" },
                 { id: "pronoun_mod", title: "2. Pronoun (সর্বনাম)", desc: "Master Class: 8 Types & Rules" },
-                { id: "adj_mod", title: "3. Adjective (বিশেষণ)", desc: "Quality, Quantity, Number, Pronominal" },
-                { id: "verb_mod", title: "4. Verb (ক্রিয়া)", desc: "Finite, Non-finite, Transitive, Intransitive" },
-                { id: "adv_mod", title: "5. Adverb (ক্রিয়া বিশেষণ)", desc: "Time, Place, Manner, Frequency" },
-                { id: "prep_mod", title: "6. Preposition (পদান্বয়ী অব্যয়)", desc: "Time, Place, Direction, Agent" },
-                { id: "conj_mod", title: "7. Conjunction (সংযোজক অব্যয়)", desc: "Co-ordinating, Sub-ordinating" },
-                { id: "inter_mod", title: "8. Interjection (আবেগসূচক অব্যয়)", desc: "Expressing Joy, Sorrow, Surprise" }
+                { id: "adj_mod", title: "3. Adjective (বিশেষণ)", desc: "Complete Guide: Types, Degrees & Rules" },
+                { id: "verb_mod", title: "4. Verb (ক্রিয়া)", desc: "Master Class: Finite, Non-Finite, Modals" },
+                { id: "adv_mod", title: "5. Adverb (ক্রিয়া বিশেষণ)", desc: "Master Class: Types, MPT Rule, Inversion" },
+                { id: "prep_mod", title: "6. Preposition (পদান্বয়ী অব্যয়)", desc: "The Ultimate Guide: Time, Place & Fixes" },
+                { id: "conj_mod", title: "7. Conjunction (সংযোজক অব্যয়)", desc: "Master Class: FANBOYS, Rules & Pairs" },
+                { id: "inter_mod", title: "8. Interjection (আবেগসূচক অব্যয়)", desc: "Master Class: Emotion, Tone & Rules" }
             ],
             "tense": [
                 { id: "present_mod", title: "Present Tense", desc: "Simple, Continuous, Perfect, Perfect Continuous" },
@@ -162,7 +162,7 @@
                 }
             ],
 
-            // 2. PRONOUNS - MASTER CLASS (EXPANDED)
+            // 2. PRONOUNS - MASTER CLASS
             "pronoun_mod": [
                 {
                     title: "Pronoun (সর্বনাম) - The Basics",
@@ -215,7 +215,7 @@
                 {
                     title: "5. Reflexive Pronoun (আত্মবাচক সর্বনাম)",
                     eng: "Action reflects back to the subject.",
-                    ben: "Subject এবং Object যখন একই ব্যক্তি হয়। শেষে 'self' বা 'selves' থাকে।",
+                    ben: "Subject এবং Object এবং একই ব্যক্তি হয়। শেষে 'self' বা 'selves' থাকে।",
                     eg: "I hurt **myself**.\nHe blames **himself**.\n🔴 Warning: 'Myself did the work' বলা ভুল। Subject হিসেবে Reflexive বসে না।"
                 },
                 {
@@ -244,159 +244,417 @@
                 }
             ],
 
-            // 3. ADJECTIVES
+            // 3. ADJECTIVES - MASTER CLASS
             "adj_mod": [
                 {
-                    title: "Adjective (বিশেষণ) - Definition",
-                    eng: "A word used to qualify or describe a Noun or Pronoun.",
-                    ben: "যে শব্দ Noun বা Pronoun-এর দোষ, গুণ, অবস্থা, সংখ্যা বা পরিমাণ প্রকাশ করে, তাকে Adjective বলে।",
-                    eg: "Example: **Good**, **Bad**, **Five**, **Red**."
+                    title: "Adjective (বিশেষণ) - The Foundation",
+                    eng: "A word that adds something to the meaning of a Noun or Pronoun. It qualifies them.",
+                    ben: "যে শব্দ Noun বা Pronoun-এর দোষ, গুণ, অবস্থা, সংখ্যা বা পরিমাণ প্রকাশ করে, তাকে Adjective বলে। এটি Noun-কে 'describe' করে।",
+                    eg: "**Good** boy, **Five** pens, **Red** rose, **Much** water."
                 },
                 {
-                    title: "Adjective of Quality (গুণবাচক)",
-                    eng: "Shows the kind or quality of a person or thing.",
-                    ben: "ব্যক্তি বা বস্তুর দোষ, গুণ বা অবস্থা বোঝায়।",
-                    eg: "Example: **Good** boy, **Red** flower, **Honest** man."
+                    title: "1. Adjective of Quality (গুণবাচক)",
+                    eng: "Describes the quality, state, or shape of a person/thing.",
+                    ben: "ব্যক্তি বা বস্তুর দোষ, গুণ, রং বা অবস্থা বোঝায়। একে Descriptive Adjective-ও বলে।",
+                    eg: "**Brave** soldier, **Honest** man, **Beautiful** flower, **Sad** story."
                 },
                 {
-                    title: "Adjective of Quantity (পরিমাণবাচক)",
-                    eng: "Shows how much of a thing is meant.",
-                    ben: "বস্তুর পরিমাণ নির্দেশ করে।",
-                    eg: "Example: **Some** rice, **Much** water, **Little** hope."
+                    title: "2. Adjective of Quantity (পরিমাণবাচক)",
+                    eng: "Shows 'how much' of a thing is meant. Used for Uncountable Nouns.",
+                    ben: "বস্তুর পরিমাণ নির্দেশ করে। এটি Uncountable Noun-এর পূর্বে বসে।",
+                    eg: "**Some** rice, **Much** patience, **Little** hope, **Enough** money."
                 },
                 {
-                    title: "Adjective of Number (সংখ্যাবাচক)",
-                    eng: "Shows how many persons or things are meant.",
+                    title: "3. Adjective of Number (সংখ্যাবাচক)",
+                    eng: "Shows 'how many' persons or things are meant. Used for Countable Nouns.",
                     ben: "ব্যক্তি বা বস্তুর সংখ্যা বা ক্রম নির্দেশ করে।",
-                    eg: "Example: **Five** fingers, **First** prize, **Many** people."
+                    eg: "Definite: **One**, **Two**, **First**, **Second**.\nIndefinite: **Many**, **Few**, **Some** (students)."
+                },
+                {
+                    title: "4. Demonstrative Adjective (নির্দেশক)",
+                    eng: "Points out which person or thing is meant. Followed immediately by a Noun.",
+                    ben: "কোনো ব্যক্তি বা বস্তুকে নির্দিষ্ট করে।\n🔴 পার্থক্য: 'This is my pen' (Pronoun) vs '**This pen** is mine' (Adjective)। Adjective-এর পরে Noun থাকতেই হবে।",
+                    eg: "**That** boy is strong. **These** mangoes are sour."
+                },
+                {
+                    title: "5. Possessive Adjective (সম্বন্ধবাচক)",
+                    eng: "Shows ownership or possession.",
+                    ben: "মালিকানা বা অধিকার বোঝায়। এগুলো সর্বদা Noun-এর আগে বসে।",
+                    eg: "**My** book, **Our** country, **Your** father, **Their** house."
+                },
+                {
+                    title: "🔴 Degrees of Comparison (তুলনা)",
+                    eng: "Adjectives change form to show comparison.",
+                    ben: "১. **Positive:** সাধারণ গুণ বোঝাতে (Good, Tall)।\n২. **Comparative:** দুইয়ের মধ্যে তুলনা বোঝাতে (Better, Taller)। এরপরে 'than' বসে।\n৩. **Superlative:** অনেকের মধ্যে তুলনা বোঝাতে (Best, Tallest)। এর আগে 'The' বসে।",
+                    eg: "Rahul is **taller** than Rohit. He is the **tallest** boy in class."
+                },
+                {
+                    title: "🔴 The 'Latin Adjective' Rule",
+                    eng: "Words ending in -ior (Senior, Junior, Superior, Inferior).",
+                    ben: "এই শব্দগুলোর পরে 'than' বসে না, সর্বদা **'to'** বসে।",
+                    eg: "Correct: He is **senior to** me.\nIncorrect: He is senior than me."
+                },
+                {
+                    title: "🔴 Tricky Pair: Elder vs Older",
+                    eng: "Used for age comparison.",
+                    ben: "🔹 **Elder/Eldest:** একই পরিবারের সদস্যদের (ভাই-বোন) ক্ষেত্রে। এর পরে 'than' বসে না।\n🔹 **Older/Oldest:** পরিবারের বাইরের লোক বা বস্তুর ক্ষেত্রে। এর পরে 'than' বসে।",
+                    eg: "He is my **elder** brother.\nHe is **older than** I am (Friend)."
+                },
+                {
+                    title: "🔴 Tricky Pair: Few vs Little",
+                    eng: "Used for quantity/number.",
+                    ben: "🔹 **Few:** সংখ্যা বোঝাতে (Countable)। (Few friends)\n🔹 **Little:** পরিমাণ বোঝাতে (Uncountable)। (Little water)",
+                    eg: "I have **few** pens.\nThere is **little** milk in the cup."
+                },
+                {
+                    title: "🔴 The 'A vs The' Concept (Few/Little)",
+                    eng: "Difference in meaning based on Article.",
+                    ben: "১. **Little/Few:** নেই বললেই চলে (Negative meaning)।\n২. **A Little/A Few:** সামান্য কিছু আছে (Positive meaning)।\n৩. **The Little/The Few:** যা আছে তার সবটুকুই।",
+                    eg: "I have **a few** friends (কিছু বন্ধু আছে)।\nI have **few** friends (প্রায় বন্ধু নেই)।"
+                },
+                {
+                    title: "🔴 Order of Adjectives (OSASCOMP)",
+                    eng: "When multiple adjectives are used together.",
+                    ben: "একাধিক Adjective বসলে এই ক্রম মানতে হবে:\nOpinion -> Size -> Age -> Shape -> Colour -> Origin -> Material -> Purpose.",
+                    eg: "A **beautiful** (Op) **old** (Age) **Indian** (Or) **gold** (Mat) necklace."
                 }
             ],
 
-            // 4. VERBS
+            // 4. VERBS - MASTER CLASS
             "verb_mod": [
                 {
-                    title: "Verb (ক্রিয়া) - Definition",
-                    eng: "A word used to describe an action, state, or occurrence.",
-                    ben: "যে শব্দ দ্বারা কোনো কিছু করা, হওয়া বা থাকা বোঝায়, তাকে Verb বলে। এটি বাক্যের প্রাণ।",
-                    eg: "Example: **Go**, **Eat**, **Is**, **Play**."
+                    title: "Verb (ক্রিয়া) - The Heart of Sentence",
+                    eng: "A word that indicates action, state, or being. No sentence is complete without a Verb.",
+                    ben: "যে শব্দ দ্বারা কোনো কিছু করা, হওয়া বা থাকা বোঝায়, তাকে Verb বলে। এটি বাক্যের প্রাণ (Heart)।",
+                    eg: "He **runs** (Action). He **is** a student (State)."
                 },
                 {
-                    title: "Transitive Verb (সকর্মক ক্রিয়া)",
-                    eng: "A verb that requires an object to complete its meaning.",
-                    ben: "যে ক্রিয়ার অর্থ সম্পূর্ণ করতে Object বা কর্মের প্রয়োজন হয়, তাকে Transitive Verb বলে।",
-                    eg: "Example: He **plays** cricket. (Here 'cricket' is the object)."
+                    title: "1. Finite Verb (সমাপিকা ক্রিয়া)",
+                    eng: "A verb that changes its form according to the Subject and Tense.",
+                    ben: "যে Verb বাক্যের Subject এবং Tense অনুযায়ী নিজের রূপ পরিবর্তন করে এবং বাক্যের অর্থ সম্পূর্ণ করে।",
+                    eg: "I **play**. He **plays**. They **played**. (Play রূপ বদলাচ্ছে)"
                 },
                 {
-                    title: "Intransitive Verb (অকর্মক ক্রিয়া)",
-                    eng: "A verb that does not require an object to make sense.",
-                    ben: "যে ক্রিয়ার অর্থ সম্পূর্ণ করতে কোনো Object-এর প্রয়োজন হয় না, তাকে Intransitive Verb বলে।",
-                    eg: "Example: The baby **sleeps**. Birds **fly**."
+                    title: "2. Non-Finite Verb (অসমাপিকা ক্রিয়া)",
+                    eng: "A verb that does NOT change its form, regardless of Subject or Tense.",
+                    ben: "যে Verb কখনই রূপ বদলায় না এবং একা বাক্যের অর্থ সম্পূর্ণ করতে পারে না। এটি ৩ প্রকার: Infinitive, Gerund, Participle.",
+                    eg: "I want **to play**. He wants **to play**. (Play বদলায়নি)"
                 },
                 {
-                    title: "Auxiliary Verb (সাহায্যকারী ক্রিয়া)",
-                    eng: "Helps the main verb to form tense, mood, or voice.",
-                    ben: "যে Verb নিজে অর্থ প্রকাশ না করে মূল Verb-কে টেন্স বা মুড গঠনে সাহায্য করে।",
-                    eg: "Example: I **am** reading. He **has** done it. You **can** go."
+                    title: "🔹 Non-Finite: The Infinitive",
+                    eng: "Structure: To + Verb (Base Form).",
+                    ben: "ক্রিয়ার 'তে' বিভক্তি বোঝাতে ব্যবহৃত হয়। (খেতে, যেতে)।",
+                    eg: "I like **to swim**. To **err** is human."
+                },
+                {
+                    title: "🔹 Non-Finite: The Gerund (Verb + ing)",
+                    eng: "Acts as a Noun.",
+                    ben: "যখন Verb+ing বাক্যে Noun-এর মতো কাজ করে। একে 'Verbal Noun'-ও বলা হয়।",
+                    eg: "**Walking** is good for health. I like **reading**."
+                },
+                {
+                    title: "🔹 Non-Finite: The Participle",
+                    eng: "Acts as an Adjective.",
+                    ben: "যখন Verb বাক্যে Adjective-এর মতো কাজ করে।\n• Present: **Flying** bird (উড়ন্ত).\n• Past: **Broken** glass (ভাঙা).",
+                    eg: "Don't get into a **running** bus."
+                },
+                {
+                    title: "3. Transitive Verb (সকর্মক ক্রিয়া)",
+                    eng: "A verb that needs an Object to complete its meaning.",
+                    ben: "যে ক্রিয়ার Object (কর্ম) থাকে।\n🔴 **Magic Trick:** ক্রিয়াকে 'What' (কী) বা 'Whom' (কাকে) দিয়ে প্রশ্ন করলে যদি উত্তর আসে, তবে সেটি Transitive।",
+                    eg: "He **plays** cricket. (What plays? -> Cricket). He **killed** a snake."
+                },
+                {
+                    title: "4. Intransitive Verb (অকর্মক ক্রিয়া)",
+                    eng: "A verb that does not need an Object.",
+                    ben: "যে ক্রিয়ার কোনো Object থাকে না। 'কী' বা 'কাকে' দিয়ে প্রশ্ন করলে উত্তর পাওয়া যায় না।",
+                    eg: "The baby **sleeps**. (Sleeps what? No answer). Birds **fly**."
+                },
+                {
+                    title: "5. Auxiliary Verbs (সাহায্যকারী ক্রিয়া)",
+                    eng: "Helps the main verb to form Tense, Mood, or Voice.",
+                    ben: "এরা প্রধান ক্রিয়াকে সাহায্য করে। এরা ২ প্রকার: Primary এবং Modal।",
+                    eg: "I **am** reading. He **can** do it."
+                },
+                {
+                    title: "🔹 Modal Auxiliaries (Special Rules)",
+                    eng: "Can, Could, May, Might, Shall, Should, Will, Must.",
+                    ben: "🔴 **Golden Rule:** Modal-এর পরে সর্বদা Verb-এর Base Form (V1) বসে। কখনো s/es বা ing যুক্ত হয় না।",
+                    eg: "You **must obey** (not obeys) your parents. It **may rain** today."
+                },
+                {
+                    title: "🔴 Subject-Verb Agreement Rules",
+                    eng: "The verb must agree with the subject in number and person.",
+                    ben: "১. Subject Singular হলে Verb Singular হবে (He **is**).\n২. Subject Plural হলে Verb Plural হবে (They **are**).\n৩. 'And' দিয়ে যুক্ত হলে Plural (Rahul and Rohit **are** friends).",
+                    eg: "Slow and steady **wins** the race. (ব্যতিক্রম: একই ভাব প্রকাশ করলে Singular)."
+                },
+                {
+                    title: "🔴 Universal Truth Rule",
+                    eng: "Always Present Indefinite Tense.",
+                    ben: "চিরন্তন সত্য বা অভ্যাসগত কর্ম বোঝালে সর্বদা Present Indefinite Tense হয়।",
+                    eg: "The sun **rises** in the East. Ice **floats** on water."
                 }
             ],
 
-            // 5. ADVERBS
+            // 5. ADVERBS - MASTER CLASS
             "adv_mod": [
                 {
-                    title: "Adverb (ক্রিয়া বিশেষণ) - Definition",
-                    eng: "Modifies a verb, an adjective, or another adverb.",
-                    ben: "যে শব্দ Verb, Adjective বা অন্য কোনো Adverb-কে modify করে (অর্থাৎ তাদের সম্পর্কে অতিরিক্ত তথ্য দেয়), তাকে Adverb বলে।",
-                    eg: "Example: Runs **fast**, **Very** good, **Quite** clearly."
+                    title: "Adverb (ক্রিয়া বিশেষণ) - The Modifier",
+                    eng: "An Adverb modifies a Verb, an Adjective, or another Adverb. It tells us How, When, Where, or How much.",
+                    ben: "যে শব্দ Verb, Adjective বা অন্য কোনো Adverb সম্পর্কে অতিরিক্ত তথ্য দেয় (modify করে), তাকে Adverb বলে।",
+                    eg: "He runs **fast** (Modifies Verb).\nHe is **very** good (Modifies Adjective).\nHe runs **very** fast (Modifies Adverb)."
                 },
                 {
-                    title: "Adverb of Time (সময়বাচক)",
+                    title: "1. Adverb of Time (সময়বাচক)",
                     eng: "Indicates 'When' an action happens.",
                     ben: "ক্রিয়া কখন সম্পন্ন হয় তা নির্দেশ করে।",
-                    eg: "Example: **Now**, **Yesterday**, **Soon**, **Tomorrow**."
+                    eg: "**Now**, **Then**, **Yesterday**, **Tomorrow**, **Soon**, **Late**.\nExample: He came **yesterday**."
                 },
                 {
-                    title: "Adverb of Place (স্থানবাচক)",
+                    title: "2. Adverb of Place (স্থানবাচক)",
                     eng: "Indicates 'Where' an action happens.",
                     ben: "ক্রিয়া কোথায় সম্পন্ন হয় তা নির্দেশ করে।",
-                    eg: "Example: **Here**, **There**, **Everywhere**, **Out**."
+                    eg: "**Here**, **There**, **Everywhere**, **Nowhere**, **Up**, **Down**.\nExample: God is **everywhere**."
                 },
                 {
-                    title: "Adverb of Manner (ধরণবাচক)",
-                    eng: "Indicates 'How' an action happens.",
-                    ben: "ক্রিয়া কীভাবে বা কেমন করে সম্পন্ন হয় তা বোঝায়।",
-                    eg: "Example: **Slowly**, **Quickly**, **Loudly**, **Badly**."
+                    title: "3. Adverb of Manner (ধরণবাচক)",
+                    eng: "Indicates 'How' or in what manner an action happens.",
+                    ben: "ক্রিয়া কীভাবে বা কেমন করে সম্পন্ন হয় তা বোঝায়। সাধারণত Adjective-এর শেষে 'ly' যোগ করে এটি গঠিত হয়।",
+                    eg: "**Slowly**, **Quickly**, **Loudly**, **Happily**, **Badly**.\nExample: He walks **slowly**."
                 },
                 {
-                    title: "Adverb of Frequency",
+                    title: "4. Adverb of Frequency (পৌনঃপুনিক)",
                     eng: "Indicates 'How often' an action happens.",
                     ben: "ক্রিয়া কতবার ঘটে তা নির্দেশ করে।",
-                    eg: "Example: **Always**, **Never**, **Often**, **Twice**."
+                    eg: "**Always**, **Never**, **Often**, **Seldom**, **Twice**.\nExample: Barking dogs **seldom** bite."
+                },
+                {
+                    title: "5. Adverb of Degree (পরিমাণবাচক)",
+                    eng: "Indicates the intensity or degree of an action or quality.",
+                    ben: "কোনো গুণের বা কাজের তীব্রতা বা পরিমাণ বোঝায়।",
+                    eg: "**Very**, **Too**, **Quite**, **Enough**, **Almost**.\nExample: She is **very** beautiful."
+                },
+                {
+                    title: "🔴 The 'MPT' Rule (Order of Adverbs)",
+                    eng: "When Manner, Place, and Time adverbs come together.",
+                    ben: "একই বাক্যে তিন ধরণের Adverb থাকলে ক্রম হবে: Manner -> Place -> Time (MPT)।",
+                    eg: "Incorrect: He sang yesterday at the hall beautifully.\nCorrect: He sang **beautifully** (M) **at the hall** (P) **yesterday** (T)."
+                },
+                {
+                    title: "🔴 Tricky Rule: Hard vs Hardly",
+                    eng: "They have completely different meanings.",
+                    ben: "🔹 **Hard:** কঠোর পরিশ্রম করা (Positive)।\n🔹 **Hardly:** কদাচিৎ / প্রায় না (Negative)।",
+                    eg: "He works **hard** (সে কঠোর পরিশ্রম করে)।\nHe **hardly** works (সে কাজ করে না বললেই চলে)।"
+                },
+                {
+                    title: "🔴 Tricky Rule: Fast (No 'Fastly')",
+                    eng: "There is no word called 'Fastly'.",
+                    ben: "'Fast' শব্দটি Adjective এবং Adverb উভয় হিসেবেই ব্যবহৃত হয়। 'Fastly' শব্দটি ভুল।",
+                    eg: "Correct: He runs **fast**.\nIncorrect: He runs fastly."
+                },
+                {
+                    title: "🔴 Rule of 'Enough'",
+                    eng: "Position of Enough depends on what it modifies.",
+                    ben: "Enough যখন Adjective/Adverb-কে modify করে, তখন তার **পরে** বসে। Noun-কে modify করলে **আগে** বসে।",
+                    eg: "He is **smart enough** (Adj + Enough).\nI have **enough money** (Enough + Noun)."
+                },
+                {
+                    title: "🔴 Rule of Inversion",
+                    eng: "Sentences starting with negative adverbs.",
+                    ben: "বাক্য যদি Negative Adverb (Hardly, Scarcely, Never, Seldom) দিয়ে শুরু হয়, তবে Verb আগে আসে এবং Subject পরে যায়।",
+                    eg: "**Never have I** seen such a tiger. (Not 'Never I have...')"
                 }
             ],
 
-            // 6. PREPOSITIONS
+            // 6. PREPOSITIONS - MASTER CLASS
             "prep_mod": [
                 {
-                    title: "Preposition (পদান্বয়ী অব্যয়) - Definition",
-                    eng: "A word placed before a noun or pronoun to show its relation to some other word in the sentence.",
-                    ben: "যে Word কোনো Noun বা Pronoun-এর পূর্বে বসে বাক্যের অন্য শব্দের সাথে ওই Noun/Pronoun-এর সম্পর্ক স্থাপন করে।",
-                    eg: "Example: The book is **on** the table."
+                    title: "Preposition (পদান্বয়ী অব্যয়) - The Connector",
+                    eng: "A word placed before a Noun/Pronoun to show its relation to other words.",
+                    ben: "যে শব্দ Noun বা Pronoun-এর আগে বসে বাক্যের অন্য অংশের সাথে তার সম্পর্ক তৈরি করে। Pre = পূর্বে, Position = অবস্থান।",
+                    eg: "The book is **on** the table. The cat is **under** the chair."
                 },
                 {
-                    title: "Preposition of Time",
-                    eng: "Used to indicate time.",
-                    ben: "সময় নির্দেশ করতে ব্যবহৃত হয়।",
-                    eg: "Example: **At** 5 PM, **On** Monday, **In** 2024, **Before** dawn."
+                    title: "1. Preposition of Time (সময়)",
+                    eng: "Rules for At, On, In.",
+                    ben: "🔹 **At:** নির্দিষ্ট সময় (Clock time), Dawn, Night. (At 5 PM, At night)\n🔹 **On:** নির্দিষ্ট দিন বা তারিখ। (On Sunday, On 15th August)\n🔹 **In:** মাস, বছর, ঋতু বা দীর্ঘ সময়। (In 2024, In June, In Summer)",
+                    eg: "I will meet you **at** 5 PM **on** Sunday **in** 2024."
                 },
                 {
-                    title: "Preposition of Place",
-                    eng: "Used to indicate position or place.",
-                    ben: "অবস্থান বা স্থান নির্দেশ করতে ব্যবহৃত হয়।",
-                    eg: "Example: **In** the room, **At** the door, **Under** the tree, **Between** two boys."
+                    title: "2. Preposition of Place (স্থান)",
+                    eng: "Rules for At vs In.",
+                    ben: "🔹 **At:** ছোট স্থান, গ্রাম বা নির্দিষ্ট বিন্দুর আগে। (At Rampur, At the station)\n🔹 **In:** বড় শহর, দেশ বা কোনো সীমানার ভেতরে। (In Kolkata, In India, In the room)",
+                    eg: "He lives **at** Garia **in** Kolkata."
                 },
                 {
-                    title: "Preposition of Direction",
-                    eng: "Used to show movement from one place to another.",
-                    ben: "গতি বা দিক নির্দেশ করতে ব্যবহৃত হয়।",
-                    eg: "Example: Going **to** school, Walking **towards** the river, Jumping **into** the pond."
+                    title: "3. Rule of Motion (In vs Into)",
+                    eng: "Stability vs Movement.",
+                    ben: "🔹 **In:** স্থিতিশীল অবস্থা বা ভেতরে থাকা। (He is **in** the room)\n🔹 **Into:** বাইরে থেকে ভেতরে প্রবেশ করা (গতি)। (He walked **into** the room)",
+                    eg: "The frog jumped **into** the pond."
+                },
+                {
+                    title: "4. Rule of Vertical Position (On, Over, Above)",
+                    eng: "Different heights.",
+                    ben: "🔹 **On:** স্পর্শ করে ওপরে থাকলে। (Pen is **on** the table)\n🔹 **Over:** ঠিক মাথার ওপরে (স্পর্শ ছাড়া)। (Fan is **over** my head)\n🔹 **Above:** ওপরে কিন্তু ঠিক লম্বালম্বি নয় বা অনেক উঁচুতে। (Sky is **above** us)",
+                    eg: "Put the cloth **over** the child (Covering)."
+                },
+                {
+                    title: "5. Rule: Between vs Among",
+                    eng: "Distribution rule.",
+                    ben: "🔹 **Between:** দুইজনের মধ্যে হলে।\n🔹 **Among:** দুইয়ের অধিক হলে।",
+                    eg: "Divide the mango **between** Ram and Sham.\nDivide the mangoes **among** the boys."
+                },
+                {
+                    title: "6. Rule: By vs With",
+                    eng: "Agent vs Instrument.",
+                    ben: "🔹 **By:** যে কাজটি করে (ব্যক্তি/প্রাণী)। (By the hunter)\n🔹 **With:** যে যন্ত্র দিয়ে কাজ করা হয় (বস্তু)। (With a gun)",
+                    eg: " The tiger was killed **by** the hunter **with** a gun."
+                },
+                {
+                    title: "7. Rule: Since vs For (Time)",
+                    eng: "Point vs Period.",
+                    ben: "🔹 **Since:** নির্দিষ্ট সময় থেকে শুরু বোঝালে (Point of time)। (Since morning, Since 1990)\n🔹 **For:** সময়ের ব্যপ্তি বা ধরে/যাবৎ বোঝালে (Period of time)। (For 2 hours, For 5 days)",
+                    eg: "It has been raining **since** morning.\nHe has been playing **for** two hours."
+                },
+                {
+                    title: "8. Tricky Rule: Die of vs Die from",
+                    eng: "Cause of death matters.",
+                    ben: "🔹 **Die of:** কোনো রোগে মারা গেলে। (Died of Cholera)\n🔹 **Die from:** অন্য কারণে (ক্ষত, না খেয়ে) মারা গেলে। (Died from over-eating)\n🔹 **Die for:** দেশের জন্য আত্মত্যাগ। (Died for the country)",
+                    eg: "He died **of** malaria."
+                },
+                {
+                    title: "9. Tricky Rule: Made of vs Made from",
+                    eng: "Material change.",
+                    ben: "🔹 **Made of:** উপাদানটি এখনো দেখা বা চেনা গেলে। (Chair is made **of** wood)\n🔹 **Made from:** উপাদানটি আর চেনা না গেলে (Chemical change)। (Paper is made **from** wood)",
+                    eg: "The ring is made **of** gold."
                 }
             ],
 
-            // 7. CONJUNCTIONS
+            // 7. CONJUNCTIONS - MASTER CLASS
             "conj_mod": [
                 {
-                    title: "Conjunction (সংযোজক অব্যয়) - Definition",
-                    eng: "A word used to join words, phrases, or sentences together.",
-                    ben: "যে শব্দ দুটি শব্দ, বাক্যাংশ বা বাক্যকে সংযুক্ত করে, তাকে Conjunction বলে।",
-                    eg: "Example: Rahul **and** Rohit. Poor **but** happy."
+                    title: "Conjunction (সংযোজক অব্যয়) - The Joiner",
+                    eng: "A word that connects words, phrases, clauses, or sentences.",
+                    ben: "যে শব্দ দুটি শব্দ, বাক্যাংশ বা বাক্যকে সংযুক্ত করে, তাকে Conjunction বলে। এটি সেতুর মতো কাজ করে।",
+                    eg: "Rahul **and** Rohit are brothers. He is poor **but** honest."
                 },
                 {
-                    title: "Co-ordinating Conjunction",
-                    eng: "Joins items of equal importance.",
-                    ben: "সমজাতীয় বা সমান গুরুত্বের শব্দ বা বাক্যকে যুক্ত করে।",
-                    eg: "Example: **And**, **But**, **Or**, **Yet**."
+                    title: "1. Co-ordinating Conjunctions (FANBOYS)",
+                    eng: "Connects items of equal rank. Remember 'FANBOYS'.",
+                    ben: "সমজাতীয় বা সমান গুরুত্বের শব্দ বা বাক্যকে যুক্ত করে।\nF=For, A=And, N=Nor, B=But, O=Or, Y=Yet, S=So.",
+                    eg: "He worked hard, **but** he failed.\nDo **or** die."
                 },
                 {
-                    title: "Sub-ordinating Conjunction",
-                    eng: "Joins a dependent clause to a main clause.",
-                    ben: "একটি নির্ভরশীল খণ্ডবাক্যকে (Dependent Clause) প্রধান বাক্যের সাথে যুক্ত করে।",
-                    eg: "Example: **Because**, **If**, **Since**, **Although**, **Unless**."
+                    title: "2. Sub-ordinating Conjunctions",
+                    eng: "Connects a dependent clause to a main clause.",
+                    ben: "একটি নির্ভরশীল খণ্ডবাক্যকে (Dependent Clause) প্রধান বাক্যের সাথে যুক্ত করে।\n(Because, If, Since, Although, Unless, When).",
+                    eg: "I will not go **if** it rains.\nHe passed **because** he studied."
+                },
+                {
+                    title: "3. Correlative Conjunctions (Paired Words)",
+                    eng: "Conjunctions that always come in pairs.",
+                    ben: "এরা সবসময় জোড়ায় জোড়ায় বসে।\n• **Either...or** (হয়...নয়)\n• **Neither...nor** (এটাও না...ওটাও না)\n• **Not only...but also** (শুধু এটাই নয়...ওটাও)",
+                    eg: "**Either** he **or** his brother has done this."
+                },
+                {
+                    title: "🔴 Rule: No Sooner...Than",
+                    eng: "Used to show one action happening immediately after another.",
+                    ben: "একটি কাজ হতে না হতেই আরেকটি কাজ শুরু হলে।\nগঠন: No sooner had + Subject + V3 ... **than** + Subject + V2.",
+                    eg: "**No sooner had** I reached the station **than** the train left."
+                },
+                {
+                    title: "🔴 Rule: Hardly...When",
+                    eng: "Similar to 'No Sooner', but uses 'When'.",
+                    ben: "গঠন: Hardly had + Subject + V3 ... **when** + Subject + V2.",
+                    eg: "**Hardly had** we entered the room **when** the electricity went out."
+                },
+                {
+                    title: "🔴 Rule: Lest...Should",
+                    eng: "Expresses fear or prevention. Means 'otherwise'.",
+                    ben: "'পাছে ভয় হয় যে' বা 'নতুবা' অর্থে ব্যবহৃত হয়।\n🔴 এর পরে সর্বদা **Should** বা **Might** বসে। কখনো 'not' বসে না।",
+                    eg: "Walk fast **lest** you **should** miss the train."
+                },
+                {
+                    title: "🔴 Rule: Though/Although (Contrast)",
+                    eng: "Used to show contrast or opposition.",
+                    ben: "যদিও...তবুও অর্থে। দুটি বিপরীতধর্মী বাক্যকে যুক্ত করে।\n🔴 এর সাথে 'but' বসে না, কমা (,) বা 'yet' বসে।",
+                    eg: "**Though** he is poor, he is honest. (Never say: Though he is poor but he is honest)."
+                },
+                {
+                    title: "🔴 Rule: Unless vs Until",
+                    eng: "Condition vs Time.",
+                    ben: "🔹 **Unless:** যদি না (Condition)। (Unless you study, you will fail)\n🔹 **Until:** যতক্ষণ না (Time)। (Wait until I come)\n🔴 এদের পরে 'not' বসে না কারণ এরা নিজেরাই Negative শব্দ।",
+                    eg: "Do not go **until** the rain stops."
+                },
+                {
+                    title: "🔴 Rule: As if / As though (Unreal Past)",
+                    eng: "Used to show unreal situations.",
+                    ben: "'যেন' অর্থে ব্যবহৃত হয়।\n🔴 এর আগের অংশ Present হলে পরের অংশ Past Indefinite হয়। আর আগের অংশ Past হলে পরের অংশ Past Perfect হয়। Be verb থাকলে সর্বদা 'were' হয়।",
+                    eg: "He talks **as if** he **were** (not was) mad."
                 }
             ],
 
-            // 8. INTERJECTIONS
+            // 8. INTERJECTIONS - MASTER CLASS (EXPANDED)
             "inter_mod": [
                 {
-                    title: "Interjection (আবেগসূচক অব্যয়) - Definition",
-                    eng: "A word which expresses some sudden feeling or emotion.",
-                    ben: "যে শব্দ মনের আকস্মিক আবেগ (আনন্দ, দুঃখ, বিস্ময়, ঘৃণা) প্রকাশ করে, তাকে Interjection বলে।",
-                    eg: "Example: **Hurrah!**, **Alas!**, **Wow!**"
+                    title: "Interjection (আবেগসূচক অব্যয়) - The Emotion Word",
+                    eng: "A word that expresses sudden feelings or emotions of the mind. It has no grammatical connection with the rest of the sentence.",
+                    ben: "যে শব্দ মনের আকস্মিক আবেগ (আনন্দ, দুঃখ, বিস্ময়, ঘৃণা, ভয়) প্রকাশ করে। বাক্যের অন্য অংশের সাথে এর ব্যাকরণগত কোনো সম্পর্ক থাকে না।",
+                    eg: "**Hurrah!** We have won the match."
                 },
                 {
-                    title: "Types of Emotion",
-                    eng: "Different words for different feelings.",
-                    ben: "বিভিন্ন আবেগের জন্য বিভিন্ন শব্দ ব্যবহৃত হয়।",
-                    eg: "Joy: **Hurrah!** (কী মজা!)\nGrief: **Alas!** (হায়!)\nSurprise: **Wow!** / **Oh!** (ওহ!)\nApproval: **Bravo!** (সাবাস!)"
+                    title: "1. Joy (আনন্দ)",
+                    eng: "Expresses happiness or delight.",
+                    ben: "আনন্দ বা উল্লাস প্রকাশ করতে।\n(Hurrah, Ha, Aha)",
+                    eg: "**Hurrah!** India has won the World Cup.\n**Aha!** My father has come."
+                },
+                {
+                    title: "2. Grief / Sorrow (দুঃখ)",
+                    eng: "Expresses sadness, regret, or pain.",
+                    ben: "দুঃখ, কষ্ট বা অনুতাপ প্রকাশ করতে।\n(Alas, Ah, Oh)",
+                    eg: "**Alas!** The old man is dead.\n**Ah!** My poor dog is hurt."
+                },
+                {
+                    title: "3. Surprise / Wonder (বিস্ময়)",
+                    eng: "Expresses sudden surprise or amazement.",
+                    ben: "হঠাৎ অবাক হওয়া বা বিস্ময় প্রকাশ করতে।\n(What, Oh, Wow, Indeed)",
+                    eg: "**What!** You have failed?\n**Wow!** What a beautiful catch by Kohli!"
+                },
+                {
+                    title: "4. Approval / Praise (সমর্থন/প্রশংসা)",
+                    eng: "Expresses approval or encouragement.",
+                    ben: "কাউকে সাবাসি দিতে বা ভালো কাজের প্রশংসা করতে।\n(Bravo, Well done, Splendid)",
+                    eg: "**Bravo!** You played a great innings.\n**Well done!** Keep it up."
+                },
+                {
+                    title: "5. Attention (মনোযোগ আকর্ষণ)",
+                    eng: "Used to draw someone's attention.",
+                    ben: "কারো দৃষ্টি আকর্ষণ করতে বা চুপ করতে বলতে।\n(Hush, Hark, Listen, Behold, Look)",
+                    eg: "**Hush!** The baby is sleeping.\n**Listen!** Someone is knocking."
+                },
+                {
+                    title: "6. Contempt / Disgust (ঘৃণা/ধিক্কার)",
+                    eng: "Expresses strong dislike or shame.",
+                    ben: "ঘৃণা, বিরক্তি বা ধিক্কার জানাতে।\n(Fie, Shame, Pooh, Tush)",
+                    eg: "**Fie!** You are a liar.\n**Shame** on you for doing this."
+                },
+                {
+                    title: "7. Greeting & Parting (সম্ভাষণ ও বিদায়)",
+                    eng: "Used when meeting or leaving someone.",
+                    ben: "দেখা হলে বা বিদায় জানানোর সময়।\n(Hello, Hi, Adieu, Goodbye)",
+                    eg: "**Hello!** How are you?\n**Goodbye!** See you tomorrow."
+                },
+                {
+                    title: "🔴 Punctuation Rule (বিরাম চিহ্ন)",
+                    eng: "Use (!) for strong emotion and (,) for mild emotion.",
+                    ben: "তীব্র আবেগ বোঝালে শব্দের পরেই বিস্ময়সূচক চিহ্ন (!) বসে। হালকা আবেগ বোঝালে কমা (,) বসে এবং বাক্যের শেষে (!) বসে।",
+                    eg: "**Alas!** I am undone. (Strong)\n**Well,** let's go there! (Mild)"
+                },
+                {
+                    title: "🔴 Grammatical Independence Rule",
+                    eng: "Interjections are independent.",
+                    ben: "Interjection বাক্যের Subject, Verb বা Object-এর অংশ নয়। এটি বাদ দিলেও বাক্যের মূল অর্থ ঠিক থাকে।",
+                    eg: "(**Oh!**) I forgot my phone. -> I forgot my phone. (Sentence is still valid)."
                 }
             ]
         };
