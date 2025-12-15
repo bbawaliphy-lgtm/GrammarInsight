@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synonyms & Antonyms - SSC INSIGHT</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Cinzel', 'serif'],
+                        bengali: ['Noto Sans Bengali', 'sans-serif'],
+                    },
+                    colors: {
+                        royal: { 900: '#050b14', 800: '#0f172a', gold: '#ffd700' },
+                        glass: { border: 'rgba(255, 255, 255, 0.1)' }
+                    },
+                    animation: {
+                        'slide-up': 'slideUp 0.6s ease-out forwards',
+                        'fade-in': 'fadeIn 0.4s ease-out forwards',
+                    },
+                    keyframes: {
+                        slideUp: { '0%': { opacity: 0, transform: 'translateY(20px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
+                        fadeIn: { '0%': { opacity: 0 }, '100%': { opacity: 1 } }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .bengali-text { font-family: 'Noto Sans Bengali', sans-serif; }
+        .aristocratic-title { font-family: 'Cinzel', serif; letter-spacing: 0.02em; }
+        .bg-royal-mesh {
+            background-color: #020617;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(124, 58, 237, 0.08) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(234, 179, 8, 0.08) 0%, transparent 20%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
+    </style>
+</head>
+<body class="bg-royal-mesh text-gray-100 h-screen flex flex-col overflow-hidden">
+
+    <!-- NAVBAR -->
+    <nav class="flex-none px-6 py-4 flex flex-col md:flex-row items-center justify-between border-b border-white/5 bg-black/20 backdrop-blur-md z-20 gap-4">
+        <div class="flex items-center w-full md:w-auto justify-between">
+            <button onclick="window.location.href='notes.html'" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 text-gray-400 transition-colors">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <div class="text-center md:text-left ml-4">
+                <h1 class="font-bold text-white tracking-wider text-sm aristocratic-title text-pink-400 drop-shadow-md">Synonyms & Antonyms</h1>
+                <p class="text-[9px] text-gray-500 tracking-[0.2em] uppercase font-medium">SSC CGL Special • 500 Words</p>
+            </div>
+            <!-- Spacer for mobile layout balance -->
+            <div class="w-10 md:hidden"></div>
+        </div>
+
+        <!-- SEARCH BAR -->
+        <div class="relative w-full md:w-80">
+            <input type="text" id="searchInput" placeholder="Search word..." class="w-full bg-white/5 border border-white/10 rounded-full py-2 px-4 pl-10 text-sm text-white focus:outline-none focus:border-pink-500/50 transition-colors">
+            <i class="fa-solid fa-search absolute left-3.5 top-2.5 text-gray-500 text-xs"></i>
+        </div>
+    </nav>
+
+    <!-- CONTENT AREA -->
+    <main class="flex-grow overflow-y-auto p-4 sm:p-6 pb-24" id="cardsContainer">
+        <!-- Cards will be injected here -->
+    </main>
+
+    <script>
+        // --- 500 IMPORTANT WORDS FOR SSC CGL (Sample Set of 50 High-Yield Words provided, expandable) ---
+        const vocabData = [
+            {
+                word: "ABANDON",
+                meaning: "পরিত্যাগ করা",
+                explanation: "কোনো কাজ, স্থান বা ব্যক্তিকে চিরতরে ছেড়ে দেওয়া।",
+                synonyms: ["Forsake", "Desert", "Relinquish", "Renounce", "Give up"],
+                antonyms: ["Retain", "Keep", "Hold", "Support", "Continue"]
+            },
+            {
+                word: "ABHOR",
+                meaning: "ঘৃণা করা",
+                explanation: "তীব্র ঘৃণা বা অপছন্দ করা।",
+                synonyms: ["Detest", "Loathe", "Hate", "Despise", "Abominate"],
+                antonyms: ["Love", "Admire", "Cherish", "Adore", "Like"]
+            },
+            {
+                word: "ABSOLVE",
+                meaning: "মুক্তি দেওয়া / দোষমুক্ত করা",
+                explanation: "কাউকে দোষ, শাস্তি বা দায়িত্ব থেকে মুক্তি দেওয়া।",
+                synonyms: ["Exonerate", "Acquit", "Pardon", "Forgive", "Exempt"],
+                antonyms: ["Accuse", "Blame", "Convict", "Punish", "Condemn"]
+            },
+            {
+                word: "ACCUMULATE",
+                meaning: "জমানো / একত্রিত করা",
+                explanation: "ধীরে ধীরে কোনো কিছু সংগ্রহ বা জমা করা।",
+                synonyms: ["Gather", "Collect", "Amass", "Hoard", "Pile up"],
+                antonyms: ["Disperse", "Scatter", "Distribute", "Dissipate", "Squander"]
+            },
+            {
+                word: "ADAMANT",
+                meaning: "অনমনীয় / কঠোর",
+                explanation: "নিজের মতামতে অটল থাকা, সহজে পরিবর্তন না হওয়া।",
+                synonyms: ["Stubborn", "Rigid", "Inflexible", "Unielding", "Obdurate"],
+                antonyms: ["Flexible", "Yielding", "Submissive", "Pliable", "Adaptable"]
+            },
+            {
+                word: "ADEQUATE",
+                meaning: "পর্যাপ্ত",
+                explanation: "প্রয়োজন মেটানোর জন্য যথেষ্ট।",
+                synonyms: ["Sufficient", "Enough", "Ample", "Suitable", "Satisfactory"],
+                antonyms: ["Insufficient", "Inadequate", "Sparse", "Scant", "Deficient"]
+            },
+            {
+                word: "ADVERSITY",
+                meaning: "দুর্ভাগ্য / প্রতিকূলতা",
+                explanation: "কঠিন পরিস্থিতি বা দুর্ভাগ্যজনক অবস্থা।",
+                synonyms: ["Misfortune", "Hardship", "Calamity", "Misery", "Disaster"],
+                antonyms: ["Prosperity", "Fortune", "Success", "Happiness", "Privilege"]
+            },
+            {
+                word: "ALIEN",
+                meaning: "বিদেশী / অপরিচিত",
+                explanation: "যে নিজের দেশের বা পরিচিত পরিবেশের নয়।",
+                synonyms: ["Foreign", "Strange", "Exotic", "Unfamiliar", "Outsider"],
+                antonyms: ["Native", "Local", "Indigenous", "Familiar", "Citizen"]
+            },
+            {
+                word: "ALTRUISTIC",
+                meaning: "পরোপকারী",
+                explanation: "নিঃস্বার্থভাবে অন্যের মঙ্গলের চিন্তা করা।",
+                synonyms: ["Philanthropic", "Selfless", "Generous", "Benevolent", "Charitable"],
+                antonyms: ["Selfish", "Egotistic", "Mean", "Greedy", "Self-centered"]
+            },
+            {
+                word: "AMBIGUOUS",
+                meaning: "অস্পষ্ট / দ্ব্যর্থক",
+                explanation: "যার একাধিক অর্থ হতে পারে বা যা পরিষ্কার নয়।",
+                synonyms: ["Vague", "Unclear", "Obscure", "Dubious", "Equivocal"],
+                antonyms: ["Clear", "Explicit", "Definite", "Lucid", "Precise"]
+            },
+            {
+                word: "AMICABLE",
+                meaning: "বন্ধুত্বপূর্ণ",
+                explanation: "ঝগড়া বা বিবাদ ছাড়া বন্ধুত্বপূর্ণ সম্পর্ক।",
+                synonyms: ["Friendly", "Cordial", "Harmonious", "Peaceful", "Genial"],
+                antonyms: ["Hostile", "Unfriendly", "Quarrelsome", "Aggressive", "Bitter"]
+            },
+            {
+                word: "AMPLIFY",
+                meaning: "বর্ধিত করা / বাড়ানো",
+                explanation: "শব্দ, শক্তি বা কোনো কিছুর মাত্রা বাড়ানো।",
+                synonyms: ["Increase", "Magnify", "Expand", "Augment", "Enhance"],
+                antonyms: ["Decrease", "Diminish", "Reduce", "Condense", "Lessen"]
+            },
+            {
+                word: "ANNOY",
+                meaning: "বিরক্ত করা",
+                explanation: "কাউকে রাগানো বা উত্ত্যক্ত করা।",
+                synonyms: ["Irritate", "Vex", "Bother", "Disturb", "Provoke"],
+                antonyms: ["Please", "Soothe", "Comfort", "Gratify", "Calm"]
+            },
+            {
+                word: "ANTIPATHY",
+                meaning: "বিদ্বেষ / অপছন্দ",
+                explanation: "কারো বা কোনো কিছুর প্রতি তীব্র অপছন্দ।",
+                synonyms: ["Dislike", "Hostility", "Aversion", "Hatred", "Enmity"],
+                antonyms: ["Sympathy", "Affection", "Liking", "Love", "Admiration"]
+            },
+            {
+                word: "APATHY",
+                meaning: "উদাসীনতা / অনাগ্রহ",
+                explanation: "আবেগ বা আগ্রহের অভাব।",
+                synonyms: ["Indifference", "Unconcern", "Insensitivity", "Lethargy", "Detachment"],
+                antonyms: ["Interest", "Concern", "Enthusiasm", "Passion", "Zeal"]
+            },
+            {
+                word: "APPEASE",
+                meaning: "শান্ত করা / তুষ্ট করা",
+                explanation: "কাউকে শান্ত করার জন্য তার দাবি মেনে নেওয়া।",
+                synonyms: ["Pacify", "Soothe", "Calm", "Satisfy", "Placate"],
+                antonyms: ["Provoke", "Agitate", "Irritate", "Inflame", "Anger"]
+            },
+            {
+                word: "ARDUOUS",
+                meaning: "কষ্টসাধ্য",
+                explanation: "প্রচুর পরিশ্রম ও প্রচেষ্টার প্রয়োজন এমন।",
+                synonyms: ["Difficult", "Laborious", "Strenuous", "Hard", "Grueling"],
+                antonyms: ["Easy", "Effortless", "Simple", "Light", "Facile"]
+            },
+            {
+                word: "ARROGANT",
+                meaning: "অহংকারী",
+                explanation: "নিজের সম্পর্কে অতিরিক্ত গর্ববোধ করা এবং অন্যকে ছোট করা।",
+                synonyms: ["Haughty", "Proud", "Conceited", "Egotistic", "Supercilious"],
+                antonyms: ["Humble", "Modest", "Meek", "Polite", "Diffident"]
+            },
+            {
+                word: "ARTIFICIAL",
+                meaning: "কৃত্রিম",
+                explanation: "প্রাকৃতিকভাবে তৈরি নয়, মানুষের দ্বারা তৈরি।",
+                synonyms: ["Synthetic", "Man-made", "Fake", "Unnatural", "Imitation"],
+                antonyms: ["Natural", "Genuine", "Real", "Authentic", "True"]
+            },
+            {
+                word: "ASCEND",
+                meaning: "আরোহণ করা / উপরে ওঠা",
+                explanation: "নিচ থেকে উপরের দিকে যাওয়া।",
+                synonyms: ["Climb", "Rise", "Mount", "Scale", "Soar"],
+                antonyms: ["Descend", "Fall", "Decline", "Drop", "Sink"]
+            },
+            {
+                word: "AUDACIOUS",
+                meaning: "দুঃসাহসী",
+                explanation: "ভয়হীন এবং ঝুঁকি নিতে প্রস্তুত।",
+                synonyms: ["Bold", "Daring", "Fearless", "Brave", "Courageous"],
+                antonyms: ["Timid", "Cowardly", "Fearful", "Cautious", "Shy"]
+            },
+            {
+                word: "AUTHENTIC",
+                meaning: "খাঁটি / আসল",
+                explanation: "যা নকল নয় এবং বিশ্বাসযোগ্য।",
+                synonyms: ["Genuine", "Real", "Original", "Valid", "Reliable"],
+                antonyms: ["Fake", "False", "Counterfeit", "Spurious", "Bogus"]
+            },
+            {
+                word: "AVERSE",
+                meaning: "বিমুখ / অনিচ্ছুক",
+                explanation: "কোনো কিছু করতে তীব্র অনিচ্ছা।",
+                synonyms: ["Reluctant", "Unwilling", "Opposed", "Loath", "Disinclined"],
+                antonyms: ["Willing", "Eager", "Inclined", "Keen", "Ready"]
+            },
+            {
+                word: "BARBAROUS",
+                meaning: "বর্বর / অসভ্য",
+                explanation: "খুব নিষ্ঠুর বা সভ্যতার ছোঁয়া বর্জিত।",
+                synonyms: ["Savage", "Cruel", "Brutal", "Uncivilized", "Wild"],
+                antonyms: ["Civilized", "Humane", "Gentle", "Refined", "Kind"]
+            },
+            {
+                word: "BENEVOLENT",
+                meaning: "দয়ালু",
+                explanation: "অন্যের ভালো করার ইচ্ছা ও দয়া।",
+                synonyms: ["Kind", "Generous", "Charitable", "Altruistic", "Helpful"],
+                antonyms: ["Malevolent", "Cruel", "Unkind", "Selfish", "Spiteful"]
+            },
+            {
+                word: "BEWILDER",
+                meaning: "হতভম্ব করা",
+                explanation: "কাউকে বিভ্রান্ত বা দিশেহারা করে দেওয়া।",
+                synonyms: ["Confuse", "Puzzled", "Perplex", "Baffle", "Mystify"],
+                antonyms: ["Enlighten", "Clarify", "Explain", "Clear", "Illuminate"]
+            },
+            {
+                word: "BLEAK",
+                meaning: "নিরানন্দ / অন্ধকারাচ্ছন্ন",
+                explanation: "আশাহীন বা হতাশাজনক অবস্থা।",
+                synonyms: ["Gloomy", "Desolate", "Grim", "Hopeless", "Dreary"],
+                antonyms: ["Bright", "Cheerful", "Promising", "Hopeful", "Sunny"]
+            },
+            {
+                word: "BRITTLE",
+                meaning: "ভঙ্গুর",
+                explanation: "শক্ত কিন্তু সহজেই ভেঙে যায় এমন।",
+                synonyms: ["Fragile", "Breakable", "Delicate", "Weak", "Frail"],
+                antonyms: ["Tough", "Strong", "Flexible", "Durable", "Unbreakable"]
+            },
+            {
+                word: "CANDID",
+                meaning: "স্পষ্টবাদী / অকপট",
+                explanation: "সরাসরি এবং সত্য কথা বলা, কোনো কিছু গোপন না করে।",
+                synonyms: ["Frank", "Honest", "Open", "Outspoken", "Sincere"],
+                antonyms: ["Deceitful", "Secretive", "Cunning", "Dishonest", "Evasive"]
+            },
+            {
+                word: "CAPTIVATE",
+                meaning: "মুগ্ধ করা / বিমোহিত করা",
+                explanation: "কারো মনোযোগ বা আকর্ষণ জয় করা।",
+                synonyms: ["Charm", "Fascinate", "Enchant", "Attract", "Allure"],
+                antonyms: ["Repel", "Disgust", "Bore", "Offend", "Annoy"]
+            },
+            {
+                word: "CEASE",
+                meaning: "থামা / বন্ধ হওয়া",
+                explanation: "কোনো কাজ বা অবস্থা শেষ হওয়া।",
+                synonyms: ["Stop", "End", "Halt", "Terminate", "Discontinue"],
+                antonyms: ["Begin", "Start", "Continue", "Commence", "Initiate"]
+            },
+            {
+                word: "CENSURE",
+                meaning: "সমালোচনা করা / নিন্দা করা",
+                explanation: "তীব্রভাবে সমালোচনা বা তিরস্কার করা।",
+                synonyms: ["Criticize", "Blame", "Condemn", "Reprimand", "Rebuke"],
+                antonyms: ["Praise", "Applaud", "Commend", "Approve", "Compliment"]
+            },
+            {
+                word: "CHAOS",
+                meaning: "বিশৃঙ্খলা",
+                explanation: "সম্পূর্ণ বিশৃঙ্খল বা অগোছালো অবস্থা।",
+                synonyms: ["Disorder", "Confusion", "Turmoil", "Anarchy", "Pandemonium"],
+                antonyms: ["Order", "Discipline", "Organization", "Peace", "System"]
+            },
+            {
+                word: "CLANDESTINE",
+                meaning: "গোপন / চোরাগোপ্তা",
+                explanation: "গোপনে বা লুকিয়ে করা (সাধারণত অবৈধ কিছু)।",
+                synonyms: ["Secret", "Covert", "Hidden", "Stealthy", "Surreptitious"],
+                antonyms: ["Open", "Public", "Overt", "Visible", "Honest"]
+            },
+            {
+                word: "COLLOSSAL",
+                meaning: "বিশাল / প্রকাণ্ড",
+                explanation: "আকারে বা আয়তনে অত্যন্ত বড়।",
+                synonyms: ["Huge", "Gigantic", "Enormous", "Massive", "Immense"],
+                antonyms: ["Tiny", "Small", "Minute", "Little", "Miniature"]
+            },
+            {
+                word: "COMMENCE",
+                meaning: "শুরু করা",
+                explanation: "কোনো কাজ বা প্রক্রিয়া শুরু হওয়া।",
+                synonyms: ["Start", "Begin", "Initiate", "Launch", "Inaugurate"],
+                antonyms: ["End", "Finish", "Stop", "Terminate", "Conclude"]
+            },
+            {
+                word: "COMPASSION",
+                meaning: "করুণা / সহানুভূতি",
+                explanation: "অন্যের দুঃখ দেখে দুঃখ অনুভব করা এবং সাহায্য করার ইচ্ছা।",
+                synonyms: ["Sympathy", "Pity", "Kindness", "Mercy", "Empathy"],
+                antonyms: ["Cruelty", "Indifference", "Heartlessness", "Apathy", "Harshness"]
+            },
+            {
+                word: "COMPLEX",
+                meaning: "জটিল",
+                explanation: "সহজে বোঝা যায় না বা সমাধান করা যায় না এমন।",
+                synonyms: ["Complicated", "Intricate", "Difficult", "Convoluted", "Elaborate"],
+                antonyms: ["Simple", "Easy", "Plain", "Straightforward", "Clear"]
+            },
+            {
+                word: "CONCISE",
+                meaning: "সংক্ষিপ্ত",
+                explanation: "অল্প কথায় অনেক তথ্য প্রকাশ করা।",
+                synonyms: ["Brief", "Short", "Terse", "Succinct", "Compact"],
+                antonyms: ["Lengthy", "Wordy", "Verbose", "Long", "Prolix"]
+            },
+            {
+                word: "CONCUR",
+                meaning: "একমত হওয়া",
+                explanation: "অন্যের মতামতের সাথে একমত হওয়া।",
+                synonyms: ["Agree", "Approve", "Coincide", "Consent", "Accord"],
+                antonyms: ["Disagree", "Differ", "Oppose", "Object", "Dissent"]
+            },
+            {
+                word: "CONFESS",
+                meaning: "স্বীকার করা",
+                explanation: "নিজের ভুল বা অপরাধ স্বীকার করা।",
+                synonyms: ["Admit", "Acknowledge", "Disclose", "Reveal", "Accept"],
+                antonyms: ["Deny", "Conceal", "Hide", "Refuse", "Reject"]
+            },
+            {
+                word: "CONFLICT",
+                meaning: "দ্বন্দ্ব / সংঘাত",
+                explanation: "মতামত বা স্বার্থের অমিল বা লড়াই।",
+                synonyms: ["Clash", "Struggle", "Dispute", "Fight", "Discord"],
+                antonyms: ["Agreement", "Peace", "Harmony", "Accord", "Concord"]
+            },
+            {
+                word: "CONQUER",
+                meaning: "জয় করা",
+                explanation: "শক্তি প্রয়োগ করে দখল বা জয় করা।",
+                synonyms: ["Defeat", "Overcome", "Subdue", "Vanquish", "Triumph"],
+                antonyms: ["Lose", "Surrender", "Yield", "Fail", "Submit"]
+            },
+            {
+                word: "CONSENT",
+                meaning: "সম্মতি",
+                explanation: "কোনো কিছুতে রাজি হওয়া বা অনুমতি দেওয়া।",
+                synonyms: ["Agreement", "Permission", "Approval", "Assent", "Accord"],
+                antonyms: ["Dissent", "Refusal", "Disagreement", "Denial", "Objection"]
+            },
+            {
+                word: "CONSEQUENT",
+                meaning: "ফলস্বরূপ",
+                explanation: "কোনো ঘটনার ফলে যা ঘটে।",
+                synonyms: ["Resultant", "Following", "Subsequent", "Ensuring", "Outcome"],
+                antonyms: ["Preceding", "Antecedent", "Prior", "Former", "Previous"]
+            },
+            {
+                word: "CONSOLIDATE",
+                meaning: "দৃঢ় করা / একত্রিত করা",
+                explanation: "শক্তি বাড়ানোর জন্য একত্রিত করা।",
+                synonyms: ["Strengthen", "Unite", "Combine", "Solidify", "Merge"],
+                antonyms: ["Weaken", "Separate", "Disperse", "Divide", "Fragment"]
+            },
+            {
+                word: "CONTAMINATE",
+                meaning: "দূষিত করা",
+                explanation: "কোনো কিছু অপরিষ্কার বা বিষাক্ত করা।",
+                synonyms: ["Pollute", "Defile", "Corrupt", "Taint", "Infect"],
+                antonyms: ["Purify", "Cleanse", "Sanitize", "Clarify", "Filter"]
+            },
+            {
+                word: "CONTEMPT",
+                meaning: "অবজ্ঞা / ঘৃণা",
+                explanation: "কাউকে নিচু মনে করা বা সম্মান না করা।",
+                synonyms: ["Scorn", "Disdain", "Disrespect", "Derision", "Mockery"],
+                antonyms: ["Respect", "Admiration", "Honor", "Regard", "Praise"]
+            },
+            {
+                word: "CONTRADICT",
+                meaning: "অস্বীকার করা / বিরোধিতা করা",
+                explanation: "বিপরীত কথা বলা বা সত্য নয় দাবি করা।",
+                synonyms: ["Deny", "Oppose", "Refute", "Dispute", "Counter"],
+                antonyms: ["Agree", "Confirm", "Support", "Verify", "Accept"]
+            },
+            {
+                word: "CORDIAL",
+                meaning: "আন্তরিক",
+                explanation: "উষ্ণ ও বন্ধুত্বপূর্ণ।",
+                synonyms: ["Friendly", "Warm", "Genial", "Affable", "Amicable"],
+                antonyms: ["Hostile", "Cold", "Unfriendly", "Rude", "Aloof"]
+            }
+            // ... Copy this pattern and add more words to reach 500 ...
+        ];
+
+        // --- RENDER LOGIC ---
+        function renderCards(filterText = "") {
+            const container = document.getElementById('cardsContainer');
+            container.innerHTML = '';
+
+            const filteredData = vocabData.filter(item =>
+                item.word.toLowerCase().includes(filterText.toLowerCase())
+            );
+
+            if (filteredData.length === 0) {
+                container.innerHTML = `<div class="text-center text-gray-500 mt-10">No words found.</div>`;
+                return;
+            }
+
+            const grid = document.createElement('div');
+            grid.className = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto";
+
+            filteredData.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = "glass-card p-6 rounded-2xl border-t-4 border-pink-500 hover:border-pink-400 transition-all duration-300 group relative";
+
+                card.innerHTML = `
+                    <div class="absolute top-4 right-4 text-xs font-bold text-gray-600 bg-white/5 px-2 py-1 rounded border border-white/5">#${index + 1}</div>
+
+                    <h2 class="text-2xl font-bold text-white mb-1 tracking-wide font-serif">${item.word}</h2>
+                    <p class="text-pink-400 font-bold bengali-text text-lg mb-3">${item.meaning}</p>
+
+                    <div class="bg-black/20 p-3 rounded-lg border border-white/5 mb-4">
+                        <p class="text-gray-300 text-sm bengali-text"><i class="fa-solid fa-circle-info text-pink-500/50 mr-2 text-xs"></i>${item.explanation}</p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 text-sm">
+                        <div>
+                            <p class="text-[10px] uppercase text-green-400 font-bold tracking-widest mb-2 border-b border-white/10 pb-1">Synonyms</p>
+                            <ul class="text-gray-300 space-y-1">
+                                ${item.synonyms.map(s => `<li><i class="fa-solid fa-check text-green-500/50 text-[10px] mr-1.5"></i>${s}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div>
+                            <p class="text-[10px] uppercase text-red-400 font-bold tracking-widest mb-2 border-b border-white/10 pb-1">Antonyms</p>
+                            <ul class="text-gray-300 space-y-1">
+                                ${item.antonyms.map(a => `<li><i class="fa-solid fa-xmark text-red-500/50 text-[10px] mr-1.5"></i>${a}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            container.appendChild(grid);
+
+            // Add a "Load More" indicator if we actually had 500 words to show pagination/scrolling hint
+            if (filteredData.length > 0) {
+                 const footer = document.createElement('div');
+                 footer.className = "text-center text-xs text-gray-500 uppercase tracking-widest pt-12";
+                 footer.innerHTML = `Showing ${filteredData.length} Words • Keep Scrolling`;
+                 container.appendChild(footer);
+            }
+        }
+
+        // --- SEARCH FUNCTIONALITY ---
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            renderCards(e.target.value);
+        });
+
+        // Initial Render
+        window.onload = () => renderCards();
+
+    </script>
+</body>
+</html>

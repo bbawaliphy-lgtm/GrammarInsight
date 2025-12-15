@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group Verbs - SSC INSIGHT</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Cinzel', 'serif'],
+                        bengali: ['Noto Sans Bengali', 'sans-serif'],
+                    },
+                    colors: {
+                        royal: { 900: '#050b14', 800: '#0f172a', gold: '#ffd700' },
+                        glass: { border: 'rgba(255, 255, 255, 0.1)' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .bengali-text { font-family: 'Noto Sans Bengali', sans-serif; }
+        .aristocratic-title { font-family: 'Cinzel', serif; letter-spacing: 0.02em; }
+        .bg-royal-mesh {
+            background-color: #020617;
+            background-image:
+                radial-gradient(circle at 50% 10%, rgba(34, 197, 94, 0.08) 0%, transparent 20%),
+                radial-gradient(circle at 10% 90%, rgba(16, 185, 129, 0.08) 0%, transparent 20%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
+    </style>
+</head>
+<body class="bg-royal-mesh text-gray-100 h-screen flex flex-col overflow-hidden">
+
+    <!-- NAVBAR -->
+    <nav class="flex-none px-6 py-4 flex flex-col md:flex-row items-center justify-between border-b border-white/5 bg-black/20 backdrop-blur-md z-20 gap-4">
+        <div class="flex items-center w-full md:w-auto justify-between">
+            <button onclick="window.location.href='notes.html'" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 text-gray-400 transition-colors">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <div class="text-center md:text-left ml-4">
+                <h1 class="font-bold text-white tracking-wider text-sm aristocratic-title text-emerald-400 drop-shadow-md">Group Verbs</h1>
+                <p class="text-[9px] text-gray-500 tracking-[0.2em] uppercase font-medium">Phrasal Verbs • SSC CGL</p>
+            </div>
+            <div class="w-10 md:hidden"></div>
+        </div>
+
+        <div class="relative w-full md:w-80">
+            <input type="text" id="searchInput" placeholder="Search verb (e.g., call, put)..." class="w-full bg-white/5 border border-white/10 rounded-full py-2 px-4 pl-10 text-sm text-white focus:outline-none focus:border-emerald-500/50 transition-colors">
+            <i class="fa-solid fa-search absolute left-3.5 top-2.5 text-gray-500 text-xs"></i>
+        </div>
+    </nav>
+
+    <!-- CONTENT AREA -->
+    <main class="flex-grow overflow-y-auto p-4 sm:p-6 pb-24" id="cardsContainer">
+        <!-- Cards injected here -->
+    </main>
+
+    <script>
+        const groupVerbsData = [
+            { verb: "Act on", meaning: "Affect / Tell upon", ben: "ক্ষতি করা", eg: "Over-eating acts on health." },
+            { verb: "Ask for", meaning: "Pray for / Demand", ben: "চাওয়া", eg: "He asked for help." },
+            { verb: "Back up", meaning: "Support", ben: "সমর্থন করা", eg: "I will back you up." },
+            { verb: "Bear with", meaning: "Tolerate", ben: "সহ্য করা", eg: "I cannot bear with such insult." },
+            { verb: "Blow out", meaning: "Extinguish", ben: "নেভানো", eg: "Blow out the lamp." },
+            { verb: "Break down", meaning: "Collapse (Health/Machinery)", ben: "ভেঙে পড়া (স্বাস্থ্য/যন্ত্র)", eg: "His health broke down due to hard work." },
+            { verb: "Break into", meaning: "Enter by force", ben: "জোর করে ঢোকা", eg: "The thief broke into the house." },
+            { verb: "Bring about", meaning: "Cause to happen", ben: "ঘটানো", eg: "He tried to bring about a change." },
+            { verb: "Bring up", meaning: "Rear / Educate", ben: "লালন-পালন করা", eg: "She was brought up by her aunt." },
+            { verb: "Call in", meaning: "Send for (Doctor)", ben: "ডাকা", eg: "Please call in a doctor." },
+            { verb: "Call off", meaning: "Cancel / Withdraw", ben: "প্রত্যাহার করা", eg: "The strike was called off." },
+            { verb: "Call up", meaning: "Remember", ben: "স্মরণ করা", eg: "I cannot call up his name." },
+            { verb: "Carry on", meaning: "Continue", ben: "চালিয়ে যাওয়া", eg: "Carry on your studies." },
+            { verb: "Carry out", meaning: "Obey / Execute", ben: "পালন করা", eg: "You must carry out my orders." },
+            { verb: "Come by", meaning: "Get", ben: "পাওয়া", eg: "How did you come by this book?" },
+            { verb: "Come round", meaning: "Recover", ben: "আরোগ্য লাভ করা", eg: "The patient will come round soon." },
+            { verb: "Cut down", meaning: "Reduce", ben: "কমানো", eg: "Try to cut down your expenses." },
+            { verb: "Do away with", meaning: "Abolish", ben: "রদ করা / তুলে দেওয়া", eg: "We should do away with bad habits." },
+            { verb: "Fall out", meaning: "Quarrel", ben: "ঝগড়া করা", eg: "Do not fall out with your friends." },
+            { verb: "Get through", meaning: "Pass", ben: "পাস করা", eg: "He got through the examination." },
+            { verb: "Give in", meaning: "Surrender / Yield", ben: "বশ্যতা স্বীকার করা", eg: "The enemy gave in at last." },
+            { verb: "Give up", meaning: "Leave / Abandon", ben: "ত্যাগ করা", eg: "He has given up smoking." },
+            { verb: "Go on", meaning: "Continue", ben: "চালিয়ে যাওয়া", eg: "Go on reading." },
+            { verb: "Hold up", meaning: "Delay / Stop", ben: "থামিয়ে রাখা / দেরি করানো", eg: "The train was held up by fog." },
+            { verb: "Keep up", meaning: "Maintain", ben: "বজায় রাখা", eg: "Try to keep up your reputation." },
+            { verb: "Lay by", meaning: "Save", ben: "সঞ্চয় করা", eg: "Lay by something for the future." },
+            { verb: "Look after", meaning: "Take care of", ben: "দেখশোনা করা", eg: "She looks after her old parents." },
+            { verb: "Look down upon", meaning: "Hate / Despise", ben: "ঘৃণা করা", eg: "Do not look down upon the poor." },
+            { verb: "Look for", meaning: "Search", ben: "খোঁজা", eg: "What are you looking for?" },
+            { verb: "Look into", meaning: "Investigate", ben: "তদন্ত করা", eg: "The police are looking into the case." },
+            { verb: "Make out", meaning: "Understand", ben: "বুঝতে পারা", eg: "I cannot make out what you say." },
+            { verb: "Pass away", meaning: "Die", ben: "মারা যাওয়া", eg: "The old man passed away last night." },
+            { verb: "Put down", meaning: "Suppress / Write", ben: "দমন করা / লেখা", eg: "Put down your name here." },
+            { verb: "Put off", meaning: "Postpone", ben: "স্থগিত রাখা", eg: "Don't put off your work for tomorrow." },
+            { verb: "Put on", meaning: "Wear", ben: "পরিধান করা", eg: "Put on your shirt." },
+            { verb: "Put out", meaning: "Extinguish", ben: "নেভানো", eg: "Put out the light." },
+            { verb: "Put up with", meaning: "Tolerate", ben: "সহ্য করা", eg: "I cannot put up with this insult." },
+            { verb: "Run after", meaning: "Chase", ben: "পিছু ধাওয়া করা", eg: "The dog ran after the cat." },
+            { verb: "Run over", meaning: "Smash under wheels", ben: "গাড়ি চাপা পড়া", eg: "The boy was run over by a car." },
+            { verb: "Set in", meaning: "Begin", ben: "শুরু হওয়া", eg: "The rains have set in." },
+            { verb: "Set up", meaning: "Establish", ben: "স্থাপন করা", eg: "He set up a school." },
+            { verb: "Stand by", meaning: "Support", ben: "পাশে দাঁড়ানো", eg: "I will stand by you in danger." },
+            { verb: "Take after", meaning: "Resemble", ben: "সাদৃশ্য থাকা", eg: "She takes after her mother." },
+            { verb: "Take down", meaning: "Write", ben: "লেখা", eg: "Take down the notes." },
+            { verb: "Tell upon", meaning: "Affect / Act on", ben: "ক্ষতি করা", eg: "Overwork told upon his health." },
+            { verb: "Turn down", meaning: "Reject", ben: "প্রত্যাখ্যান করা", eg: "He turned down my proposal." },
+            { verb: "Turn up", meaning: "Arrive / Appear", ben: "হাজির হওয়া", eg: "He turned up late." },
+            { verb: "Work out", meaning: "Solve", ben: "সমাধান করা", eg: "Work out the sum." }
+        ];
+
+        function renderCards(filterText = "") {
+            const container = document.getElementById('cardsContainer');
+            container.innerHTML = '';
+
+            const filteredData = groupVerbsData.filter(item =>
+                item.verb.toLowerCase().includes(filterText.toLowerCase())
+            );
+
+            if (filteredData.length === 0) {
+                container.innerHTML = `<div class="text-center text-gray-500 mt-10">No verbs found.</div>`;
+                return;
+            }
+
+            const grid = document.createElement('div');
+            grid.className = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto";
+
+            filteredData.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = "glass-card p-6 rounded-2xl border-t-4 border-emerald-500 hover:border-emerald-400 transition-all duration-300 group relative";
+
+                card.innerHTML = `
+                    <div class="absolute top-4 right-4 text-xs font-bold text-gray-600 bg-white/5 px-2 py-1 rounded border border-white/5">#${index + 1}</div>
+
+                    <h2 class="text-2xl font-bold text-white mb-1 tracking-wide font-serif border-b border-white/10 pb-2 inline-block pr-8">${item.verb}</h2>
+
+                    <div class="mt-3 space-y-3">
+                        <div class="flex flex-col">
+                            <span class="text-[10px] uppercase text-emerald-400 font-bold tracking-widest">Meaning</span>
+                            <span class="text-gray-200 text-sm font-medium">${item.meaning}</span>
+                            <span class="text-gray-400 text-xs bengali-text mt-0.5">(${item.ben})</span>
+                        </div>
+
+                        <div class="bg-black/20 p-3 rounded-lg border border-white/5">
+                            <span class="text-[10px] uppercase text-gray-500 font-bold tracking-widest block mb-1">Example</span>
+                            <p class="text-gray-300 text-sm italic font-serif">"${item.eg}"</p>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            container.appendChild(grid);
+        }
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            renderCards(e.target.value);
+        });
+
+        window.onload = () => renderCards();
+    </script>
+</body>
+</html>

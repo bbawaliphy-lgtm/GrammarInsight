@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homophones - SSC INSIGHT</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Cinzel', 'serif'],
+                        bengali: ['Noto Sans Bengali', 'sans-serif'],
+                    },
+                    colors: {
+                        royal: { 900: '#050b14', 800: '#0f172a', gold: '#ffd700' },
+                        glass: { border: 'rgba(255, 255, 255, 0.1)' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .bengali-text { font-family: 'Noto Sans Bengali', sans-serif; }
+        .aristocratic-title { font-family: 'Cinzel', serif; letter-spacing: 0.02em; }
+        .bg-royal-mesh {
+            background-color: #020617;
+            background-image:
+                radial-gradient(circle at 10% 50%, rgba(251, 146, 60, 0.08) 0%, transparent 20%),
+                radial-gradient(circle at 90% 50%, rgba(234, 88, 12, 0.08) 0%, transparent 20%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
+    </style>
+</head>
+<body class="bg-royal-mesh text-gray-100 h-screen flex flex-col overflow-hidden">
+
+    <!-- NAVBAR -->
+    <nav class="flex-none px-6 py-4 flex flex-col md:flex-row items-center justify-between border-b border-white/5 bg-black/20 backdrop-blur-md z-20 gap-4">
+        <div class="flex items-center w-full md:w-auto justify-between">
+            <button onclick="window.location.href='notes.html'" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 text-gray-400 transition-colors">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <div class="text-center md:text-left ml-4">
+                <h1 class="font-bold text-white tracking-wider text-sm aristocratic-title text-orange-400 drop-shadow-md">Homophones</h1>
+                <p class="text-[9px] text-gray-500 tracking-[0.2em] uppercase font-medium">Confusing Words • SSC CGL</p>
+            </div>
+            <div class="w-10 md:hidden"></div>
+        </div>
+
+        <div class="relative w-full md:w-80">
+            <input type="text" id="searchInput" placeholder="Search word pair..." class="w-full bg-white/5 border border-white/10 rounded-full py-2 px-4 pl-10 text-sm text-white focus:outline-none focus:border-orange-500/50 transition-colors">
+            <i class="fa-solid fa-search absolute left-3.5 top-2.5 text-gray-500 text-xs"></i>
+        </div>
+    </nav>
+
+    <!-- CONTENT AREA -->
+    <main class="flex-grow overflow-y-auto p-4 sm:p-6 pb-24" id="cardsContainer">
+        <!-- Cards injected here -->
+    </main>
+
+    <script>
+        const homophonesData = [
+            {
+                pair: "Access vs Excess",
+                words: [
+                    { w: "Access", m: "প্রবেশাধিকার", e: "I have no access to the room." },
+                    { w: "Excess", m: "আধিক্য / অতিরিক্ত", e: "Excess of anything is bad." }
+                ]
+            },
+            {
+                pair: "Accept vs Except",
+                words: [
+                    { w: "Accept", m: "গ্রহণ করা", e: "He accepted my gift." },
+                    { w: "Except", m: "ব্যতীত / ছাড়া", e: "Everyone came except Ram." }
+                ]
+            },
+            {
+                pair: "Adapt vs Adopt",
+                words: [
+                    { w: "Adapt", m: "মানিয়ে নেওয়া", e: "We must adapt to the situation." },
+                    { w: "Adopt", m: "দত্তক নেওয়া / গ্রহণ করা", e: "He adopted a child." }
+                ]
+            },
+            {
+                pair: "Advice vs Advise",
+                words: [
+                    { w: "Advice", m: "উপদেশ (Noun)", e: "He gave me good advice." },
+                    { w: "Advise", m: "উপদেশ দেওয়া (Verb)", e: "He advised me to work hard." }
+                ]
+            },
+            {
+                pair: "Affect vs Effect",
+                words: [
+                    { w: "Affect", m: "প্রভাবিত করা (Verb)", e: "The cold affected his health." },
+                    { w: "Effect", m: "ফল (Noun)", e: "The effect of the medicine was good." }
+                ]
+            },
+            {
+                pair: "Alter vs Altar",
+                words: [
+                    { w: "Alter", m: "পরিবর্তন করা", e: "He altered his plan." },
+                    { w: "Altar", m: "বেদি", e: "He knelt before the altar." }
+                ]
+            },
+            {
+                pair: "Assent vs Ascent",
+                words: [
+                    { w: "Assent", m: "সম্মতি", e: "He gave his assent to the proposal." },
+                    { w: "Ascent", m: "আরোহণ", e: "The ascent to the hill was steep." }
+                ]
+            },
+            {
+                pair: "Brake vs Break",
+                words: [
+                    { w: "Brake", m: "গাড়ির ব্রেক", e: "The driver applied the brake." },
+                    { w: "Break", m: "ভাঙা", e: "Do not break the glass." }
+                ]
+            },
+            {
+                pair: "Bridal vs Bridle",
+                words: [
+                    { w: "Bridal", m: "বিবাহ সংক্রান্ত", e: "She looked beautiful in bridal dress." },
+                    { w: "Bridle", m: "লাগাম", e: "Hold the bridle of the horse." }
+                ]
+            },
+            {
+                pair: "Birth vs Berth",
+                words: [
+                    { w: "Birth", m: "জন্ম", e: "What is your date of birth?" },
+                    { w: "Berth", m: "ট্রেনের শয়নাসন", e: "I reserved a berth in the train." }
+                ]
+            },
+            {
+                pair: "Canvas vs Canvass",
+                words: [
+                    { w: "Canvas", m: "মোটা কাপড়", e: "The tent is made of canvas." },
+                    { w: "Canvass", m: "ভোট চাওয়া / প্রচার করা", e: "He is canvassing for votes." }
+                ]
+            },
+            {
+                pair: "Career vs Carrier",
+                words: [
+                    { w: "Career", m: "পেশা / জীবন", e: "Choose your career wisely." },
+                    { w: "Carrier", m: "বাহক", e: "Mosquito is a carrier of malaria." }
+                ]
+            },
+            {
+                pair: "Check vs Cheque",
+                words: [
+                    { w: "Check", m: "পরীক্ষা করা / থামানো", e: "Check your pockets." },
+                    { w: "Cheque", m: "ব্যাংকের চেক", e: "He gave me a cheque." }
+                ]
+            },
+            {
+                pair: "Cite vs Site vs Sight",
+                words: [
+                    { w: "Cite", m: "উদ্ধৃত করা", e: "He cited an example." },
+                    { w: "Site", m: "স্থান", e: "This is a good site for the school." },
+                    { w: "Sight", m: "দৃশ্য", e: "What a beautiful sight!" }
+                ]
+            },
+            {
+                pair: "Coarse vs Course",
+                words: [
+                    { w: "Coarse", m: "মোটা / অমসৃণ", e: "He wears coarse cloth." },
+                    { w: "Course", m: "গতিপথ / পাঠ্যক্রম", e: "The river changed its course." }
+                ]
+            },
+            {
+                pair: "Complement vs Compliment",
+                words: [
+                    { w: "Complement", m: "পরিপূরক", e: "Rice and curry complement each other." },
+                    { w: "Compliment", m: "প্রশংসা", e: "He paid me a compliment." }
+                ]
+            },
+            {
+                pair: "Council vs Counsel",
+                words: [
+                    { w: "Council", m: "পরিষদ", e: "He is a member of the council." },
+                    { w: "Counsel", m: "উপদেশ / আইনজীবী", e: "He gave me good counsel." }
+                ]
+            },
+            {
+                pair: "Dairy vs Diary",
+                words: [
+                    { w: "Dairy", m: "দুগ্ধখামার", e: "We buy milk from the dairy." },
+                    { w: "Diary", m: "দিনলিপি", e: "He writes his diary daily." }
+                ]
+            },
+            {
+                pair: "Dear vs Deer",
+                words: [
+                    { w: "Dear", m: "প্রিয় / দামি", e: "You are very dear to me." },
+                    { w: "Deer", m: "হরিণ", e: "I saw a deer in the zoo." }
+                ]
+            },
+            {
+                pair: "Die vs Dye",
+                words: [
+                    { w: "Die", m: "মারা যাওয়া", e: "Man must die." },
+                    { w: "Dye", m: "রং করা", e: "He dyes his hair." }
+                ]
+            },
+            {
+                pair: "Dose vs Doze",
+                words: [
+                    { w: "Dose", m: "ঔষধের মাত্রা", e: "Take one dose daily." },
+                    { w: "Doze", m: "তন্দ্রা যাওয়া / ঝিমানো", e: "He was dozing in the class." }
+                ]
+            },
+            {
+                pair: "Dual vs Duel",
+                words: [
+                    { w: "Dual", m: "দ্বৈত", e: "This phone has dual SIM." },
+                    { w: "Duel", m: "দ্বন্দ্বযুদ্ধ", e: "They fought a duel." }
+                ]
+            },
+            {
+                pair: "Eligible vs Illegible",
+                words: [
+                    { w: "Eligible", m: "যোগ্য", e: "He is eligible for the post." },
+                    { w: "Illegible", m: "অপাঠ্য", e: "His handwriting is illegible." }
+                ]
+            },
+            {
+                pair: "Eminent vs Imminent",
+                words: [
+                    { w: "Eminent", m: "বিখ্যাত", e: "He is an eminent scholar." },
+                    { w: "Imminent", m: "আসন্ন", e: "He is in imminent danger." }
+                ]
+            },
+            {
+                pair: "Fair vs Fare",
+                words: [
+                    { w: "Fair", m: "সুন্দর / মেলা / ন্যায়", e: "It is not fair." },
+                    { w: "Fare", m: "ভাড়া", e: "What is the bus fare?" }
+                ]
+            },
+            {
+                pair: "Gate vs Gait",
+                words: [
+                    { w: "Gate", m: "ফটক", e: "Open the gate." },
+                    { w: "Gait", m: "হাঁটার ভঙ্গি", e: "Her gait is graceful." }
+                ]
+            },
+            {
+                pair: "Heal vs Heel",
+                words: [
+                    { w: "Heal", m: "নিরাময় হওয়া", e: "The wound will heal soon." },
+                    { w: "Heel", m: "গোড়ালি", e: "He has a pain in his heel." }
+                ]
+            },
+            {
+                pair: "Idle vs Idol",
+                words: [
+                    { w: "Idle", m: "অলস", e: "Do not sit idle." },
+                    { w: "Idol", m: "প্রতিমা", e: "The Hindus worship idols." }
+                ]
+            },
+            {
+                pair: "Loose vs Lose",
+                words: [
+                    { w: "Loose", m: "ঢিলা", e: "The shirt is loose." },
+                    { w: "Lose", m: "হারানো", e: "Do not lose hope." }
+                ]
+            },
+            {
+                pair: "Peace vs Piece",
+                words: [
+                    { w: "Peace", m: "শান্তি", e: "We want peace." },
+                    { w: "Piece", m: "টুকরো", e: "Give me a piece of paper." }
+                ]
+            },
+            {
+                pair: "Personal vs Personnel",
+                words: [
+                    { w: "Personal", m: "ব্যক্তিগত", e: "It is my personal matter." },
+                    { w: "Personnel", m: "কর্মচারীবৃন্দ", e: "Army personnel were sent there." }
+                ]
+            },
+            {
+                pair: "Plain vs Plane",
+                words: [
+                    { w: "Plain", m: "সমতল / সাদা", e: "He wears plain clothes." },
+                    { w: "Plane", m: "উড়োজাহাজ", e: "He went by plane." }
+                ]
+            },
+            {
+                pair: "Principal vs Principle",
+                words: [
+                    { w: "Principal", m: "প্রধান / অধ্যক্ষ", e: "He is the Principal of the college." },
+                    { w: "Principle", m: "নীতি", e: "He is a man of principle." }
+                ]
+            },
+            {
+                pair: "Quiet vs Quite",
+                words: [
+                    { w: "Quiet", m: "শান্ত", e: "Keep quiet." },
+                    { w: "Quite", m: "সম্পূর্ণ", e: "I am quite well." }
+                ]
+            },
+            {
+                pair: "Right vs Rite vs Write",
+                words: [
+                    { w: "Right", m: "সঠিক / অধিকার", e: "You are right." },
+                    { w: "Rite", m: "প্রথা / অনুষ্ঠান", e: "Funeral rites." },
+                    { w: "Write", m: "লেখা", e: "Write a letter." }
+                ]
+            },
+            {
+                pair: "Root vs Route",
+                words: [
+                    { w: "Root", m: "শিকড়", e: "The root of the tree is deep." },
+                    { w: "Route", m: "পথ", e: "Which route should we take?" }
+                ]
+            },
+            {
+                pair: "Sale vs Sail",
+                words: [
+                    { w: "Sale", m: "বিক্রয়", e: "This house is for sale." },
+                    { w: "Sail", m: "পাল", e: "The boat has a white sail." }
+                ]
+            },
+            {
+                pair: "Sole vs Soul",
+                words: [
+                    { w: "Sole", m: "একমাত্র / জুতোর তলা", e: "He is the sole owner." },
+                    { w: "Soul", m: "আত্মা", e: "May his soul rest in peace." }
+                ]
+            },
+            {
+                pair: "Stationary vs Stationery",
+                words: [
+                    { w: "Stationary", m: "স্থির", e: "The sun is stationary." },
+                    { w: "Stationery", m: "মনিহারি দ্রব্য", e: "He sells stationery goods (pen, paper)." }
+                ]
+            },
+            {
+                pair: "Storey vs Story",
+                words: [
+                    { w: "Storey", m: "তলা (Building)", e: "It is a multi-storey building." },
+                    { w: "Story", m: "গল্প", e: "Tell me a story." }
+                ]
+            },
+            {
+                pair: "Tail vs Tale",
+                words: [
+                    { w: "Tail", m: "লেজ", e: "The dog wagged its tail." },
+                    { w: "Tale", m: "গল্প", e: "It is a fairy tale." }
+                ]
+            },
+            {
+                pair: "Team vs Teem",
+                words: [
+                    { w: "Team", m: "দল", e: "Our team won." },
+                    { w: "Teem", m: "পূর্ণ হওয়া", e: "The forest teems with animals." }
+                ]
+            },
+            {
+                pair: "Vain vs Vein",
+                words: [
+                    { w: "Vain", m: "বৃথা / অহংকারী", e: "He tried in vain." },
+                    { w: "Vein", m: "শিরা", e: "Blood flows through veins." }
+                ]
+            },
+            {
+                pair: "Waist vs Waste",
+                words: [
+                    { w: "Waist", m: "কোমর", e: "The water came up to his waist." },
+                    { w: "Waste", m: "নষ্ট করা", e: "Do not waste time." }
+                ]
+            },
+            {
+                pair: "Wait vs Weight",
+                words: [
+                    { w: "Wait", m: "অপেক্ষা করা", e: "Wait for me." },
+                    { w: "Weight", m: "ওজন", e: "What is your weight?" }
+                ]
+            },
+            {
+                pair: "Weak vs Week",
+                words: [
+                    { w: "Weak", m: "দুর্বল", e: "He is very weak." },
+                    { w: "Week", m: "সপ্তাহ", e: "A week has seven days." }
+                ]
+            },
+            {
+                pair: "Weather vs Whether",
+                words: [
+                    { w: "Weather", m: "আবহাওয়া", e: "The weather is fine." },
+                    { w: "Whether", m: "কিনা", e: "I don't know whether he will come." }
+                ]
+            }
+        ];
+
+        function renderCards(filterText = "") {
+            const container = document.getElementById('cardsContainer');
+            container.innerHTML = '';
+
+            const filteredData = homophonesData.filter(item =>
+                item.pair.toLowerCase().includes(filterText.toLowerCase())
+            );
+
+            if (filteredData.length === 0) {
+                container.innerHTML = `<div class="text-center text-gray-500 mt-10">No pairs found.</div>`;
+                return;
+            }
+
+            const grid = document.createElement('div');
+            grid.className = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto";
+
+            filteredData.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = "glass-card p-6 rounded-2xl border-t-4 border-orange-500 hover:border-orange-400 transition-all duration-300 group relative";
+
+                card.innerHTML = `
+                    <div class="absolute top-4 right-4 text-xs font-bold text-gray-600 bg-white/5 px-2 py-1 rounded border border-white/5">#${index + 1}</div>
+
+                    <h2 class="text-xl font-bold text-white mb-4 tracking-wide font-serif text-center border-b border-white/10 pb-2">${item.pair}</h2>
+
+                    <div class="space-y-4">
+                        ${item.words.map((w, i) => `
+                            <div class="bg-white/5 p-3 rounded-lg border border-white/5 hover:bg-white/10 transition-colors">
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-lg font-bold text-orange-400">${w.w}</span>
+                                    <span class="text-xs text-gray-400 bengali-text">${w.m}</span>
+                                </div>
+                                <p class="text-xs text-gray-300 italic">"${w.e}"</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            container.appendChild(grid);
+        }
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            renderCards(e.target.value);
+        });
+
+        window.onload = () => renderCards();
+    </script>
+</body>
+</html>

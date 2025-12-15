@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idioms & Phrases - SSC INSIGHT</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Cinzel', 'serif'],
+                        bengali: ['Noto Sans Bengali', 'sans-serif'],
+                    },
+                    colors: {
+                        royal: { 900: '#050b14', 800: '#0f172a', gold: '#ffd700' },
+                        glass: { border: 'rgba(255, 255, 255, 0.1)' }
+                    },
+                    animation: {
+                        'slide-up': 'slideUp 0.6s ease-out forwards',
+                        'fade-in': 'fadeIn 0.4s ease-out forwards',
+                    },
+                    keyframes: {
+                        slideUp: { '0%': { opacity: 0, transform: 'translateY(20px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
+                        fadeIn: { '0%': { opacity: 0 }, '100%': { opacity: 1 } }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .bengali-text { font-family: 'Noto Sans Bengali', sans-serif; }
+        .aristocratic-title { font-family: 'Cinzel', serif; letter-spacing: 0.02em; }
+        .bg-royal-mesh {
+            background-color: #020617;
+            background-image:
+                radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.08) 0%, transparent 20%),
+                radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.08) 0%, transparent 20%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
+    </style>
+</head>
+<body class="bg-royal-mesh text-gray-100 h-screen flex flex-col overflow-hidden">
+
+    <!-- NAVBAR -->
+    <nav class="flex-none px-6 py-4 flex flex-col md:flex-row items-center justify-between border-b border-white/5 bg-black/20 backdrop-blur-md z-20 gap-4">
+        <div class="flex items-center w-full md:w-auto justify-between">
+            <button onclick="window.location.href='notes.html'" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 text-gray-400 transition-colors">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <div class="text-center md:text-left ml-4">
+                <h1 class="font-bold text-white tracking-wider text-sm aristocratic-title text-indigo-400 drop-shadow-md">Idioms & Phrases</h1>
+                <p class="text-[9px] text-gray-500 tracking-[0.2em] uppercase font-medium">SSC CGL Special • 500 Idioms</p>
+            </div>
+            <!-- Spacer for mobile layout balance -->
+            <div class="w-10 md:hidden"></div>
+        </div>
+
+        <!-- SEARCH BAR -->
+        <div class="relative w-full md:w-80">
+            <input type="text" id="searchInput" placeholder="Search idiom..." class="w-full bg-white/5 border border-white/10 rounded-full py-2 px-4 pl-10 text-sm text-white focus:outline-none focus:border-indigo-500/50 transition-colors">
+            <i class="fa-solid fa-search absolute left-3.5 top-2.5 text-gray-500 text-xs"></i>
+        </div>
+    </nav>
+
+    <!-- CONTENT AREA -->
+    <main class="flex-grow overflow-y-auto p-4 sm:p-6 pb-24" id="cardsContainer">
+        <!-- Cards will be injected here -->
+    </main>
+
+    <script>
+        // --- 500 IMPORTANT IDIOMS FOR SSC CGL (Sample Set of 50 High-Yield Idioms provided) ---
+        const idiomsData = [
+            {
+                idiom: "A bed of roses",
+                meaning_en: "A comfortable situation",
+                meaning_bn: "আরামদায়ক অবস্থা",
+                example: "Life is not a bed of roses."
+            },
+            {
+                idiom: "A bird's eye view",
+                meaning_en: "A general view from above",
+                meaning_bn: "একনজরে দেখা / ভাসা ভাসা দৃশ্য",
+                example: "We had a bird's eye view of the city from the tower."
+            },
+            {
+                idiom: "A blessing in disguise",
+                meaning_en: "Something good that isn't recognized at first",
+                meaning_bn: "বিপদের আড়ালে বর / মন্দের ভালো",
+                example: "Losing that job turned out to be a blessing in disguise."
+            },
+            {
+                idiom: "A bolt from the blue",
+                meaning_en: "A sudden and unexpected event",
+                meaning_bn: "বিনা মেঘে বজ্রপাত",
+                example: "The news of his death came as a bolt from the blue."
+            },
+            {
+                idiom: "A bone of contention",
+                meaning_en: "Cause of dispute",
+                meaning_bn: "বিবাদের বিষয়",
+                example: "The ancestral property is a bone of contention between the two brothers."
+            },
+            {
+                idiom: "A burning question",
+                meaning_en: "An important topic",
+                meaning_bn: "গুরুত্বপূর্ণ বিষয় / আলোচিত সমস্যা",
+                example: "Unemployment is a burning question nowadays."
+            },
+            {
+                idiom: "A cake walk",
+                meaning_en: "An easy achievement",
+                meaning_bn: "খুব সহজ কাজ",
+                example: "Passing the exam was a cake walk for her."
+            },
+            {
+                idiom: "A dark horse",
+                meaning_en: "An unexpected winner",
+                meaning_bn: "অপ্রত্যাশিত বিজয়ী / অপরিচিত প্রতিভা",
+                example: "He turned out to be a dark horse in the competition."
+            },
+            {
+                idiom: "A fish out of water",
+                meaning_en: "In an uncomfortable situation",
+                meaning_bn: "অস্বস্তিকর অবস্থায় পড়া",
+                example: "I felt like a fish out of water in the new office."
+            },
+            {
+                idiom: "A hard nut to crack",
+                meaning_en: "A difficult problem",
+                meaning_bn: "কঠিন সমস্যা",
+                example: "Solving this math problem is a hard nut to crack."
+            },
+            {
+                idiom: "A man of letters",
+                meaning_en: "A scholar",
+                meaning_bn: "পণ্ডিত ব্যক্তি",
+                example: "Dr. Sen is a man of letters."
+            },
+            {
+                idiom: "A piece of cake",
+                meaning_en: "Very easy task",
+                meaning_bn: "খুবই সহজ কাজ",
+                example: "Driving a car is a piece of cake for me."
+            },
+            {
+                idiom: "A red letter day",
+                meaning_en: "An important or memorable day",
+                meaning_bn: "স্মরণীয় দিন",
+                example: "15th August is a red letter day in the history of India."
+            },
+            {
+                idiom: "A white elephant",
+                meaning_en: "Costly but useless possession",
+                meaning_bn: "দামি কিন্তু অকেজো বস্তু",
+                example: "The vintage car is a white elephant for him."
+            },
+            {
+                idiom: "Above board",
+                meaning_en: "Honest and open",
+                meaning_bn: "সংশয়হীন / প্রকাশ্য",
+                example: "His dealings are always above board."
+            },
+            {
+                idiom: "Achilles' heel",
+                meaning_en: "A small but fatal weakness",
+                meaning_bn: "দুর্বল স্থান",
+                example: "Maths is his Achilles' heel."
+            },
+            {
+                idiom: "Add fuel to the fire",
+                meaning_en: "To make a situation worse",
+                meaning_bn: "আগুনে ঘি ঢালা / পরিস্থিতি আরও খারাপ করা",
+                example: "His angry words added fuel to the fire."
+            },
+            {
+                idiom: "All in all",
+                meaning_en: "Most important / All powerful",
+                meaning_bn: "সর্বেসর্বা",
+                example: "The CEO is all in all in this company."
+            },
+            {
+                idiom: "Apple of discord",
+                meaning_en: "Cause of quarrel",
+                meaning_bn: "বিবাদের মূল",
+                example: "This land is the apple of discord between the two families."
+            },
+            {
+                idiom: "Apple of one's eye",
+                meaning_en: "Very dear",
+                meaning_bn: "চক্ষুশূল (নয়নমণি)",
+                example: "The little girl is the apple of her father's eye."
+            },
+            {
+                idiom: "At a stone's throw",
+                meaning_en: "Very near",
+                meaning_bn: "খুব কাছে",
+                example: "My school is at a stone's throw from my house."
+            },
+            {
+                idiom: "At sixes and sevens",
+                meaning_en: "In disorder",
+                meaning_bn: "বিশৃঙ্খলা অবস্থায়",
+                example: "Everything in the room was at sixes and sevens."
+            },
+            {
+                idiom: "At the eleventh hour",
+                meaning_en: "At the last moment",
+                meaning_bn: "শেষ মুহূর্তে",
+                example: "He submitted the project at the eleventh hour."
+            },
+            {
+                idiom: "Bag and baggage",
+                meaning_en: "With all belongings",
+                meaning_bn: "তল্পিতল্পাসহ",
+                example: "He left the village bag and baggage."
+            },
+            {
+                idiom: "Beat about the bush",
+                meaning_en: "To talk indirectly / Avoid the main topic",
+                meaning_bn: "বাজে বকা / মূল কথা না বলে ঘুরিয়ে বলা",
+                example: "Don't beat about the bush, come to the point."
+            },
+            {
+                idiom: "Bed of thorns",
+                meaning_en: "Full of difficulties",
+                meaning_bn: "কণ্টকশয্যা / কষ্টে ভরা",
+                example: "Life of a soldier is a bed of thorns."
+            },
+            {
+                idiom: "Black sheep",
+                meaning_en: "A disgraceful person",
+                meaning_bn: "কুলাঙ্গার",
+                example: "He is the black sheep of the family."
+            },
+            {
+                idiom: "Blow one's own trumpet",
+                meaning_en: "To praise oneself",
+                meaning_bn: "নিজের ঢাক নিজে পেটানো",
+                example: "I hate people who blow their own trumpet."
+            },
+            {
+                idiom: "Blue blood",
+                meaning_en: "Aristocratic birth",
+                meaning_bn: "আভিজাত্য / রাজকীয় রক্ত",
+                example: "He boasts of his blue blood."
+            },
+            {
+                idiom: "Break the ice",
+                meaning_en: "To start a conversation",
+                meaning_bn: "নীরবতা ভাঙা / কথা শুরু করা",
+                example: "He told a joke to break the ice."
+            },
+            {
+                idiom: "By hook or by crook",
+                meaning_en: "By any means",
+                meaning_bn: "যে কোনো উপায়ে (সৎ বা অসৎ)",
+                example: "He wants to win the election by hook or by crook."
+            },
+            {
+                idiom: "By leaps and bounds",
+                meaning_en: "Rapidly",
+                meaning_bn: "দ্রুতগতিতে",
+                example: "India is progressing by leaps and bounds."
+            },
+            {
+                idiom: "Call a spade a spade",
+                meaning_en: "To speak plainly",
+                meaning_bn: "স্পষ্ট কথা বলা / অপ্রিয় সত্য বলা",
+                example: "He is not afraid to call a spade a spade."
+            },
+            {
+                idiom: "Cast pearls before swine",
+                meaning_en: "To offer valuable things to people who do not appreciate them",
+                meaning_bn: "উলুবনে মুক্তো ছড়ানো",
+                example: "Giving him advice is like casting pearls before swine."
+            },
+            {
+                idiom: "Cock and bull story",
+                meaning_en: "A false story",
+                meaning_bn: "আজগুবি গল্প",
+                example: "Nobody believed his cock and bull story."
+            },
+            {
+                idiom: "Crocodile tears",
+                meaning_en: "False display of grief",
+                meaning_bn: "মায়াকান্না",
+                example: "She shed crocodile tears at his misery."
+            },
+            {
+                idiom: "Cry for the moon",
+                meaning_en: "To ask for the impossible",
+                meaning_bn: "অসম্ভব কিছু চাওয়া",
+                example: "Asking for a hike now is like crying for the moon."
+            },
+            {
+                idiom: "Cut a sorry figure",
+                meaning_en: "To make a poor impression",
+                meaning_bn: "খারাপ ফল করা / হতাশ করা",
+                example: "He cut a sorry figure in his speech."
+            },
+            {
+                idiom: "Fair weather friend",
+                meaning_en: "A friend only in good times",
+                meaning_bn: "সুসময়ের বন্ধু",
+                example: "Beware of fair weather friends."
+            },
+            {
+                idiom: "Gala day",
+                meaning_en: "A day of festivity",
+                meaning_bn: "উৎসবের দিন",
+                example: "The 15th August is a gala day for Indians."
+            },
+            {
+                idiom: "Get into hot water",
+                meaning_en: "To get into trouble",
+                meaning_bn: "বিপদে পড়া",
+                example: "He got into hot water by arguing with the boss."
+            },
+            {
+                idiom: "Gift of the gab",
+                meaning_en: "Talent for speaking",
+                meaning_bn: "বাগ্মিতা / কথা বলার দক্ষতা",
+                example: "A politician needs the gift of the gab."
+            },
+            {
+                idiom: "Hand to mouth",
+                meaning_en: "Providing only bare essentials",
+                meaning_bn: "দিন আনে দিন খায়",
+                example: "The poor family lives from hand to mouth."
+            },
+            {
+                idiom: "Hard and fast",
+                meaning_en: "Strict / Fixed",
+                meaning_bn: "ধরাবাঁধা / কঠোর",
+                example: "There are no hard and fast rules for this game."
+            },
+            {
+                idiom: "In a nutshell",
+                meaning_en: "Briefly",
+                meaning_bn: "সংক্ষেপে",
+                example: "Tell me the story in a nutshell."
+            },
+            {
+                idiom: "Kith and kin",
+                meaning_en: "Relatives",
+                meaning_bn: "আত্মীয়-স্বজন",
+                example: "All his kith and kin were invited."
+            },
+            {
+                idiom: "Lion's share",
+                meaning_en: "The major part",
+                meaning_bn: "সিংহভাগ",
+                example: "He took the lion's share of the profit."
+            },
+            {
+                idiom: "Maiden speech",
+                meaning_en: "First speech",
+                meaning_bn: "প্রথম বক্তৃতা",
+                example: "His maiden speech was very impressive."
+            },
+            {
+                idiom: "Man of straw",
+                meaning_en: "A weak person",
+                meaning_bn: "দুর্বল চিত্তের লোক / অপদার্থ",
+                example: "Don't depend on him; he is a man of straw."
+            },
+            {
+                idiom: "Nip in the bud",
+                meaning_en: "To destroy at an early stage",
+                meaning_bn: "অঙ্কুরে বিনাশ করা",
+                example: "Bad habits should be nipped in the bud."
+            }
+        ];
+
+        // --- RENDER LOGIC ---
+        function renderCards(filterText = "") {
+            const container = document.getElementById('cardsContainer');
+            container.innerHTML = '';
+
+            const filteredData = idiomsData.filter(item =>
+                item.idiom.toLowerCase().includes(filterText.toLowerCase())
+            );
+
+            if (filteredData.length === 0) {
+                container.innerHTML = `<div class="text-center text-gray-500 mt-10">No idioms found.</div>`;
+                return;
+            }
+
+            const grid = document.createElement('div');
+            grid.className = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto";
+
+            filteredData.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = "glass-card p-6 rounded-2xl border-t-4 border-indigo-500 hover:border-indigo-400 transition-all duration-300 group relative";
+
+                card.innerHTML = `
+                    <div class="absolute top-4 right-4 text-xs font-bold text-gray-600 bg-white/5 px-2 py-1 rounded border border-white/5">#${index + 1}</div>
+
+                    <h2 class="text-xl font-bold text-white mb-2 tracking-wide font-serif pr-8 leading-snug">"${item.idiom}"</h2>
+
+                    <div class="space-y-3">
+                        <div>
+                            <p class="text-[10px] uppercase text-indigo-400 font-bold tracking-widest mb-1">Meaning (Eng)</p>
+                            <p class="text-gray-300 text-sm">${item.meaning_en}</p>
+                        </div>
+
+                        <div>
+                            <p class="text-[10px] uppercase text-pink-400 font-bold tracking-widest mb-1">Meaning (Ben)</p>
+                            <p class="text-gray-200 text-sm bengali-text">${item.meaning_bn}</p>
+                        </div>
+
+                        <div class="bg-black/20 p-3 rounded-lg border border-white/5 mt-2">
+                            <p class="text-[10px] uppercase text-green-400 font-bold tracking-widest mb-1">Example</p>
+                            <p class="text-gray-300 text-xs italic">"${item.example}"</p>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            container.appendChild(grid);
+
+            if (filteredData.length > 0) {
+                 const footer = document.createElement('div');
+                 footer.className = "text-center text-xs text-gray-500 uppercase tracking-widest pt-12";
+                 footer.innerHTML = `Showing ${filteredData.length} Idioms • Keep Scrolling`;
+                 container.appendChild(footer);
+            }
+        }
+
+        // --- SEARCH FUNCTIONALITY ---
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            renderCards(e.target.value);
+        });
+
+        // Initial Render
+        window.onload = () => renderCards();
+
+    </script>
+</body>
+</html>
