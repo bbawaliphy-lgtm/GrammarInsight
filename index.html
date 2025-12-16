@@ -133,9 +133,9 @@
 
     <!-- ==============================================
          1. LOGIN SECTION (Authentication Layer)
-         MOBILE OPTIMIZED: Uses hidden by default, visible only if no auth
+         MOBILE OPTIMIZED: Scrolling Fixed, Text Visible
          ============================================== -->
-    <section id="loginSection" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-royal-mesh overflow-y-auto sm:overflow-hidden">
+    <section id="loginSection" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-royal-mesh overflow-hidden">
         <!-- Background Animation -->
         <div class="fixed inset-0 pointer-events-none z-0">
             <div class="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
@@ -144,7 +144,7 @@
         </div>
 
         <!-- Login Card Container -->
-        <div class="w-full h-full sm:h-auto sm:max-w-5xl sm:h-[85vh] glass-card rounded-none sm:rounded-3xl overflow-hidden flex flex-col md:flex-row relative z-10 shadow-2xl animate-fade-in">
+        <div class="w-full h-full sm:h-auto sm:max-w-5xl sm:max-h-[90vh] glass-card rounded-none sm:rounded-3xl overflow-hidden flex flex-col md:flex-row relative z-10 shadow-2xl animate-fade-in">
             
             <!-- Left Side: Creative Intro (Hidden on mobile) -->
             <div class="hidden md:flex w-full md:w-1/2 bg-gradient-to-br from-royal-900 to-black p-8 md:p-12 flex-col justify-between relative overflow-hidden">
@@ -172,46 +172,55 @@
                 </div>
             </div>
 
-            <!-- Right Side: Login Form (Mobile Optimized) -->
-            <div class="w-full md:w-1/2 p-6 md:p-12 flex flex-col justify-center bg-royal-800/50 backdrop-blur-md h-full overflow-y-auto">
+            <!-- Right Side: Login Form (Mobile Optimized with Bengali Text) -->
+            <div class="w-full md:w-1/2 p-6 md:p-12 flex flex-col bg-royal-800/50 backdrop-blur-md h-full overflow-y-auto custom-scrollbar">
                 <!-- Mobile Header -->
-                <div class="md:hidden mb-8 text-center pt-8">
-                    <div class="w-12 h-12 mx-auto rounded-full bg-royal-gold/10 border border-royal-gold/30 flex items-center justify-center text-royal-gold mb-4 overflow-hidden p-2">
+                <div class="md:hidden mb-6 text-center pt-4">
+                    <div class="w-12 h-12 mx-auto rounded-full bg-royal-gold/10 border border-royal-gold/30 flex items-center justify-center text-royal-gold mb-3 overflow-hidden p-2">
                         <img src="logo.png" alt="Logo" class="w-full h-full object-contain">
                     </div>
                     <h1 class="text-2xl font-bold text-white aristocratic-title">English RuleMaster</h1>
-                    <p class="text-xs text-royal-gold tracking-widest uppercase mt-1">SSC Insight</p>
+                    <p class="text-xs text-royal-gold tracking-widest uppercase mt-1 mb-4">SSC Insight</p>
+                    
+                    <!-- Added Bengali Text for Mobile -->
+                    <div class="bg-white/5 p-4 rounded-xl border border-white/5 text-left mb-6">
+                        <p class="text-xs text-gray-300 bengali-text leading-relaxed">
+                            "SSC CGL বা অন্যান্য সরকারি চাকরির জন্য ইংরেজি গ্রামার শেখার সেরা ঠিকানা। ১২০টি গোল্ডেন রুলস, স্মার্ট কুইজ এবং অভিজ্ঞ মেন্টর—সবই এখন এক অ্যাপে।"
+                        </p>
+                    </div>
                 </div>
 
-                <h2 class="text-2xl font-bold text-white mb-2 aristocratic-title text-center md:text-left">Member Login</h2>
-                <p class="text-xs text-gray-400 mb-8 uppercase tracking-wider text-center md:text-left">Access your dashboard</p>
+                <div class="mt-auto md:mt-0 flex-grow flex flex-col justify-center">
+                    <h2 class="text-2xl font-bold text-white mb-2 aristocratic-title text-center md:text-left">Member Login</h2>
+                    <p class="text-xs text-gray-400 mb-8 uppercase tracking-wider text-center md:text-left">Access your dashboard</p>
 
-                <form onsubmit="handleLogin(event)" class="space-y-5">
-                    <div class="space-y-2">
-                        <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Login ID (Email)</label>
-                        <div class="relative">
-                            <input type="email" id="loginEmail" required class="w-full bg-black/20 border border-white/10 rounded-xl py-3 px-4 pl-10 text-white focus:outline-none focus:border-royal-gold/50 transition-colors" placeholder="student@example.com">
-                            <i class="fa-solid fa-envelope absolute left-3.5 top-3.5 text-gray-500 text-xs"></i>
+                    <form onsubmit="handleLogin(event)" class="space-y-5">
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Login ID (Email)</label>
+                            <div class="relative">
+                                <input type="email" id="loginEmail" required class="w-full bg-black/20 border border-white/10 rounded-xl py-3 px-4 pl-10 text-white focus:outline-none focus:border-royal-gold/50 transition-colors" placeholder="student@example.com">
+                                <i class="fa-solid fa-envelope absolute left-3.5 top-3.5 text-gray-500 text-xs"></i>
+                            </div>
                         </div>
-                    </div>
-                    <div class="space-y-2">
-                        <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Password</label>
-                        <div class="relative">
-                            <input type="password" id="loginPassword" required class="w-full bg-black/20 border border-white/10 rounded-xl py-3 px-4 pl-10 text-white focus:outline-none focus:border-royal-gold/50 transition-colors" placeholder="••••••••">
-                            <i class="fa-solid fa-lock absolute left-3.5 top-3.5 text-gray-500 text-xs"></i>
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Password</label>
+                            <div class="relative">
+                                <input type="password" id="loginPassword" required class="w-full bg-black/20 border border-white/10 rounded-xl py-3 px-4 pl-10 text-white focus:outline-none focus:border-royal-gold/50 transition-colors" placeholder="••••••••">
+                                <i class="fa-solid fa-lock absolute left-3.5 top-3.5 text-gray-500 text-xs"></i>
+                            </div>
                         </div>
-                    </div>
-                    <p id="loginError" class="hidden text-xs text-red-400 bg-red-500/10 p-2 rounded border border-red-500/20"><i class="fa-solid fa-circle-exclamation mr-1"></i> Invalid credentials</p>
-                    <button type="submit" id="loginBtn" class="w-full py-3.5 bg-gradient-to-r from-royal-gold to-orange-500 rounded-xl text-black font-bold text-sm uppercase tracking-wide hover:shadow-[0_0_20px_rgba(251,191,36,0.3)] transition-all">
-                        Secure Login <i class="fa-solid fa-arrow-right ml-2"></i>
-                    </button>
-                </form>
+                        <p id="loginError" class="hidden text-xs text-red-400 bg-red-500/10 p-2 rounded border border-red-500/20"><i class="fa-solid fa-circle-exclamation mr-1"></i> Invalid credentials</p>
+                        <button type="submit" id="loginBtn" class="w-full py-3.5 bg-gradient-to-r from-royal-gold to-orange-500 rounded-xl text-black font-bold text-sm uppercase tracking-wide hover:shadow-[0_0_20px_rgba(251,191,36,0.3)] transition-all">
+                            Secure Login <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </button>
+                    </form>
 
-                <div class="mt-8 pt-8 border-t border-white/5 text-center pb-8 md:pb-0">
-                    <p class="text-xs text-gray-400 mb-3">Don't have an ID?</p>
-                    <button onclick="redirectToWhatsapp()" class="w-full py-3 rounded-xl border border-green-500/30 bg-green-500/10 text-green-400 text-xs font-bold uppercase tracking-wider hover:bg-green-500 hover:text-white transition-all flex items-center justify-center gap-2">
-                        <i class="fa-brands fa-whatsapp text-lg"></i> Get ID & Password
-                    </button>
+                    <div class="mt-8 pt-8 border-t border-white/5 text-center pb-8 md:pb-0">
+                        <p class="text-xs text-gray-400 mb-3">Don't have an ID?</p>
+                        <button onclick="redirectToWhatsapp()" class="w-full py-3 rounded-xl border border-green-500/30 bg-green-500/10 text-green-400 text-xs font-bold uppercase tracking-wider hover:bg-green-500 hover:text-white transition-all flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-lg"></i> Get ID & Password
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -274,7 +283,7 @@
     <div id="studentApp" style="display: none;" class="flex-grow flex flex-col h-full relative">
 
         <!-- NAV BAR -->
-        <nav id="mainNav" class="hidden absolute top-0 w-full z-40 px-6 py-6 flex justify-between items-center bg-gradient-to-b from-black/80 to-transparent animate-slide-up">
+        <nav id="mainNav" class="hidden absolute top-0 w-full z-40 px-6 py-6 flex justify-between items-center bg-gradient-to-b from-black/80 to-transparent animate-slide-up transition-opacity duration-300">
             <div class="flex items-center gap-3">
                 <div class="w-11 h-11 rounded-full border border-royal-gold/30 bg-white/5 flex items-center justify-center overflow-hidden shadow-[0_0_15px_rgba(251,191,36,0.15)] backdrop-blur-sm">
                     <img src="logo.png" alt="SSC Insight" class="w-full h-full object-cover" onerror="this.src='https://ui-avatars.com/api/?name=SSC+Insight&background=ffd700&color=000'">
@@ -595,24 +604,25 @@
         </div>
 
         <!-- LEARNING MODE VIEW (Hidden by default) -->
-        <div id="learningView" class="hidden flex-grow flex flex-col pt-24 pb-8 px-4 sm:px-6 max-w-2xl mx-auto w-full h-full overflow-y-auto relative z-10 no-scrollbar">
+        <div id="learningView" class="hidden flex-grow flex flex-col pt-24 pb-32 px-4 sm:px-6 max-w-2xl mx-auto w-full h-full overflow-y-auto relative z-10 no-scrollbar">
             
-            <div class="relative z-20 mb-4">
-                <button onclick="backToDashboard()" class="text-xs text-gray-400 hover:text-white flex items-center gap-2 group w-fit">
+            <!-- Controls Wrapper: Prevents squashing/overlapping -->
+            <div class="flex-none z-30 relative mb-4">
+                <button onclick="backToDashboard()" class="text-xs text-gray-400 hover:text-white flex items-center gap-2 group w-fit mb-4">
                     <div class="w-6 h-6 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-white/20 transition-all"><i class="fa-solid fa-arrow-left"></i></div>
                     <span>Back to Dashboard</span>
                 </button>
-            </div>
 
-            <!-- Filter Tabs -->
-            <div class="relative z-20 flex gap-2 mb-8 overflow-x-auto no-scrollbar pb-2">
-                <button onclick="filterRules('all')" id="tab-all" class="px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-royal-gold text-black whitespace-nowrap transition-all shadow-lg shadow-royal-gold/20">All Rules</button>
-                <button onclick="filterRules('difficult')" id="tab-difficult" class="px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white/5 border border-white/10 text-gray-400 whitespace-nowrap hover:bg-white/10 transition-all">Hard Rules</button>
-                <button onclick="filterRules('revision')" id="tab-revision" class="px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white/5 border border-white/10 text-gray-400 whitespace-nowrap hover:bg-white/10 transition-all">Revision</button>
+                <!-- Filter Tabs -->
+                <div class="flex gap-2 overflow-x-auto no-scrollbar pb-2">
+                    <button onclick="filterRules('all')" id="tab-all" class="px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-royal-gold text-black whitespace-nowrap transition-all shadow-lg shadow-royal-gold/20">All Rules</button>
+                    <button onclick="filterRules('difficult')" id="tab-difficult" class="px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white/5 border border-white/10 text-gray-400 whitespace-nowrap hover:bg-white/10 transition-all">Hard Rules</button>
+                    <button onclick="filterRules('revision')" id="tab-revision" class="px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white/5 border border-white/10 text-gray-400 whitespace-nowrap hover:bg-white/10 transition-all">Revision</button>
+                </div>
             </div>
 
             <!-- Main Rule Card -->
-            <div id="ruleCardContainer" class="animate-fade-in relative z-10">
+            <div id="ruleCardContainer" class="animate-fade-in relative z-10 mt-4">
                 <!-- Injected via JS -->
             </div>
 
@@ -1006,12 +1016,14 @@
         // --- SECURE MODULE LOADER (IFRAME) ---
         function openModule(url) {
             document.getElementById('moduleView').classList.remove('hidden');
+            document.getElementById('mainNav').classList.add('hidden'); // Fix: Hide overlapping nav
             document.getElementById('appFrame').src = url;
         }
 
         function closeModule() {
             document.getElementById('appFrame').src = "";
             document.getElementById('moduleView').classList.add('hidden');
+            document.getElementById('mainNav').classList.remove('hidden'); // Fix: Show nav again
         }
 
         // --- RULE ENGINE ---
