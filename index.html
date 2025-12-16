@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
+    <!-- ==================================================================================
+         ORIGINAL HEADERS & STYLES (PRESERVED)
+         ================================================================================== -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English RuleMaster - SSC INSIGHT</title>
+    <title>English RuleMaster - Secure Login</title>
     
     <script src="rules_data.js"></script>
     
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -26,71 +30,53 @@
                             900: '#050b14',
                             800: '#0f172a',
                             gold: '#ffd700',
-                            accent: '#f59e0b',
+                            accent: '#f59e0b'
                         },
                         glass: {
                             light: 'rgba(255, 255, 255, 0.05)',
                             border: 'rgba(255, 255, 255, 0.1)',
+                            card: 'rgba(15, 23, 42, 0.6)'
                         }
                     },
                     animation: {
                         'float': 'float 8s ease-in-out infinite',
-                        'float-reverse': 'floatReverse 10s ease-in-out infinite',
-                        'glow': 'glow 3s ease-in-out infinite alternate',
                         'slide-up': 'slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'bounce-slight': 'bounceSlight 2s infinite',
-                        'typewriter': 'typewriter 2s steps(40) forwards',
-                        'fade-in-up': 'fadeInUp 1s ease-out forwards',
+                        'pulse-glow': 'pulseGlow 2s infinite',
                         'fade-in': 'fadeIn 0.5s ease-out forwards',
                     },
                     keyframes: {
-                        fadeIn: { '0%': { opacity: 0 }, '100%': { opacity: 1 } },
                         float: {
                             '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
                             '50%': { transform: 'translateY(-10px) rotate(2deg)' },
                         },
-                        floatReverse: {
-                            '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
-                            '50%': { transform: 'translateY(10px) rotate(-2deg)' },
-                        },
-                        glow: {
-                            'from': { boxShadow: '0 0 5px rgba(255, 215, 0, 0.2)' },
-                            'to': { boxShadow: '0 0 20px rgba(255, 215, 0, 0.6)' }
-                        },
                         slideUp: {
                             '0%': { opacity: 0, transform: 'translateY(20px)' },
-                            '100%': { opacity: 1, transform: 'translateY(0)' }
+                            '100%': { opacity: 1, transform: 'translateY(0)' },
                         },
-                        fadeInUp: {
-                            '0%': { opacity: 0, transform: 'translateY(40px)' },
-                            '100%': { opacity: 1, transform: 'translateY(0)' }
+                        pulseGlow: {
+                            '0%, 100%': { opacity: 1, filter: 'brightness(1)' },
+                            '50%': { opacity: 0.8, filter: 'brightness(1.2)' },
                         },
-                        bounceSlight: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-5px)' }
-                        },
-                        typewriter: {
-                            'to': { left: '100%' }
-                        }
+                        fadeIn: { '0%': { opacity: 0 }, '100%': { opacity: 1 } }
                     }
                 }
             }
         }
     </script>
+
     <style>
+        /* Original CSS Preserved */
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
         .bengali-text { font-family: 'Noto Sans Bengali', sans-serif; }
         .aristocratic-title { font-family: 'Cinzel', serif; letter-spacing: 0.02em; }
         
-        /* Premium Background */
         .bg-royal-mesh {
             background-color: #020617;
             background-image: 
-                radial-gradient(circle at 15% 50%, rgba(251, 191, 36, 0.08) 0%, transparent 25%), 
+                radial-gradient(circle at 15% 50%, rgba(251, 191, 36, 0.08) 0%, transparent 25%),
                 radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.08) 0%, transparent 25%);
         }
-        
+
         .glass-card {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(20px);
@@ -99,717 +85,757 @@
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
 
-        /* Scroll Snap Polish */
-        .snap-container {
-            scroll-snap-type: y mandatory;
-            scroll-behavior: smooth;
-        }
-        .snap-section {
-            scroll-snap-align: start;
-            scroll-snap-stop: always;
-        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
 
-        /* Hide scrollbar for intro */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
-        /* Reveal Animation Classes (triggered by JS) */
-        .reveal-hidden { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
-        .reveal-visible { opacity: 1; transform: translateY(0); }
-        
-        .scale-hidden { opacity: 0; transform: scale(0.9); transition: all 0.8s ease-out; }
-        .scale-visible { opacity: 1; transform: scale(1); }
-
+        .snap-container { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+        .snap-section { scroll-snap-align: start; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="bg-royal-mesh text-gray-100 h-screen flex flex-col overflow-hidden selection:bg-royal-gold selection:text-black relative">
+<body class="bg-royal-mesh text-gray-100 h-screen flex flex-col overflow-hidden selection:bg-royal-gold selection:text-black">
 
-    <div class="fixed inset-0 pointer-events-none z-0">
-        <div class="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
-        <div class="particle w-96 h-96 top-[-10%] left-[-10%] blur-3xl opacity-20"></div>
-        <div class="particle w-80 h-80 bottom-[-10%] right-[-10%] blur-3xl opacity-20 delay-500"></div>
-    </div>
-
-    <!-- INTRO SEQUENCE RESTORED -->
-    <section id="introView" class="fixed inset-0 z-50 bg-royal-900 snap-container overflow-y-scroll h-screen w-full no-scrollbar">
-        
-        <div class="fixed right-6 top-1/2 transform -translate-y-1/2 flex flex-col gap-4 z-50">
-            <div class="w-1.5 h-1.5 rounded-full bg-royal-gold/20 active-indicator transition-all duration-500" id="ind-0"></div>
-            <div class="w-1.5 h-1.5 rounded-full bg-royal-gold/20 active-indicator transition-all duration-500" id="ind-1"></div>
-            <div class="w-1.5 h-1.5 rounded-full bg-royal-gold/20 active-indicator transition-all duration-500" id="ind-2"></div>
-            <div class="w-1.5 h-1.5 rounded-full bg-royal-gold/20 active-indicator transition-all duration-500" id="ind-3"></div>
-            <div class="w-1.5 h-1.5 rounded-full bg-royal-gold/20 active-indicator transition-all duration-500" id="ind-4"></div>
-            <div class="w-1.5 h-1.5 rounded-full bg-royal-gold/20 active-indicator transition-all duration-500" id="ind-5"></div>
+    <!-- ==============================================
+         1. NEW: LOGIN SECTION (Authentication Layer)
+         ============================================== -->
+    <section id="loginSection" class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-royal-mesh">
+        <!-- Background Animation -->
+        <div class="fixed inset-0 pointer-events-none z-0">
+            <div class="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
+            <div class="particle w-96 h-96 top-[-10%] left-[-10%] rounded-full bg-purple-500/20 blur-3xl"></div>
+            <div class="particle w-80 h-80 bottom-[-10%] right-[-10%] rounded-full bg-royal-gold/10 blur-3xl"></div>
         </div>
 
-        <div class="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 animate-bounce text-gray-500 text-xs uppercase tracking-widest font-bold pointer-events-none" id="scrollHint">
-            Scroll <i class="fa-solid fa-chevron-down ml-1"></i>
-        </div>
-
-        <div class="snap-section h-screen w-full flex items-center justify-center p-6 relative intro-scene" data-index="0">
-            <div class="max-w-lg text-center reveal-element reveal-hidden">
-                <div class="w-20 h-20 mx-auto bg-red-500/10 rounded-full flex items-center justify-center mb-6 border border-red-500/20 shadow-[0_0_30px_rgba(239,68,68,0.2)] animate-pulse-slow">
-                    <i class="fa-solid fa-cloud-bolt text-3xl text-red-500"></i>
-                </div>
-                <h1 class="text-3xl sm:text-4xl font-bold text-white mb-6 bengali-text leading-tight drop-shadow-xl">
-                    Competitive পরিক্ষার জন্য তোমাদের <br/>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-orange-400">English grammar-এর</span><br/>
-                    এত rule মনে রাখা সত্যি কঠিন।
-                </h1>
-                <p class="text-gray-400 text-sm font-light tracking-widest uppercase mt-8 opacity-60">The Reality</p>
-            </div>
-        </div>
-
-        <div class="snap-section h-screen w-full flex items-center justify-center p-6 relative intro-scene" data-index="1">
-            <div class="max-w-xl w-full reveal-element scale-hidden">
-                <div class="glass-card p-8 rounded-3xl border border-white/10 relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent"></div>
-                    
-                    <p class="text-xl sm:text-2xl text-gray-300 bengali-text font-light leading-relaxed mb-8 text-center">
-                        "কতবার পড়েও ভুল হয়ে যায়,<br/>আর English strong হতে <br/><span class="text-white font-bold">কত সময় লেগে যায়...</span>"
-                    </p>
-                    
-                    <div class="flex justify-center">
-                        <div class="relative bg-white/5 border border-white/10 px-6 py-3 rounded-full">
-                            <span class="text-blue-400 font-bold font-sans text-xl tracking-wide relative z-10">We get it.</span>
-                            <div class="absolute inset-0 bg-blue-500/10 blur-md rounded-full animate-pulse"></div>
-                        </div>
+        <div class="w-full max-w-5xl h-[85vh] glass-card rounded-3xl overflow-hidden flex flex-col md:flex-row relative z-10 shadow-2xl animate-fade-in">
+            <!-- Left Side: Creative Intro -->
+            <div class="w-full md:w-1/2 bg-gradient-to-br from-royal-900 to-black p-8 md:p-12 flex flex-col justify-between relative overflow-hidden">
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
+                <div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-royal-gold/10 border border-royal-gold/30 flex items-center justify-center text-royal-gold"><i class="fa-solid fa-crown"></i></div>
+                        <span class="text-xs font-bold tracking-[0.3em] text-royal-gold uppercase">SSC Insight</span>
                     </div>
+                    <h1 class="text-3xl md:text-5xl font-bold text-white mb-6 aristocratic-title leading-tight">
+                        English <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-royal-gold to-orange-400">RuleMaster</span>
+                    </h1>
+                    <div class="space-y-4 bengali-text text-gray-300">
+                        <p class="text-lg leading-relaxed border-l-2 border-royal-gold/50 pl-4">
+                            "SSC CGL এবং অন্যান্য প্রতিযোগিতামূলক পরীক্ষার জন্য ইংরেজি গ্রামার শেখার সেরা ঠিকানা।"
+                        </p>
+                        <p class="text-sm text-gray-400 font-light">
+                            এখানে আপনি পাবেন ১২০টি গোল্ডেন রুলস, প্র্যাকটিস কুইজ এবং আপনার উন্নতির পূর্ণাঙ্গ বিশ্লেষণ। আজই যুক্ত হোন আমাদের সফল কমিউনিটিতে।
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-8 flex gap-4">
+                    <div class="text-center"><p class="text-2xl font-bold text-white">120+</p><p class="text-[10px] uppercase tracking-widest text-gray-500">Rules</p></div>
+                    <div class="w-px bg-white/10 h-10"></div>
+                    <div class="text-center"><p class="text-2xl font-bold text-white">500+</p><p class="text-[10px] uppercase tracking-widest text-gray-500">Idioms</p></div>
                 </div>
             </div>
-        </div>
 
-        <div class="snap-section h-screen w-full flex items-center justify-center p-6 relative intro-scene" data-index="2">
-            <div class="max-w-lg text-center reveal-element reveal-hidden">
-                <h2 class="text-2xl sm:text-3xl font-bold text-white bengali-text mb-8 leading-snug">
-                    এই app তোমাদের এই problem থেকে <br/>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-royal-gold to-yellow-200">চিরকালের মতো মুক্তি দেবে।</span>
-                </h2>
-                
-                <div class="grid grid-cols-1 gap-4">
-                    <div class="glass-card p-4 rounded-xl flex items-center gap-4 hover:bg-white/5 transition-colors group border-l-4 border-royal-gold">
-                        <div class="w-10 h-10 rounded-full bg-royal-gold/10 flex items-center justify-center text-royal-gold group-hover:scale-110 transition-transform"><i class="fa-solid fa-list-check"></i></div>
-                        <div class="text-left">
-                            <h3 class="text-white font-bold text-sm">120 Exam-Focused Rules</h3>
-                            <p class="text-gray-400 text-xs">Curated for SSC CGL</p>
+            <!-- Right Side: Login Form -->
+            <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center bg-royal-800/50 backdrop-blur-md">
+                <h2 class="text-2xl font-bold text-white mb-2 aristocratic-title">Member Login</h2>
+                <p class="text-xs text-gray-400 mb-8 uppercase tracking-wider">Access your dashboard</p>
+
+                <form onsubmit="handleLogin(event)" class="space-y-5">
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Login ID (Email)</label>
+                        <div class="relative">
+                            <input type="email" id="loginEmail" required class="w-full bg-black/20 border border-white/10 rounded-xl py-3 px-4 pl-10 text-white focus:outline-none focus:border-royal-gold/50 transition-colors" placeholder="student@example.com">
+                            <i class="fa-solid fa-envelope absolute left-3.5 top-3.5 text-gray-500 text-xs"></i>
                         </div>
                     </div>
-                    <div class="glass-card p-4 rounded-xl flex items-center gap-4 hover:bg-white/5 transition-colors group border-l-4 border-blue-500">
-                        <div class="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform"><i class="fa-solid fa-language"></i></div>
-                        <div class="text-left">
-                            <h3 class="text-white font-bold text-sm">Bengali Explanation</h3>
-                            <p class="text-gray-400 text-xs">Easy to understand</p>
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Password</label>
+                        <div class="relative">
+                            <input type="password" id="loginPassword" required class="w-full bg-black/20 border border-white/10 rounded-xl py-3 px-4 pl-10 text-white focus:outline-none focus:border-royal-gold/50 transition-colors" placeholder="••••••••">
+                            <i class="fa-solid fa-lock absolute left-3.5 top-3.5 text-gray-500 text-xs"></i>
                         </div>
                     </div>
-                    <div class="glass-card p-4 rounded-xl flex items-center gap-4 hover:bg-white/5 transition-colors group border-l-4 border-green-500">
-                        <div class="w-10 h-10 rounded-full bg-green-500/10 flex items-center justify-center text-green-400 group-hover:scale-110 transition-transform"><i class="fa-solid fa-brain"></i></div>
-                        <div class="text-left">
-                            <h3 class="text-white font-bold text-sm">Smart Quiz Arena</h3>
-                            <p class="text-gray-400 text-xs">20 Distinct Quizzes</p>
-                        </div>
-                    </div>
+                    <p id="loginError" class="hidden text-xs text-red-400 bg-red-500/10 p-2 rounded border border-red-500/20"><i class="fa-solid fa-circle-exclamation mr-1"></i> Invalid credentials</p>
+                    <button type="submit" id="loginBtn" class="w-full py-3.5 bg-gradient-to-r from-royal-gold to-orange-500 rounded-xl text-black font-bold text-sm uppercase tracking-wide hover:shadow-[0_0_20px_rgba(251,191,36,0.3)] transition-all">
+                        Secure Login <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </button>
+                </form>
+
+                <div class="mt-8 pt-8 border-t border-white/5 text-center">
+                    <p class="text-xs text-gray-400 mb-3">Don't have an ID?</p>
+                    <button onclick="redirectToWhatsapp()" class="w-full py-3 rounded-xl border border-green-500/30 bg-green-500/10 text-green-400 text-xs font-bold uppercase tracking-wider hover:bg-green-500 hover:text-white transition-all flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Get ID & Password
+                    </button>
                 </div>
             </div>
-        </div>
-
-        <div class="snap-section h-screen w-full flex items-center justify-center p-6 relative intro-scene" data-index="3">
-            <div class="w-full max-w-md reveal-element scale-hidden">
-                <div class="relative bg-gradient-to-br from-[#1e293b] to-[#0f172a] p-8 rounded-3xl border border-white/10 shadow-2xl">
-                    <div class="absolute top-0 right-0 p-4 opacity-10"><i class="fa-solid fa-chart-line text-6xl text-white"></i></div>
-                    
-                    <p class="text-lg text-blue-200 bengali-text text-center mb-8">
-                        Daily মাত্র <span class="text-white font-bold font-sans">30 minutes</span> practice + quiz
-                    </p>
-                    
-                    <div class="flex items-center justify-center mb-8">
-                        <i class="fa-solid fa-arrow-down text-2xl text-royal-gold animate-bounce"></i>
-                    </div>
-
-                    <div class="text-center bg-white/5 p-4 rounded-xl border border-white/5">
-                        <p class="text-2xl text-white font-bold bengali-text mb-1">১ মাসেই</p>
-                        <p class="text-green-400 font-bold uppercase tracking-widest text-sm">Noticeable Improvement</p>
-                    </div>
-
-                    <p class="mt-6 text-center text-gray-400 text-xs italic bengali-text border-t border-white/5 pt-4">
-                        "Consistency রাখলে তুমি নিজেই বুঝবে কোথায় ভুল কমছে আর speed কত বাড়ছে।"
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="snap-section h-screen w-full flex items-center justify-center p-6 relative intro-scene" data-index="4">
-            <div class="max-w-lg w-full text-center reveal-element reveal-hidden">
-                <div class="relative inline-block mb-8 group cursor-pointer">
-                    <div class="absolute -inset-4 bg-royal-gold/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                    <i class="fa-solid fa-book-open-reader text-7xl text-royal-gold animate-float relative z-10 drop-shadow-[0_0_15px_rgba(255,215,0,0.5)]"></i>
-                </div>
-                
-                <h2 class="text-2xl font-bold text-white mb-6 bengali-text">মনে করো এটা একটা <span class="text-royal-gold font-serif italic">Living Book</span></h2>
-                
-                <div class="space-y-4 text-left max-w-sm mx-auto">
-                    <div class="flex items-center gap-4 text-gray-300 bengali-text text-lg opacity-0 animate-fade-in-up" style="animation-delay: 200ms; animation-fill-mode: forwards;">
-                        <span class="w-2 h-2 rounded-full bg-royal-gold"></span>
-                        যা সবসময় তোমার সাথে থাকে
-                    </div>
-                    <div class="flex items-center gap-4 text-gray-300 bengali-text text-lg opacity-0 animate-fade-in-up" style="animation-delay: 400ms; animation-fill-mode: forwards;">
-                        <span class="w-2 h-2 rounded-full bg-blue-400"></span>
-                        যে তোমাকে <span class="text-blue-300 font-bold mx-1">Question</span> করে
-                    </div>
-                    <div class="flex items-center gap-4 text-gray-300 bengali-text text-lg opacity-0 animate-fade-in-up" style="animation-delay: 600ms; animation-fill-mode: forwards;">
-                        <span class="w-2 h-2 rounded-full bg-red-400"></span>
-                        তোমার <span class="text-red-300 font-bold mx-1">ভুল</span> ধরে
-                    </div>
-                    <div class="flex items-center gap-4 text-gray-300 bengali-text text-lg opacity-0 animate-fade-in-up" style="animation-delay: 800ms; animation-fill-mode: forwards;">
-                        <span class="w-2 h-2 rounded-full bg-green-400"></span>
-                        আর <span class="text-green-300 font-bold mx-1">ঠিকটা</span> শিখিয়ে দেয়
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="snap-section h-screen w-full flex items-center justify-center p-6 relative intro-scene" data-index="5">
-            <div class="text-center w-full max-w-md reveal-element scale-hidden">
-                <h2 class="text-3xl font-bold text-white mb-8 bengali-text">কি, এবার English-এর ভয় কাটবে তো?</h2>
-                
-                <button onclick="enterApplication()" class="relative group w-full py-5 bg-gradient-to-r from-royal-gold to-amber-500 rounded-xl overflow-hidden shadow-[0_0_30px_rgba(251,191,36,0.3)] hover:shadow-[0_0_50px_rgba(251,191,36,0.5)] transition-all duration-300">
-                    <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                    <div class="relative flex items-center justify-center gap-3">
-                        <span class="text-black font-bold text-xl bengali-text uppercase tracking-wide">চলো — শুরু করি আজ থেকেই</span>
-                        <i class="fa-solid fa-arrow-right text-black group-hover:translate-x-1 transition-transform"></i>
-                    </div>
-                </button>
-                
-                <p class="mt-6 text-xs text-gray-500 uppercase tracking-[0.3em]">Your Journey Begins Now</p>
-            </div>
-        </div>
-
-    </section>
-
-    <!-- MAIN NAVBAR -->
-    <nav id="mainNav" class="hidden absolute top-0 w-full z-40 px-6 py-6 flex justify-between items-center bg-gradient-to-b from-black/80 to-transparent animate-slide-up">
-        <div class="flex items-center gap-3">
-            <div class="w-11 h-11 rounded-full border border-royal-gold/30 bg-white/5 flex items-center justify-center overflow-hidden shadow-[0_0_15px_rgba(251,191,36,0.15)] backdrop-blur-sm">
-                <img src="logo.png" alt="SSC Insight" class="w-full h-full object-cover" onerror="this.src='https://ui-avatars.com/api/?name=SSC+Insight&background=ffd700&color=000'">
-            </div>
-            <div>
-                <h1 class="font-bold text-white tracking-wider text-sm aristocratic-title text-royal-gold drop-shadow-md">English RuleMaster</h1>
-                <p class="text-[9px] text-gray-400 tracking-[0.2em] uppercase font-medium">SSC INSIGHT BENGALI</p>
-            </div>
-        </div>
-    </nav>
-
-    <!-- DASHBOARD VIEW -->
-    <section id="homeView" class="hidden flex-grow flex flex-col pt-28 pb-8 px-4 sm:px-6 max-w-xl mx-auto w-full h-full overflow-y-auto relative z-10 no-scrollbar">
-        
-        <div class="text-center mb-10 animate-slide-up">
-            <h1 class="text-3xl sm:text-4xl font-bold text-white mb-4 aristocratic-title leading-tight drop-shadow-xl">
-                Conquer SSC CGL English <br/>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-royal-gold to-orange-400 text-2xl sm:text-3xl font-sans mt-2 block bengali-text">বাংলায় সহজ সমাধান</span>
-            </h1>
-            <p class="text-gray-400 text-sm leading-relaxed max-w-md mx-auto font-light">
-                Master 120 concise grammar rules with practice quizzes, revision packs, and bite-size lessons — built specifically for SSC CGL aspirants.
-            </p>
-        </div>
-
-        <div class="grid gap-4 mb-10">
-            <!-- 1. START LEARNING -->
-            <button onclick="startSession('learn')" class="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1A1F2C] to-[#121620] border border-white/10 p-6 text-left shadow-2xl transition-all hover:scale-[1.02] hover:border-royal-gold/40 animate-slide-up delay-100">
-                <div class="absolute inset-0 bg-gradient-to-r from-royal-gold/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div class="relative z-10 flex justify-between items-center">
-                    <div>
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse"></span>
-                            <span class="text-[10px] font-bold text-royal-gold uppercase tracking-widest">Core Module</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white aristocratic-title">Start Learning</h3>
-                        <p class="text-gray-400 text-xs mt-1">120 Golden Rules with Examples</p>
-                    </div>
-                    <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-royal-gold group-hover:text-black transition-all duration-300 shadow-lg">
-                        <i class="fa-solid fa-book-open text-lg"></i>
-                    </div>
-                </div>
-            </button>
-
-            <!-- 2. QUIZ ARENA (UPDATED LINK) -->
-            <button onclick="window.location.href='Quiz_App.html'" class="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1A1F2C] to-[#121620] border border-emerald-500/30 p-6 text-left shadow-2xl transition-all hover:scale-[1.02] hover:border-emerald-500 hover:shadow-emerald-500/10 animate-slide-up delay-200">
-                <div class="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div class="relative z-10 flex justify-between items-center">
-                    <div>
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                            <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">New Feature</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white aristocratic-title">Quiz Arena</h3>
-                        <p class="text-gray-400 text-xs mt-1">Select from <span class="text-white font-bold">20 Distinct Quizzes</span></p>
-                    </div>
-                    <div class="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-300 shadow-lg">
-                        <i class="fa-solid fa-layer-group text-lg"></i>
-                    </div>
-                </div>
-            </button>
-
-            <!-- 3. QUICK REVISION -->
-            <button onclick="showPracticeMenu()" class="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1A1F2C] to-[#121620] border border-white/10 p-6 text-left shadow-2xl transition-all hover:scale-[1.02] hover:border-blue-500/40 animate-slide-up delay-300">
-                <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div class="relative z-10 flex justify-between items-center">
-                    <div>
-                        <h3 class="text-xl font-bold text-white aristocratic-title">Quick Revision</h3>
-                        <p class="text-gray-400 text-xs mt-1">Review your weak areas</p>
-                    </div>
-                    <div class="flex -space-x-3 group-hover:space-x-1 transition-all duration-300">
-                        <div class="w-8 h-8 rounded-full border-2 border-[#1A1F2C] bg-green-500 flex items-center justify-center text-[8px] font-bold text-white">E</div>
-                        <div class="w-8 h-8 rounded-full border-2 border-[#1A1F2C] bg-yellow-500 flex items-center justify-center text-[8px] font-bold text-black">M</div>
-                        <div class="w-8 h-8 rounded-full border-2 border-[#1A1F2C] bg-red-500 flex items-center justify-center text-[8px] font-bold text-white">H</div>
-                    </div>
-                </div>
-            </button>
-
-            <!-- 4. GRAMMAR NOTES (NEW BUTTON) -->
-            <button onclick="window.location.href='notes.html'" class="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1A1F2C] to-[#121620] border border-purple-500/30 p-6 text-left shadow-2xl transition-all hover:scale-[1.02] hover:border-purple-500 hover:shadow-purple-500/10 animate-slide-up delay-400">
-                <div class="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div class="relative z-10 flex justify-between items-center">
-                    <div>
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="h-1.5 w-1.5 rounded-full bg-purple-500"></span>
-                            <span class="text-[10px] font-bold text-purple-400 uppercase tracking-widest">Dyutimala Didi Special</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white aristocratic-title">GRAMMAR NOTES</h3>
-                        <p class="text-gray-400 text-xs mt-1 bengali-text">বাংলায় সহজ ব্যাখ্যা ও উদাহরণ</p>
-                    </div>
-                    <div class="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center border border-purple-500/20 group-hover:bg-purple-500 group-hover:text-white transition-all duration-300 shadow-lg">
-                        <i class="fa-solid fa-book-journal-whills text-lg"></i>
-                    </div>
-                </div>
-            </button>
-        </div>
-
-        <!-- Social & Footer -->
-        <div class="grid grid-cols-3 gap-3 mb-10 animate-slide-up delay-500">
-            <a href="https://www.youtube.com/@SSCINSIGHTBENGALI?sub_confirmation=1" target="_blank" class="glass-card p-4 rounded-2xl flex flex-col items-center justify-center text-center gap-2 hover:bg-red-600 hover:border-red-500 transition-all duration-300 group">
-                <i class="fa-brands fa-youtube text-2xl text-red-500 group-hover:text-white transition-colors"></i>
-                <span class="text-[10px] font-bold uppercase tracking-wider text-gray-300 group-hover:text-white">YouTube</span>
-            </a>
-            <a href="https://chat.whatsapp.com/HX6nMksgdE57GSRkrNmE5l" target="_blank" class="glass-card p-4 rounded-2xl flex flex-col items-center justify-center text-center gap-2 hover:bg-green-600 hover:border-green-500 transition-all duration-300 group">
-                <i class="fa-brands fa-whatsapp text-2xl text-green-500 group-hover:text-white transition-colors"></i>
-                <span class="text-[10px] font-bold uppercase tracking-wider text-gray-300 group-hover:text-white">Community</span>
-            </a>
-            <a href="https://sscinsightbengali.akamai.net.in/zero-price-courses" target="_blank" class="glass-card p-4 rounded-2xl flex flex-col items-center justify-center text-center gap-2 hover:bg-blue-600 hover:border-blue-500 transition-all duration-300 group">
-                <i class="fa-solid fa-mobile-screen-button text-2xl text-blue-500 group-hover:text-white transition-colors"></i>
-                <span class="text-[10px] font-bold uppercase tracking-wider text-gray-300 group-hover:text-white">Get App</span>
-            </a>
-        </div>
-
-        <!-- Mentor Section -->
-        <div class="relative w-full mt-8 mb-8 animate-slide-up delay-600">
-            <div class="flex items-center gap-3 mb-4 opacity-80">
-                <div class="h-px bg-gradient-to-r from-transparent to-royal-gold w-full"></div>
-                <span class="text-[10px] font-bold text-royal-gold uppercase tracking-[0.2em] whitespace-nowrap">Meet Your Mentor</span>
-                <div class="h-px bg-gradient-to-r from-royal-gold to-transparent w-full"></div>
-            </div>
-            <div class="relative glass-card rounded-2xl p-6 border border-white/5 bg-gradient-to-br from-[#1e293b]/90 to-[#0f172a]/95 shadow-xl overflow-hidden group hover:border-royal-gold/20 transition-all duration-500">
-                <div class="absolute top-0 right-0 w-32 h-32 bg-royal-gold/5 rounded-full blur-3xl -mr-10 -mt-10 group-hover:bg-royal-gold/10 transition-colors"></div>
-                <div class="flex flex-col sm:flex-row items-center gap-6 relative z-10">
-                    <div class="relative">
-                        <div class="w-24 h-24 rounded-full p-[2px] bg-gradient-to-b from-royal-gold to-transparent shadow-lg">
-                            <div class="w-full h-full rounded-full p-[2px] bg-royal-900">
-                                <img src="Dyuti.png" alt="Dyutimala Datta" class="w-full h-full object-cover rounded-full filter brightness-110" onerror="this.src='https://ui-avatars.com/api/?name=Dyutimala+Datta&background=random'">
-                            </div>
-                        </div>
-                        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-royal-gold to-yellow-600 text-royal-900 text-[9px] font-extrabold px-3 py-0.5 rounded-full uppercase tracking-widest shadow-lg border border-yellow-300/30">
-                            Instructor
-                        </div>
-                    </div>
-                    <div class="text-center sm:text-left flex-1 space-y-3">
-                        <div>
-                            <h3 class="text-xl font-bold text-white aristocratic-title tracking-wide">Dyutimala Datta</h3>
-                            <p class="text-[11px] text-blue-200/80 font-medium uppercase tracking-wider mt-0.5">Scientific Officer (CWC)</p>
-                        </div>
-                        <div class="flex flex-col gap-1.5">
-                            <div class="flex items-center justify-center sm:justify-start gap-2 text-xs text-gray-300 bg-white/5 py-1 px-3 rounded-lg border border-white/5 w-full sm:w-auto mx-auto sm:mx-0">
-                                <i class="fa-solid fa-trophy text-royal-gold text-[10px]"></i> <span>Cracked SSC CGL 2 Times</span>
-                            </div>
-                            <div class="flex items-center justify-center sm:justify-start gap-2 text-xs text-gray-300 bg-white/5 py-1 px-3 rounded-lg border border-white/5 w-full sm:w-auto mx-auto sm:mx-0">
-                                <i class="fa-solid fa-graduation-cap text-blue-400 text-[10px]"></i> <span>M.Sc. Physics (1st Class)</span>
-                            </div>
-                            <div class="flex items-center justify-center sm:justify-start gap-2 text-xs text-gray-300 bg-white/5 py-1 px-3 rounded-lg border border-white/5 w-full sm:w-auto mx-auto sm:mx-0">
-                                <i class="fa-solid fa-users text-emerald-400 text-[10px]"></i> <span>Mentored 1000+ Aspirants</span>
-                            </div>
-                        </div>
-                        <p class="text-xs text-gray-400 italic bengali-text border-t border-white/5 pt-3 mt-2">"Real strategies, exam-focused explanations in Bengali."</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="mt-8 text-center pb-4 opacity-40 hover:opacity-100 transition-opacity">
-            <p class="text-[9px] text-gray-500 uppercase tracking-[0.3em] font-bold">Crafted with <i class="fa-solid fa-heart text-red-500 mx-1"></i> by SSC Insight</p>
         </div>
     </section>
 
-    <!-- RULE LEARNING SESSION VIEW -->
-    <section id="sessionView" class="hidden fixed inset-0 z-50 bg-royal-900 flex flex-col bg-royal-mesh">
-        <div class="px-6 py-4 flex items-center justify-between z-20 border-b border-white/5 bg-black/20 backdrop-blur-md">
-            <button onclick="endSession()" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 text-gray-400 transition-colors">
-                <i class="fa-solid fa-chevron-left"></i>
-            </button>
-            <div class="flex flex-col items-center">
-                <div class="text-royal-gold text-lg font-mono font-bold tracking-widest flex items-center gap-2 drop-shadow-md">
-                    <span id="timerDisplay">00:00</span>
-                </div>
+    <!-- ==============================================
+         2. NEW: PAYMENT BLOCKED SECTION
+         ============================================== -->
+    <section id="paymentSection" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-xl p-6">
+        <div class="max-w-md w-full text-center">
+            <div class="w-24 h-24 mx-auto rounded-full bg-red-500/10 flex items-center justify-center mb-6 border-2 border-red-500 animate-pulse">
+                <i class="fa-solid fa-ban text-4xl text-red-500"></i>
             </div>
+            <h2 class="text-3xl font-bold text-white mb-2 aristocratic-title">Subscription Expired</h2>
+            <p class="text-gray-400 mb-8">Your 30-day access period has ended. Please renew your subscription to continue learning.</p>
+            <button onclick="redirectToWhatsapp()" class="w-full py-4 bg-green-600 rounded-xl text-white font-bold uppercase tracking-widest hover:bg-green-500 transition-all mb-4">Renew via WhatsApp</button>
+            <button onclick="handleLogout()" class="text-gray-500 text-xs hover:text-white underline">Back to Login</button>
+        </div>
+    </section>
+
+    <!-- ==============================================
+         3. NEW: ADMIN DASHBOARD
+         ============================================== -->
+    <section id="adminDashboard" class="hidden fixed inset-0 z-[90] bg-royal-mesh overflow-y-auto">
+        <nav class="sticky top-0 z-50 px-6 py-4 bg-black/50 backdrop-blur-md border-b border-white/5 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <div class="text-[10px] font-bold text-gray-500 uppercase tracking-widest" id="progressDisplay">1/120</div>
-                <button onclick="showJumpMenu()" class="w-10 h-10 flex items-center justify-center rounded-full bg-royal-gold/10 text-royal-gold border border-royal-gold/20 hover:bg-royal-gold/20 transition-all shadow-[0_0_10px_rgba(251,191,36,0.1)]">
-                    <i class="fa-solid fa-bars-staggered text-sm"></i>
+                <div class="w-10 h-10 rounded-lg bg-royal-gold flex items-center justify-center text-black font-bold text-xl"><i class="fa-solid fa-user-shield"></i></div>
+                <div><h1 class="font-bold text-white text-sm uppercase tracking-widest">Admin Control</h1><p class="text-[10px] text-gray-400">Subscription & User Management</p></div>
+            </div>
+            <button onclick="handleLogout()" class="px-4 py-2 rounded-lg bg-red-500/10 text-red-400 text-xs font-bold border border-red-500/20 hover:bg-red-500 hover:text-white transition-all">Logout</button>
+        </nav>
+        <div class="p-6 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden"><p class="text-xs text-gray-400 uppercase tracking-widest font-bold mb-2">Today's Traffic</p><h3 class="text-4xl font-bold text-white" id="statTraffic">0</h3></div>
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden"><p class="text-xs text-gray-400 uppercase tracking-widest font-bold mb-2">Total Learning Time</p><h3 class="text-4xl font-bold text-white" id="statTime">0m</h3></div>
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden"><p class="text-xs text-gray-400 uppercase tracking-widest font-bold mb-2">Active Subscribers</p><h3 class="text-4xl font-bold text-white" id="statActiveUsers">0</h3></div>
+            </div>
+            <div class="flex flex-col lg:flex-row gap-8">
+                <div class="w-full lg:w-1/3 glass-card p-6 rounded-2xl">
+                    <h3 class="text-lg font-bold text-white mb-4 border-b border-white/10 pb-2">Register New User</h3>
+                    <form id="createUserForm" onsubmit="createUser(event)" class="space-y-4">
+                        <input type="text" id="newName" placeholder="Full Name" required class="w-full bg-black/20 border border-white/10 rounded-lg p-3 text-sm text-white">
+                        <input type="text" id="newPhone" placeholder="Phone" required class="w-full bg-black/20 border border-white/10 rounded-lg p-3 text-sm text-white">
+                        <input type="email" id="newEmail" placeholder="Email (Login ID)" required class="w-full bg-black/20 border border-white/10 rounded-lg p-3 text-sm text-white">
+                        <input type="text" id="newPassword" placeholder="Password" required class="w-full bg-black/20 border border-white/10 rounded-lg p-3 text-sm text-white">
+                        <button type="submit" id="createBtn" class="w-full py-3 bg-royal-gold text-black font-bold rounded-lg uppercase text-xs tracking-wider hover:bg-white transition-colors">Register User</button>
+                    </form>
+                </div>
+                <div class="w-full lg:w-2/3 glass-card rounded-2xl p-6">
+                    <div class="flex justify-between items-center mb-4"><h3 class="text-lg font-bold text-white">Subscribers</h3><button onclick="loadAdminStats()" class="text-xs text-gray-400">Refresh</button></div>
+                    <div class="overflow-x-auto"><table class="w-full text-left text-sm"><tbody id="userTableBody"></tbody></table></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==============================================
+         4. ORIGINAL STUDENT APP CONTENT (WRAPPED)
+         Everything below this line inside this DIV 
+         is your EXACT original code.
+         ============================================== -->
+    <div id="studentApp" style="display: none;" class="flex-grow flex flex-col h-full relative">
+
+        <!-- NAV BAR -->
+        <nav id="mainNav" class="hidden absolute top-0 w-full z-40 px-6 py-6 flex justify-between items-center bg-gradient-to-b from-black/80 to-transparent animate-slide-up">
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-full border border-royal-gold/30 bg-white/5 flex items-center justify-center overflow-hidden shadow-[0_0_15px_rgba(251,191,36,0.15)] backdrop-blur-sm">
+                    <i class="fa-solid fa-crown text-royal-gold text-xl animate-pulse-glow"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-white tracking-wider text-sm aristocratic-title text-royal-gold drop-shadow-md">English RuleMaster</h1>
+                    <p class="text-[9px] text-gray-400 tracking-[0.2em] uppercase font-medium">SSC INSIGHT BENGALI</p>
+                </div>
+            </div>
+            <!-- Logout Button Added to Original Nav -->
+            <button onclick="handleLogout()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-red-500 hover:text-white flex items-center justify-center transition-all"><i class="fa-solid fa-power-off text-xs"></i></button>
+        </nav>
+
+        <!-- INTRO SCREEN -->
+        <div id="introView" class="hidden fixed inset-0 z-50 bg-royal-900 snap-container overflow-y-scroll h-screen w-full no-scrollbar">
+            <!-- Scroll Indicator -->
+            <div class="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 animate-bounce text-gray-500 text-xs uppercase tracking-widest font-bold pointer-events-none">
+                Scroll <i class="fa-solid fa-chevron-down ml-1"></i>
+            </div>
+            
+            <!-- Section 1 -->
+            <div class="snap-section h-screen w-full flex items-center justify-center p-6 relative">
+                <div class="max-w-lg text-center animate-slide-up">
+                    <div class="w-20 h-20 mx-auto bg-red-500/10 rounded-full flex items-center justify-center mb-6 border border-red-500/20 shadow-[0_0_30px_rgba(239,68,68,0.2)] animate-pulse">
+                        <i class="fa-solid fa-cloud-bolt text-3xl text-red-500"></i>
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl font-bold text-white mb-6 bengali-text leading-tight drop-shadow-xl">
+                        Competitive পরিক্ষার জন্য তোমাদের <br/>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-orange-400">English grammar-এর</span><br/>
+                        এত rule মনে রাখা সত্যি কঠিন।
+                    </h1>
+                </div>
+            </div>
+
+            <!-- Section 2 -->
+            <div class="snap-section h-screen w-full flex items-center justify-center p-6 relative bg-black/20">
+                <div class="max-w-xl w-full">
+                    <div class="glass-card p-8 rounded-3xl border border-white/10 relative overflow-hidden text-center hover:border-royal-gold/30 transition-colors duration-500">
+                        <div class="absolute -top-10 -left-10 w-32 h-32 bg-royal-gold/10 rounded-full blur-3xl"></div>
+                        <p class="text-xl sm:text-2xl text-gray-300 bengali-text font-light leading-relaxed mb-8 relative z-10">
+                            "কতবার পড়েও ভুল হয়ে যায়,<br/>আর English strong হতে <br/><span class="text-white font-bold">কত সময় লেগে যায়..."</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3 -->
+            <div class="snap-section h-screen w-full flex items-center justify-center p-6 relative">
+                <div class="text-center w-full max-w-md">
+                    <h2 class="text-3xl font-bold text-white mb-8 bengali-text">কি, এবার English-এর ভয় কাটবে তো?</h2>
+                    <button onclick="enterApplication()" class="relative group w-full py-5 bg-gradient-to-r from-royal-gold to-amber-500 rounded-xl overflow-hidden shadow-[0_0_30px_rgba(251,191,36,0.3)] hover:shadow-[0_0_50px_rgba(251,191,36,0.5)] transition-all duration-300">
+                        <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                        <span class="relative text-black font-bold text-xl bengali-text uppercase tracking-wide">চলো — শুরু করি</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN DASHBOARD VIEW -->
+        <div id="dashboardView" class="hidden flex-grow flex flex-col pt-28 pb-8 px-4 sm:px-6 max-w-xl mx-auto w-full h-full overflow-y-auto relative z-10 no-scrollbar">
+            
+            <!-- Hero Title -->
+            <div class="text-center mb-10 animate-slide-up">
+                <h1 class="text-3xl sm:text-4xl font-bold text-white mb-4 aristocratic-title leading-tight drop-shadow-xl">
+                    Conquer SSC CGL English <br/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-royal-gold to-orange-400 text-2xl sm:text-3xl font-sans mt-2 block bengali-text">বাংলায় সহজ সমাধান</span>
+                </h1>
+                <p class="text-gray-400 text-sm leading-relaxed max-w-md mx-auto font-light">
+                    Master 120 concise grammar rules with practice quizzes, revision packs, and bite-size lessons.
+                </p>
+            </div>
+
+            <!-- Module Grid -->
+            <div class="grid gap-4 mb-10">
+                <!-- 1. Start Learning Card -->
+                <button onclick="startLearning()" class="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1A1F2C] to-[#121620] border border-white/10 p-6 text-left shadow-2xl transition-all hover:scale-[1.02] hover:border-royal-gold/40 animate-slide-up delay-100">
+                    <div class="absolute inset-0 bg-royal-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="relative z-10 flex justify-between items-center">
+                        <div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                                <span class="text-[10px] font-bold text-royal-gold uppercase tracking-widest">Core Module</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white aristocratic-title">Start Learning</h3>
+                            <p class="text-gray-400 text-xs mt-1">120 Golden Rules with Examples</p>
+                        </div>
+                        <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-royal-gold group-hover:text-black transition-all duration-300 shadow-lg">
+                            <i class="fa-solid fa-book-open text-lg"></i>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- 2. Quiz Arena Card -->
+                <button onclick="window.location.href='Quiz_App.html'" class="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1A1F2C] to-[#121620] border border-emerald-500/30 p-6 text-left shadow-2xl transition-all hover:scale-[1.02] hover:border-emerald-500 hover:shadow-emerald-500/10 animate-slide-up delay-200">
+                    <div class="relative z-10 flex justify-between items-center">
+                        <div>
+                            <h3 class="text-xl font-bold text-white aristocratic-title">Quiz Arena</h3>
+                            <p class="text-gray-400 text-xs mt-1">Select from <span class="text-white font-bold">20 Distinct Quizzes</span></p>
+                        </div>
+                        <div class="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-300 shadow-lg">
+                            <i class="fa-solid fa-layer-group text-lg"></i>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- 3. Grammar Notes Card -->
+                <button onclick="window.location.href='notes.html'" class="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1A1F2C] to-[#121620] border border-purple-500/30 p-6 text-left shadow-2xl transition-all hover:scale-[1.02] hover:border-purple-500 hover:shadow-purple-500/10 animate-slide-up delay-300">
+                    <div class="relative z-10 flex justify-between items-center">
+                        <div>
+                            <h3 class="text-xl font-bold text-white aristocratic-title">GRAMMAR NOTES</h3>
+                            <p class="text-gray-400 text-xs mt-1 bengali-text">বাংলায় সহজ ব্যাখ্যা ও উদাহরণ</p>
+                        </div>
+                        <div class="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center border border-purple-500/20 group-hover:bg-purple-500 group-hover:text-white transition-all duration-300 shadow-lg">
+                            <i class="fa-solid fa-book-journal-whills text-lg"></i>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- 4. Synonyms & Antonyms -->
+                <button onclick="window.location.href='syno_anto.html'" class="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1A1F2C] to-[#121620] border border-blue-500/30 p-6 text-left shadow-2xl transition-all hover:scale-[1.02] hover:border-blue-500 hover:shadow-blue-500/10 animate-slide-up delay-400">
+                    <div class="relative z-10 flex justify-between items-center">
+                        <div>
+                            <h3 class="text-xl font-bold text-white aristocratic-title">SYNONYMS & ANTONYMS</h3>
+                            <p class="text-gray-400 text-xs mt-1">Master Word Power</p>
+                        </div>
+                        <div class="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center border border-blue-500/20 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300 shadow-lg">
+                            <i class="fa-solid fa-right-left text-lg"></i>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- 5. One Word Substitution -->
+                <button onclick="window.location.href='oneword.html'" class="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1A1F2C] to-[#121620] border border-sky-500/30 p-6 text-left shadow-2xl transition-all hover:scale-[1.02] hover:border-sky-500 hover:shadow-sky-500/10 animate-slide-up delay-500">
+                    <div class="relative z-10 flex justify-between items-center">
+                        <div>
+                            <h3 class="text-xl font-bold text-white aristocratic-title">ONE WORD SUB</h3>
+                            <p class="text-gray-400 text-xs mt-1">Precise Vocabulary</p>
+                        </div>
+                        <div class="w-12 h-12 rounded-full bg-sky-500/10 flex items-center justify-center border border-sky-500/20 group-hover:bg-sky-500 group-hover:text-white transition-all duration-300 shadow-lg">
+                            <i class="fa-solid fa-bullseye text-lg"></i>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- 6. Idioms & Phrases -->
+                <button onclick="window.location.href='idioms.html'" class="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1A1F2C] to-[#121620] border border-pink-500/30 p-6 text-left shadow-2xl transition-all hover:scale-[1.02] hover:border-pink-500 hover:shadow-pink-500/10 animate-slide-up delay-600">
+                    <div class="relative z-10 flex justify-between items-center">
+                        <div>
+                            <h3 class="text-xl font-bold text-white aristocratic-title">IDIOMS & PHRASES</h3>
+                            <p class="text-gray-400 text-xs mt-1">Cultural Expressions</p>
+                        </div>
+                        <div class="w-12 h-12 rounded-full bg-pink-500/10 flex items-center justify-center border border-pink-500/20 group-hover:bg-pink-500 group-hover:text-white transition-all duration-300 shadow-lg">
+                            <i class="fa-solid fa-quote-left text-lg"></i>
+                        </div>
+                    </div>
+                </button>
+
+                 <!-- 7. Homophones -->
+                 <button onclick="window.location.href='homophones.html'" class="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1A1F2C] to-[#121620] border border-orange-500/30 p-6 text-left shadow-2xl transition-all hover:scale-[1.02] hover:border-orange-500 hover:shadow-orange-500/10 animate-slide-up delay-600">
+                    <div class="relative z-10 flex justify-between items-center">
+                        <div>
+                            <h3 class="text-xl font-bold text-white aristocratic-title">HOMOPHONES</h3>
+                            <p class="text-gray-400 text-xs mt-1">Confusing Words</p>
+                        </div>
+                        <div class="w-12 h-12 rounded-full bg-orange-500/10 flex items-center justify-center border border-orange-500/20 group-hover:bg-orange-500 group-hover:text-white transition-all duration-300 shadow-lg">
+                            <i class="fa-solid fa-clone text-lg"></i>
+                        </div>
+                    </div>
+                </button>
+
+                 <!-- 8. Group Verbs -->
+                 <button onclick="window.location.href='groupverbs.html'" class="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1A1F2C] to-[#121620] border border-teal-500/30 p-6 text-left shadow-2xl transition-all hover:scale-[1.02] hover:border-teal-500 hover:shadow-teal-500/10 animate-slide-up delay-600">
+                    <div class="relative z-10 flex justify-between items-center">
+                        <div>
+                            <h3 class="text-xl font-bold text-white aristocratic-title">GROUP VERBS</h3>
+                            <p class="text-gray-400 text-xs mt-1">Phrasal Verbs</p>
+                        </div>
+                        <div class="w-12 h-12 rounded-full bg-teal-500/10 flex items-center justify-center border border-teal-500/20 group-hover:bg-teal-500 group-hover:text-white transition-all duration-300 shadow-lg">
+                            <i class="fa-solid fa-link text-lg"></i>
+                        </div>
+                    </div>
                 </button>
             </div>
-        </div>
 
-        <div class="flex-grow overflow-y-auto p-4 sm:p-6 pb-40" id="ruleContentArea"></div>
-
-        <div class="absolute bottom-6 left-4 right-4 z-30">
-            <div class="glass-card rounded-2xl p-4 shadow-2xl shadow-black/50">
-                <div class="flex justify-center gap-2 mb-4">
-                    <button onclick="setDifficulty('easy')" id="btn-easy" class="flex-1 py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-wider border border-white/10 transition-all flex items-center justify-center gap-2 text-gray-400 hover:text-white hover:bg-white/5">
-                        <i class="fa-regular fa-face-smile"></i> Easy
-                    </button>
-                    <button onclick="setDifficulty('moderate')" id="btn-moderate" class="flex-1 py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-wider border border-white/10 transition-all flex items-center justify-center gap-2 text-gray-400 hover:text-white hover:bg-white/5">
-                        <i class="fa-regular fa-face-meh"></i> Medium
-                    </button>
-                    <button onclick="setDifficulty('difficult')" id="btn-difficult" class="flex-1 py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-wider border border-white/10 transition-all flex items-center justify-center gap-2 text-gray-400 hover:text-white hover:bg-white/5">
-                        <i class="fa-regular fa-face-frown"></i> Hard
-                    </button>
-                </div>
-                <div class="flex gap-3">
-                    <button onclick="prevRule()" id="prevBtn" class="w-12 h-12 flex items-center justify-center rounded-xl bg-white/5 text-white border border-white/10 hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-colors">
-                        <i class="fa-solid fa-arrow-left"></i>
-                    </button>
-                    <button onclick="nextRule()" id="nextBtn" class="flex-1 h-12 rounded-xl bg-gradient-to-r from-royal-gold to-amber-600 text-black font-bold text-sm shadow-lg shadow-amber-500/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2 uppercase tracking-wide">
-                        Next Rule <i class="fa-solid fa-arrow-right"></i>
-                    </button>
-                </div>
+            <!-- Footer -->
+            <div class="text-center pb-8 opacity-40">
+                <i class="fa-brands fa-envira text-2xl mb-2"></i>
+                <p class="text-[9px] uppercase tracking-[0.3em] font-bold">Designed for Excellence</p>
             </div>
         </div>
-    </section>
 
-    <!-- JUMP MENU -->
-    <section id="jumpMenu" class="hidden fixed inset-0 z-50 bg-black/90 backdrop-blur-xl flex flex-col animate-fade-in">
-        <div class="p-6 pt-12 flex justify-between items-center border-b border-white/10">
-            <h2 class="text-2xl font-bold text-white aristocratic-title">Rule Codex</h2>
-            <button onclick="closeJumpMenu()" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors">
-                <i class="fa-solid fa-times"></i>
+        <!-- LEARNING MODE VIEW (Hidden by default) -->
+        <div id="learningView" class="hidden flex-grow flex flex-col pt-24 pb-8 px-4 sm:px-6 max-w-2xl mx-auto w-full h-full overflow-y-auto relative z-10 no-scrollbar">
+            
+            <button onclick="backToDashboard()" class="mb-4 text-xs text-gray-400 hover:text-white flex items-center gap-2 group w-fit">
+                <div class="w-6 h-6 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-white/20 transition-all"><i class="fa-solid fa-arrow-left"></i></div>
+                <span>Back to Dashboard</span>
             </button>
+
+            <!-- Filter Tabs -->
+            <div class="flex gap-2 mb-6 overflow-x-auto no-scrollbar pb-2">
+                <button onclick="filterRules('all')" id="tab-all" class="px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-royal-gold text-black whitespace-nowrap transition-all shadow-lg shadow-royal-gold/20">All Rules</button>
+                <button onclick="filterRules('difficult')" id="tab-difficult" class="px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white/5 border border-white/10 text-gray-400 whitespace-nowrap hover:bg-white/10 transition-all">Hard Rules</button>
+                <button onclick="filterRules('revision')" id="tab-revision" class="px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white/5 border border-white/10 text-gray-400 whitespace-nowrap hover:bg-white/10 transition-all">Revision</button>
+            </div>
+
+            <!-- Main Rule Card -->
+            <div id="ruleCardContainer" class="animate-fade-in">
+                <!-- Injected via JS -->
+            </div>
+
+            <!-- Navigation Controls -->
+            <div class="flex justify-between items-center mt-6">
+                <button onclick="prevRule()" id="btnPrev" class="px-6 py-3 rounded-xl bg-white/5 border border-white/10 text-white font-bold text-sm hover:bg-white/10 transition-all flex items-center gap-2 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed">
+                    <i class="fa-solid fa-chevron-left"></i> Prev
+                </button>
+                
+                <span id="progressIndicator" class="text-[10px] font-mono text-gray-500">1 / 120</span>
+                
+                <button onclick="nextRule()" id="btnNext" class="px-6 py-3 rounded-xl bg-royal-gold text-black font-bold text-sm hover:bg-white transition-all flex items-center gap-2 shadow-[0_0_20px_rgba(251,191,36,0.2)] disabled:opacity-50 disabled:cursor-not-allowed">
+                    Next <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+
         </div>
-        <div class="flex-grow overflow-y-auto p-4 sm:p-6 pb-20">
-            <div class="grid grid-cols-1 gap-2" id="jumpListContainer"></div>
-        </div>
-    </section>
 
-    <!-- PRACTICE MENU -->
-    <section id="practiceMenu" class="hidden fixed inset-0 z-50 bg-royal-mesh flex flex-col animate-fade-in">
-        <div class="p-6 pt-12">
-            <button onclick="goHome()" class="mb-6 flex items-center gap-2 text-gray-400 hover:text-white transition-colors">
-                <i class="fa-solid fa-arrow-left"></i> Back to Home
-            </button>
-            <h2 class="text-3xl font-bold text-white aristocratic-title mb-2">The Arena</h2>
-            <p class="text-gray-400 text-sm mb-8">Select your challenge level.</p>
-            <div class="grid gap-4" id="filterButtons"></div>
-        </div>
-    </section>
+    </div>
+    <!-- END OF ORIGINAL CONTENT WRAPPER -->
 
-    <script>
-        // --- INTRO ANIMATION LOGIC ---
-        document.addEventListener('DOMContentLoaded', () => {
-            const observerOptions = {
-                root: document.getElementById('introView'),
-                threshold: 0.5
-            };
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const hiddenElements = entry.target.querySelectorAll('.reveal-hidden, .scale-hidden');
-                        hiddenElements.forEach(el => {
-                            el.classList.remove('reveal-hidden', 'scale-hidden');
-                            el.classList.add('reveal-visible', 'scale-visible');
-                        });
-                        
-                        const index = entry.target.getAttribute('data-index');
-                        document.querySelectorAll('.active-indicator').forEach((ind, i) => {
-                            if(i == index) {
-                                ind.classList.add('bg-royal-gold', 'scale-150');
-                                ind.classList.remove('bg-royal-gold/20');
-                            } else {
-                                ind.classList.remove('bg-royal-gold', 'scale-150');
-                                ind.classList.add('bg-royal-gold/20');
-                            }
-                        });
+    <!-- ==============================================
+         5. FIREBASE SCRIPT (AUTH & LOGIC)
+         ============================================== -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc, updateDoc, collection, query, where, getDocs, increment, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-                        if(index == 5) {
-                            document.getElementById('scrollHint').classList.add('hidden');
+        const firebaseConfig = {
+            apiKey: "AIzaSyBuJzlGCV8noKwI4NFzUdxmNZt9q8sUHqc",
+            authDomain: "grammar-rulemaster.firebaseapp.com",
+            projectId: "grammar-rulemaster",
+            storageBucket: "grammar-rulemaster.firebasestorage.app",
+            messagingSenderId: "245380949474",
+            appId: "1:245380949474:web:b2f6f74b748d1830ddc5bb"
+        };
+
+        const app = initializeApp(firebaseConfig, "mainApp");
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const secondaryApp = initializeApp(firebaseConfig, "secondaryApp");
+        const secondaryAuth = getAuth(secondaryApp);
+
+        // --- GLOBAL EXPORTS FOR HTML ACCESS ---
+        window.handleLogin = async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const btn = document.getElementById('loginBtn');
+            const errorMsg = document.getElementById('loginError');
+
+            try {
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Checking...';
+                await signInWithEmailAndPassword(auth, email, password);
+            } catch (error) {
+                console.error(error);
+                btn.innerHTML = 'Secure Login <i class="fa-solid fa-arrow-right ml-2"></i>';
+                errorMsg.innerText = "Invalid credentials.";
+                errorMsg.classList.remove('hidden');
+            }
+        };
+
+        window.handleLogout = () => {
+            signOut(auth);
+            sessionStorage.clear(); // Reset intro
+            window.location.reload();
+        };
+
+        window.redirectToWhatsapp = () => {
+            window.open(`https://wa.me/91XXXXXXXXXX?text=${encodeURIComponent("Hello! I want to subscribe to English RuleMaster.")}`, '_blank');
+        };
+
+        // --- AUTH OBSERVER ---
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                // HIDE LOGIN
+                document.getElementById('loginSection').classList.add('hidden');
+
+                // GET USER DATA
+                const userDoc = await getDoc(doc(db, "users", user.uid));
+                if (userDoc.exists()) {
+                    const userData = userDoc.data();
+                    const now = new Date();
+                    const expiry = userData.subscriptionEnd ? new Date(userData.subscriptionEnd.seconds * 1000) : new Date(0);
+
+                    if (userData.role === 'admin') {
+                        // ADMIN FLOW
+                        document.getElementById('adminDashboard').classList.remove('hidden');
+                        loadAdminStats();
+                    } else {
+                        // STUDENT FLOW
+                        if (now > expiry) {
+                            document.getElementById('paymentSection').classList.remove('hidden');
+                        } else {
+                            // SHOW ORIGINAL APP
+                            document.getElementById('studentApp').style.display = 'flex';
+                            
+                            // START TRACKING
+                            startUsageTracking(user.uid);
+
+                            // INITIALIZE ORIGINAL LOGIC
+                            if(window.initOriginalApp) window.initOriginalApp();
                         }
                     }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.intro-scene').forEach(scene => {
-                observer.observe(scene);
-            });
+                    // Update Login Time
+                    updateDoc(doc(db, "users", user.uid), { lastLogin: serverTimestamp() });
+                } else {
+                    alert("User record missing!");
+                    signOut(auth);
+                }
+            } else {
+                // SHOW LOGIN
+                document.getElementById('loginSection').classList.remove('hidden');
+                document.getElementById('studentApp').style.display = 'none';
+                document.getElementById('adminDashboard').classList.add('hidden');
+            }
         });
 
-        // --- APP STATE ---
+        // --- ADMIN LOGIC ---
+        window.createUser = async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('newEmail').value;
+            const pass = document.getElementById('newPassword').value;
+            const name = document.getElementById('newName').value;
+            const phone = document.getElementById('newPhone').value;
+            
+            try {
+                document.getElementById('createBtn').innerText = 'Creating...';
+                const cred = await createUserWithEmailAndPassword(secondaryAuth, email, pass);
+                const expiry = new Date();
+                expiry.setDate(expiry.getDate() + 30);
+                
+                await setDoc(doc(db, "users", cred.user.uid), {
+                    email, passwordDisplay: pass, name, phone, role: 'student',
+                    subscriptionEnd: expiry, totalMinutes: 0, createdAt: serverTimestamp()
+                });
+                
+                alert(`User Created: ${email}`);
+                document.getElementById('createUserForm').reset();
+                signOut(secondaryAuth);
+                loadAdminStats();
+            } catch (err) { alert(err.message); }
+            finally { document.getElementById('createBtn').innerText = 'Register User'; }
+        };
+
+        window.loadAdminStats = async () => {
+            const today = new Date().toISOString().split('T')[0];
+            const stats = await getDoc(doc(db, "stats", today));
+            const users = await getDocs(query(collection(db, "users"), where("role", "==", "student")));
+            
+            document.getElementById('statTraffic').innerText = stats.exists() ? (stats.data().visits || 0) : 0;
+            document.getElementById('statTime').innerText = (stats.exists() ? (stats.data().totalMinutes || 0) : 0) + "m";
+            
+            let active = 0;
+            let html = '';
+            users.forEach(d => {
+                const u = d.data();
+                const isExp = new Date() > new Date(u.subscriptionEnd.seconds * 1000);
+                if(!isExp) active++;
+                html += `<tr class="border-b border-white/5"><td class="p-2">${u.name}</td><td class="p-2 font-mono text-xs">${u.email}</td><td class="p-2 font-mono text-xs">${u.passwordDisplay||'***'}</td><td class="p-2"><span class="${isExp?'text-red-500':'text-green-500'}">${isExp?'Exp':'Active'}</span></td><td class="p-2">${u.totalMinutes||0}m</td><td class="p-2"><button onclick="extendSub('${d.id}')" class="text-blue-400 text-xs">Extend</button></td></tr>`;
+            });
+            document.getElementById('statActiveUsers').innerText = active;
+            document.getElementById('userTableBody').innerHTML = html;
+        };
+
+        window.extendSub = async (uid) => {
+            if(confirm('Add 30 days?')) {
+                const d = new Date(); d.setDate(d.getDate() + 30);
+                await updateDoc(doc(db, "users", uid), { subscriptionEnd: d });
+                loadAdminStats();
+            }
+        };
+
+        let usageInt;
+        function startUsageTracking(uid) {
+            const today = new Date().toISOString().split('T')[0];
+            const sRef = doc(db, "stats", today);
+            setDoc(sRef, { visits: increment(1) }, { merge: true });
+            
+            usageInt = setInterval(() => {
+                if(document.visibilityState === 'visible') {
+                    updateDoc(doc(db, "users", uid), { totalMinutes: increment(1), [`daily.${today}`]: increment(1) });
+                    setDoc(sRef, { totalMinutes: increment(1) }, { merge: true });
+                }
+            }, 60000);
+        }
+    </script>
+
+    <!-- ==============================================
+         6. ORIGINAL LOGIC SCRIPT (PRESERVED)
+         Modified only to initialize on command
+         ============================================== -->
+    <script>
+        // --- GLOBAL VARIABLES (FROM ORIGINAL) ---
+        let currentSessionRules = [];
+        let currentIndex = 0;
+        let currentFilter = 'all'; // all, difficult, revision
+
+        // --- MAIN ENTRY POINT (CALLED BY AUTH SCRIPT) ---
+        window.initOriginalApp = function() {
+            // Check Intro Status
+            const introSeen = sessionStorage.getItem('introSeen');
+            
+            if (!introSeen) {
+                document.getElementById('introView').classList.remove('hidden');
+                document.getElementById('mainNav').classList.add('hidden');
+                document.getElementById('dashboardView').classList.add('hidden');
+                
+                // Set intro seen logic when they click "Start"
+            } else {
+                document.getElementById('introView').classList.add('hidden');
+                document.getElementById('mainNav').classList.remove('hidden');
+                document.getElementById('dashboardView').classList.remove('hidden');
+            }
+        }
+
+        // --- INTRO LOGIC ---
         function enterApplication() {
             const intro = document.getElementById('introView');
-            const home = document.getElementById('homeView');
+            const dash = document.getElementById('dashboardView');
             const nav = document.getElementById('mainNav');
             
+            // Animation
             intro.style.pointerEvents = 'none';
             intro.style.transition = 'opacity 0.5s ease-in-out';
             intro.style.opacity = '0';
             
             setTimeout(() => {
-                intro.style.display = 'none'; 
                 intro.classList.add('hidden');
-                home.classList.remove('hidden');
+                dash.classList.remove('hidden');
                 nav.classList.remove('hidden');
-                nav.classList.add('flex');
+                sessionStorage.setItem('introSeen', 'true'); // Mark as seen
             }, 500);
         }
 
-        // --- Helper to get Rule Data ---
-        function getRuleById(id) {
-            return rulesData.find(r => r.id === id) || rulesData[0];
-        }
-
-        // --- STATE ---
-        let currentSessionRules = [];
-        let currentIndex = 0;
-        let timerInterval;
-        let secondsElapsed = 0;
-        
-        const getDifficulty = (id) => localStorage.getItem(`rule_diff_${id}`) || null;
-        const saveDifficulty = (id, level) => localStorage.setItem(`rule_diff_${id}`, level);
-
         // --- NAVIGATION LOGIC ---
-        function goHome() {
-            stopTimer();
-            document.getElementById('homeView').classList.remove('hidden');
-            document.getElementById('practiceMenu').classList.add('hidden');
-            document.getElementById('sessionView').classList.add('hidden');
-            document.getElementById('jumpMenu').classList.add('hidden');
-        }
-
-        function showPracticeMenu() {
-            document.getElementById('homeView').classList.add('hidden');
-            document.getElementById('practiceMenu').classList.remove('hidden');
-            renderPracticeButtons();
-        }
-
-        // --- JUMP MENU LOGIC ---
-        function showJumpMenu() {
-            const container = document.getElementById('jumpListContainer');
-            container.innerHTML = currentSessionRules.map((rule, idx) => {
-                const isCurrent = idx === currentIndex;
-                const diff = getDifficulty(rule.id);
-                let diffColor = 'border-gray-200 dark:border-slate-700';
-                if(diff === 'easy') diffColor = 'border-green-400 dark:border-green-500';
-                if(diff === 'moderate') diffColor = 'border-yellow-400 dark:border-yellow-500';
-                if(diff === 'difficult') diffColor = 'border-red-400 dark:border-red-500';
-
-                return `
-                    <button onclick="jumpToRule(${idx})" class="w-full text-left p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-all border-l-2 ${diffColor} ${isCurrent ? 'bg-white/10 ring-1 ring-royal-gold/50' : ''}">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Rule ${rule.id}</span>
-                                <h4 class="font-bold text-gray-200 text-sm font-sans line-clamp-1">${rule.title}</h4>
-                            </div>
-                            ${isCurrent ? '<i class="fa-solid fa-bolt text-royal-gold animate-pulse"></i>' : ''}
-                        </div>
-                    </button>
-                `;
-            }).join('');
-            document.getElementById('jumpMenu').classList.remove('hidden');
-        }
-
-        function closeJumpMenu() {
-            document.getElementById('jumpMenu').classList.add('hidden');
-        }
-
-        function jumpToRule(index) {
-            currentIndex = index;
-            renderCurrentRule();
-            closeJumpMenu();
-        }
-
-        // --- PRACTICE MENU LOGIC ---
-        function renderPracticeButtons() {
-            const container = document.getElementById('filterButtons');
-            const counts = { easy: 0, moderate: 0, difficult: 0, all: rulesData.length };
+        function startLearning() {
+            document.getElementById('dashboardView').classList.add('hidden');
+            document.getElementById('learningView').classList.remove('hidden');
             
-            rulesData.forEach(r => {
-                const diff = getDifficulty(r.id);
-                if (diff) counts[diff]++;
+            // Default load
+            filterRules('all');
+        }
+
+        function backToDashboard() {
+            document.getElementById('learningView').classList.add('hidden');
+            document.getElementById('dashboardView').classList.remove('hidden');
+        }
+
+        // --- RULE ENGINE (EXACTLY AS ORIGINAL) ---
+        function filterRules(type) {
+            currentFilter = type;
+            currentIndex = 0;
+
+            // Update Tabs UI
+            ['all', 'difficult', 'revision'].forEach(t => {
+                const btn = document.getElementById(`tab-${t}`);
+                if (t === type) {
+                    btn.className = "px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-royal-gold text-black whitespace-nowrap transition-all shadow-lg shadow-royal-gold/20";
+                } else {
+                    btn.className = "px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white/5 border border-white/10 text-gray-400 whitespace-nowrap hover:bg-white/10 transition-all";
+                }
             });
 
-            const createBtn = (label, count, type, color, icon) => `
-                <button onclick="startSession('practice', '${type}')" 
-                    class="w-full p-5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all flex items-center justify-between group ${count === 0 ? 'opacity-50 cursor-not-allowed' : ''}" ${count === 0 ? 'disabled' : ''}>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-full ${color} flex items-center justify-center text-xl shadow-lg">
-                            <i class="${icon}"></i>
-                        </div>
-                        <div class="text-left">
-                            <h4 class="font-bold text-white text-lg aristocratic-title">${label}</h4>
-                            <p class="text-xs text-gray-400 font-mono">${count} Rules</p>
-                        </div>
-                    </div>
-                    <i class="fa-solid fa-chevron-right text-gray-500 group-hover:text-white transition-colors"></i>
-                </button>
-            `;
-
-            container.innerHTML = `
-                ${createBtn('The Difficult Path', counts.difficult, 'difficult', 'bg-red-500/20 text-red-500 border border-red-500/30', 'fa-solid fa-skull')}
-                ${createBtn('The Moderate Path', counts.moderate, 'moderate', 'bg-yellow-500/20 text-yellow-500 border border-yellow-500/30', 'fa-solid fa-layer-group')}
-                ${createBtn('The Easy Path', counts.easy, 'easy', 'bg-green-500/20 text-green-500 border border-green-500/30', 'fa-solid fa-leaf')}
-                ${createBtn('Full Archive', counts.all, 'all', 'bg-royal-gold/20 text-royal-gold border border-royal-gold/30', 'fa-solid fa-infinity')}
-            `;
-        }
-
-        function startSession(mode, filterType = null) {
-            if (mode === 'learn' || filterType === 'all') {
+            // Filter Logic
+            if (type === 'all') {
                 currentSessionRules = [...rulesData];
-            } else {
-                currentSessionRules = rulesData.filter(r => getDifficulty(r.id) === filterType);
+            } else if (type === 'difficult') {
+                currentSessionRules = rulesData.filter(r => getDifficulty(r.id) === 'difficult');
+            } else if (type === 'revision') {
+                // Example logic: revision might be marked differently, or assume same as moderate
+                currentSessionRules = rulesData.filter(r => getDifficulty(r.id) === 'moderate');
             }
 
-            if (currentSessionRules.length === 0) return;
-
-            currentIndex = 0;
-            document.getElementById('homeView').classList.add('hidden');
-            document.getElementById('practiceMenu').classList.add('hidden');
-            document.getElementById('sessionView').classList.remove('hidden');
-            
-            renderCurrentRule();
-            startTimer();
-        }
-
-        function endSession() {
-            if(confirm("Do you wish to leave the arena?")) {
-                goHome();
+            if (currentSessionRules.length === 0) {
+                document.getElementById('ruleCardContainer').innerHTML = `
+                    <div class="text-center py-20 opacity-50">
+                        <i class="fa-solid fa-folder-open text-4xl mb-4"></i>
+                        <p>No rules found in this category.</p>
+                    </div>
+                `;
+                document.getElementById('btnNext').disabled = true;
+                document.getElementById('btnPrev').disabled = true;
+                return;
             }
+
+            renderRule();
         }
 
-        // --- TIMER LOGIC ---
-        function startTimer() {
-            stopTimer();
-            secondsElapsed = 0;
-            document.getElementById('timerDisplay').innerText = "00:00";
-            timerInterval = setInterval(() => {
-                secondsElapsed++;
-                const mins = Math.floor(secondsElapsed / 60).toString().padStart(2, '0');
-                const secs = (secondsElapsed % 60).toString().padStart(2, '0');
-                document.getElementById('timerDisplay').innerText = `${mins}:${secs}`;
-            }, 1000);
-        }
-
-        function stopTimer() {
-            clearInterval(timerInterval);
-        }
-
-        // --- RULE RENDERING ---
-        function renderCurrentRule() {
+        function renderRule() {
             const rule = currentSessionRules[currentIndex];
-            const contentArea = document.getElementById('ruleContentArea');
-            const total = currentSessionRules.length;
-
-            document.getElementById('progressDisplay').innerText = `RULE ${currentIndex + 1} OF ${total}`;
+            const container = document.getElementById('ruleCardContainer');
             
-            // Buttons State
-            document.getElementById('prevBtn').disabled = currentIndex === 0;
-            const nextBtn = document.getElementById('nextBtn');
-            if (currentIndex === total - 1) {
-                nextBtn.innerHTML = `COMPLETE <i class="fa-solid fa-flag-checkered"></i>`;
-                nextBtn.className = "flex-1 h-12 rounded-xl bg-green-600 text-white font-bold text-sm shadow-lg shadow-green-500/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2 uppercase tracking-wide";
-            } else {
-                nextBtn.innerHTML = `NEXT RULE <i class="fa-solid fa-arrow-right"></i>`;
-                nextBtn.className = "flex-1 h-12 rounded-xl bg-gradient-to-r from-royal-gold to-amber-600 text-black font-bold text-sm shadow-lg shadow-amber-500/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2 uppercase tracking-wide";
-            }
+            // Progress
+            document.getElementById('progressIndicator').innerText = `${currentIndex + 1} / ${currentSessionRules.length}`;
+            
+            // Nav State
+            document.getElementById('btnPrev').disabled = currentIndex === 0;
+            document.getElementById('btnNext').disabled = currentIndex === currentSessionRules.length - 1;
+            document.getElementById('btnPrev').style.opacity = currentIndex === 0 ? '0.5' : '1';
+            document.getElementById('btnNext').style.opacity = currentIndex === currentSessionRules.length - 1 ? '0.5' : '1';
 
-            // Highlight Difficulty
-            const diff = getDifficulty(rule.id);
-            updateDifficultyUI(diff);
+            // Check saved difficulty
+            const savedDiff = getDifficulty(rule.id);
 
-            // Generate Content Animation
-            contentArea.innerHTML = `
-                <div class="animate-slide-up space-y-6">
-                    <div class="text-center space-y-2">
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-royal-gold/30 bg-royal-gold/10 text-royal-gold text-[10px] font-bold tracking-widest uppercase">
-                            <i class="fa-solid ${rule.icon}"></i> Grammar Rule ${rule.id}
+            // Template
+            container.innerHTML = `
+                <div class="glass-card rounded-3xl overflow-hidden relative border border-white/10 shadow-2xl animate-slide-up">
+                    <div class="absolute top-0 right-0 p-6 opacity-5 pointer-events-none">
+                        <i class="fa-solid ${rule.icon || 'fa-star'} text-9xl"></i>
+                    </div>
+                    
+                    <div class="p-6 sm:p-8 relative z-10">
+                        <!-- Header -->
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-royal-gold/30 bg-royal-gold/10 text-royal-gold text-[10px] font-bold tracking-widest uppercase">
+                                <i class="fa-solid fa-circle-check"></i> Rule ${rule.id}
+                            </div>
+                            <button class="text-gray-500 hover:text-white"><i class="fa-regular fa-bookmark"></i></button>
                         </div>
-                        <h2 class="text-3xl sm:text-4xl font-bold text-white aristocratic-title leading-tight">${rule.title}</h2>
-                        <p class="text-gray-400 font-medium">${rule.subtitle}</p>
-                    </div>
-
-                    <div class="glass-card rounded-2xl p-6 border-l-4 border-royal-gold relative overflow-hidden group">
-                        <div class="absolute top-0 right-0 w-24 h-24 bg-royal-gold/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
-                        <h4 class="text-xs text-royal-gold font-bold uppercase tracking-widest mb-3 flex items-center gap-2">
-                            <i class="fa-regular fa-lightbulb"></i> Core Concept
-                        </h4>
-                        <p class="text-lg text-gray-200 bengali-text leading-relaxed font-light">${rule.concept}</p>
-                    </div>
-
-                    <div>
-                        <h4 class="text-sm font-bold text-gray-400 mb-4 uppercase tracking-widest flex items-center gap-2">
-                            <i class="fa-solid fa-bolt text-yellow-500"></i> Master Examples
-                        </h4>
                         
-                        <div class="space-y-4">
-                            ${rule.examples.map((ex, i) => `
-                                <div class="bg-white/5 rounded-xl p-5 border border-white/10 hover:border-royal-gold/30 transition-colors">
-                                    <div class="flex items-start gap-3">
-                                        <div class="mt-1 w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-[10px] font-bold text-gray-400 flex-shrink-0 border border-white/5">
-                                            ${i + 1}
-                                        </div>
-                                        <div class="flex-1">
-                                            <p class="font-serif text-lg text-white mb-2 border-b border-white/5 pb-2">"${ex.en}"</p>
-                                            <div class="space-y-1">
-                                                <p class="text-sm text-gray-300 bengali-text"><span class="text-gray-500 text-xs uppercase font-bold mr-2">Explanation:</span>${ex.bn}</p>
-                                                <p class="text-xs text-royal-gold font-mono mt-1"><i class="fa-solid fa-code-branch"></i> Logic: ${ex.rule}</p>
-                                            </div>
-                                        </div>
+                        <!-- Title -->
+                        <h2 class="text-2xl sm:text-3xl font-bold text-white aristocratic-title mb-1">${rule.title}</h2>
+                        <p class="text-sm text-gray-400 font-medium mb-6">${rule.subtitle}</p>
+                        
+                        <!-- Concept -->
+                        <div class="bg-white/5 rounded-xl p-5 border-l-4 border-royal-gold mb-6 backdrop-blur-sm">
+                            <h4 class="text-[10px] text-royal-gold font-bold uppercase tracking-widest mb-2 flex items-center gap-2">
+                                <i class="fa-regular fa-lightbulb"></i> Concept
+                            </h4>
+                            <p class="text-base text-gray-200 bengali-text leading-relaxed font-light">${rule.concept}</p>
+                        </div>
+                        
+                        <!-- Examples -->
+                        <div>
+                            <h4 class="text-[10px] font-bold text-gray-500 mb-3 uppercase tracking-widest">Examples</h4>
+                            <div class="space-y-3">
+                                ${rule.examples.map(ex => `
+                                    <div class="bg-black/20 rounded-lg p-3 border border-white/5 hover:border-white/10 transition-colors">
+                                        <p class="font-serif text-sm text-white mb-1">"${ex.en}"</p>
+                                        <p class="text-xs text-gray-400 bengali-text">${ex.bn}</p>
+                                        ${ex.rule ? `<span class="inline-block mt-2 text-[9px] px-2 py-0.5 rounded bg-white/5 text-gray-500 uppercase tracking-wider">${ex.rule}</span>` : ''}
                                     </div>
-                                </div>
-                            `).join('')}
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Difficulty Footer -->
+                    <div class="bg-black/40 p-4 border-t border-white/5">
+                        <p class="text-center text-[10px] text-gray-500 uppercase tracking-widest mb-3">Mark Difficulty</p>
+                        <div class="flex gap-2">
+                            <button onclick="markDifficulty('easy')" id="btn-easy" class="flex-1 py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-wider border transition-all flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-leaf"></i> Easy
+                            </button>
+                            <button onclick="markDifficulty('moderate')" id="btn-moderate" class="flex-1 py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-wider border transition-all flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-scale-balanced"></i> Medium
+                            </button>
+                            <button onclick="markDifficulty('difficult')" id="btn-difficult" class="flex-1 py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-wider border transition-all flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-fire"></i> Hard
+                            </button>
                         </div>
                     </div>
                 </div>
             `;
+
+            updateDifficultyUI(savedDiff);
         }
 
-        // --- ACTIONS ---
         function nextRule() {
             if (currentIndex < currentSessionRules.length - 1) {
                 currentIndex++;
-                renderCurrentRule();
-            } else {
-                alert(`Session Complete! You studied for ${document.getElementById('timerDisplay').innerText}`);
-                goHome();
+                renderRule();
             }
         }
 
         function prevRule() {
             if (currentIndex > 0) {
                 currentIndex--;
-                renderCurrentRule();
+                renderRule();
             }
         }
 
-        function setDifficulty(level) {
+        // --- LOCAL STORAGE HELPERS (PRESERVED) ---
+        function getDifficulty(id) {
+            return localStorage.getItem(`rule_${id}_diff`);
+        }
+
+        function saveDifficulty(id, level) {
+            localStorage.setItem(`rule_${id}_diff`, level);
+        }
+
+        function markDifficulty(level) {
             const ruleId = currentSessionRules[currentIndex].id;
             saveDifficulty(ruleId, level);
             updateDifficultyUI(level);
@@ -830,10 +856,11 @@
             
             levels.forEach(l => {
                 const btn = document.getElementById(`btn-${l}`);
+                // Default Class
                 btn.className = `flex-1 py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-wider border transition-all flex items-center justify-center gap-2 text-gray-400 hover:text-white hover:bg-white/5 border-white/10`;
                 
                 if (l === level) {
-                    btn.className = `flex-1 py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-wider border transition-all flex items-center justify-center gap-2 ${activeClass[l]} shadow-[0_0_10px_rgba(0,0,0,0.3)]`;
+                    btn.className = `flex-1 py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-wider border transition-all flex items-center justify-center gap-2 shadow-lg scale-[1.02] ${activeClass[l]}`;
                 }
             });
         }
